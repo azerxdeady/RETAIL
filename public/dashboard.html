@@ -8,9 +8,28 @@
   <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <script>
+    (function() {
+      const saved = localStorage.getItem('kj_theme_mode');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="/js/theme.js"></script>
 </head>
 <body class="bg-[#07090e] text-stone-100 min-h-screen flex flex-col font-sans selection:bg-[#c5a059] selection:text-black">
 
@@ -40,6 +59,16 @@
 
       <!-- System Health Indicator & Quick Controls -->
       <div class="flex flex-wrap items-center gap-3">
+        <!-- Luxury Dark / Light Mode Switch -->
+        <button id="dash-theme-toggle-btn" onclick="toggleThemeMode()" class="theme-mode-switch relative px-2.5 py-1.5 rounded-full border border-stone-700 hover:border-amber-400 bg-[#161a24] transition-all duration-300 flex items-center gap-1.5 shadow-sm cursor-pointer select-none" title="Toggle Light / Dark Mode" aria-label="Toggle Dark and Light theme">
+          <span class="theme-icon-sun text-xs text-amber-500 transition-colors duration-300"><i class="fa-solid fa-sun"></i></span>
+          <div class="theme-toggle-track relative w-7 h-3.5 rounded-full bg-stone-700 p-0.5 flex items-center transition-colors duration-300">
+            <div class="theme-toggle-thumb w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-[#d4af37] to-[#ecc874] shadow-sm transform transition-transform duration-300 translate-x-0"></div>
+          </div>
+          <span class="theme-icon-moon text-xs text-amber-300 transition-colors duration-300"><i class="fa-solid fa-moon"></i></span>
+          <span class="theme-mode-text hidden md:inline text-[10px] font-black tracking-wider uppercase text-amber-200">Mode</span>
+        </button>
+
         <button onclick="triggerEcosystemReindex()" class="px-3.5 py-1.5 bg-[#1f2818] hover:bg-[#2a3621] text-emerald-300 hover:text-emerald-200 rounded-full text-xs font-bold border border-emerald-500/40 transition flex items-center gap-1.5 shadow-sm">
           <span>⚡</span> Reindex & Audit
         </button>
