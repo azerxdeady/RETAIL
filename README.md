@@ -60,7 +60,15 @@ src/main/java/com/karthikjewellers/retail/
 
 ---
 
-## 🚀 How to Run
+## 🚀 1-Click Free Cloud Deployment
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/azerxdeady/RETAIL)
+
+Click the badge above to automatically deploy this entire ecosystem on **Render.com** (100% Free tier, free SSL, zero maintenance).
+
+---
+
+## 🚀 How to Run Locally
 
 ### Option 1: Run Enterprise Java Spring Boot (Port 8080)
 Double-click `run-java.bat` or run:
