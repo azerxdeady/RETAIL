@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karthik Jewellers | Master Ecosystem Hub - Unified 3-Portal Command Cockpit</title>
+  <meta name="description" content="Centralized master control hub managing Karthik Jewellers Customer Storefront, Executive Admin Operations, and BIS Hallmarked GST Tax Invoicing.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-[#07090e] text-stone-100 min-h-screen flex flex-col font-sans selection:bg-[#c5a059] selection:text-black">
+
+  <!-- Master Hub Executive Header -->
+  <header class="bg-[#0d1017] border-b border-stone-800/80 px-6 py-4 sticky top-0 z-40 shadow-2xl backdrop-blur-md">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      
+      <!-- Logo & Hub Monogram with Imperial Gold Crest -->
+      <div class="flex items-center gap-4">
+        <div class="gold-crest text-2xl w-12 h-12 shadow-lg">
+          K
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-serif font-bold text-xl tracking-tight text-white uppercase">
+              Karthik Jewellers
+            </h1>
+            <span class="text-[9px] bg-gradient-to-r from-[#d4af37] to-[#ecc874] text-stone-950 font-black px-2.5 py-0.5 rounded-full tracking-[0.2em] shadow-sm">
+              MASTER HUB
+            </span>
+          </div>
+          <p class="text-xs text-stone-400 font-light flex items-center gap-2 mt-0.5">
+            <span>Unified Command Cockpit: Flagship • Affiliate Bridal House • Admin Ops • Tax Invoicing</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- System Health Indicator & Quick Controls -->
+      <div class="flex flex-wrap items-center gap-3">
+        <button onclick="triggerEcosystemReindex()" class="px-3.5 py-1.5 bg-[#1f2818] hover:bg-[#2a3621] text-emerald-300 hover:text-emerald-200 rounded-full text-xs font-bold border border-emerald-500/40 transition flex items-center gap-1.5 shadow-sm">
+          <span>⚡</span> Reindex & Audit
+        </button>
+
+        <div class="flex items-center gap-2 text-xs bg-[#121622] px-3.5 py-1.5 rounded-full border border-stone-800">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-rate"></span>
+          <span class="text-emerald-300 font-medium font-mono text-[11px]">4 / 4 Portals Operational</span>
+        </div>
+
+        <button onclick="refreshHubData()" class="px-3.5 py-1.5 bg-[#171d2c] hover:bg-[#20273a] text-stone-300 hover:text-white rounded-full text-xs font-semibold border border-stone-700 transition flex items-center gap-1.5">
+          <span>🔄</span> Refresh Sync
+        </button>
+
+        <button onclick="scrollToLiveStage('storefront')" class="px-4 py-1.5 gold-btn rounded-full text-xs font-bold uppercase tracking-wider shadow">
+          Interactive Live Stage ↓
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content Space -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+
+    <!-- 1. THE 3 PORTAL COMMAND BENTO CARDS -->
+    <section>
+      <div class="flex items-baseline justify-between mb-4">
+        <div>
+          <span class="text-[10px] uppercase font-bold tracking-[0.25em] text-[#c5a059]">Architecture Control</span>
+          <h2 class="text-2xl font-serif font-bold text-white mt-0.5">Ecosystem Portals Overview</h2>
+        </div>
+        <span class="text-xs text-stone-400 font-mono" id="hub-last-updated">Syncing...</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- PORTAL 1: KARTHIK JEWELLERS STOREFRONT -->
+        <div class="admin-card rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between group">
+          <div class="absolute -right-12 -top-12 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div>
+            <div class="flex justify-between items-start">
+              <div class="w-11 h-11 rounded-2xl bg-[#14231b] border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-xl shadow-inner">
+                🛍️
+              </div>
+              <span class="px-2.5 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase bg-emerald-950 text-emerald-300 border border-emerald-500/30 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                FLAGSHIP: LIVE
+              </span>
+            </div>
+
+            <h3 class="font-serif font-bold text-lg text-white mt-4">Karthik Flagship</h3>
+            <p class="text-xs text-stone-400 mt-1 font-light leading-relaxed">
+              Flagship fine jewellery boutique with live bullion prices, price breakup formula, AR try-on, and Swarna Nidhi chits.
+            </p>
+
+            <!-- Metrics Pills -->
+            <div class="grid grid-cols-2 gap-2 mt-4 text-xs font-mono">
+              <div class="bg-[#151a24] p-2.5 rounded-2xl border border-stone-800">
+                <span class="text-[9px] text-stone-400 block font-sans">Active Pieces</span>
+                <strong id="card1-products" class="text-white text-sm font-bold">16 Pieces</strong>
+              </div>
+              <div class="bg-[#151a24] p-2.5 rounded-2xl border border-stone-800">
+                <span class="text-[9px] text-stone-400 block font-sans">Live 22KT Rate</span>
+                <strong id="card1-gold22k" class="text-amber-300 text-sm font-bold">₹7,215/g</strong>
+              </div>
+            </div>
+
+            <div class="mt-3 text-[10px] text-stone-400 space-y-0.5">
+              <div>✓ Swarna Nidhi 11+1 Bonus Plan</div>
+              <div>✓ Bureau of Indian Standards HUID Lookups</div>
+            </div>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-stone-800 flex items-center gap-2">
+            <button onclick="setLiveStage('storefront')" class="flex-1 py-2 px-3 rounded-full bg-[#1b2333] hover:bg-[#253046] text-amber-200 text-xs font-semibold border border-stone-700 transition text-center flex items-center justify-center gap-1">
+              <span>🖥️</span> Preview
+            </button>
+            <a href="/" target="_blank" class="py-2 px-3 rounded-full dark-pill-btn text-xs font-bold transition flex items-center gap-1">
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- PORTAL 2: VISWANANDINI JEWELLERS AFFILIATE -->
+        <div class="admin-card rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between group border border-[#781d2a]/50">
+          <div class="absolute -right-12 -top-12 w-40 h-40 bg-[#781d2a]/20 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div>
+            <div class="flex justify-between items-start">
+              <div class="w-11 h-11 rounded-2xl bg-[#330c14] border border-[#781d2a]/50 text-amber-400 flex items-center justify-center text-xl shadow-inner">
+                👑
+              </div>
+              <span class="px-2.5 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase bg-[#440d16] text-amber-300 border border-amber-500/30 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                AFFILIATE: LIVE
+              </span>
+            </div>
+
+            <h3 class="font-serif font-bold text-lg text-white mt-4">Viswanandini Bridal</h3>
+            <p class="text-xs text-stone-400 mt-1 font-light leading-relaxed">
+              Affiliate high-luxury royal bridal atelier: Bikaner uncut Polki, Kundan Jadau, and Nandini Swarna Varsha bridal chit fund.
+            </p>
+
+            <!-- Metrics Pills -->
+            <div class="grid grid-cols-2 gap-2 mt-4 text-xs font-mono">
+              <div class="bg-[#151a24] p-2.5 rounded-2xl border border-stone-800">
+                <span class="text-[9px] text-stone-400 block font-sans">Bridal Pieces</span>
+                <strong id="card-viswa-products" class="text-amber-200 text-sm font-bold">8 Pieces</strong>
+              </div>
+              <div class="bg-[#151a24] p-2.5 rounded-2xl border border-stone-800">
+                <span class="text-[9px] text-stone-400 block font-sans">Bridal Chits</span>
+                <strong id="card-viswa-chits" class="text-emerald-400 text-sm font-bold">1 Active</strong>
+              </div>
+            </div>
+
+            <div class="mt-3 text-[10px] text-stone-400 space-y-0.5">
+              <div>✓ Nandini Swarna Varsha 11+1 Plan</div>
+              <div>✓ BIS Stamped under Karthik Jewellers</div>
+            </div>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-stone-800 flex items-center gap-2">
+            <button onclick="setLiveStage('viswanandini')" class="flex-1 py-2 px-3 rounded-full bg-[#3a0f18] hover:bg-[#521422] text-amber-200 text-xs font-semibold border border-amber-500/30 transition text-center flex items-center justify-center gap-1">
+              <span>🖥️</span> Preview
+            </button>
+            <a href="/viswanandini" target="_blank" class="py-2 px-3 rounded-full bg-[#781d2a] hover:bg-[#9e2a3b] text-white text-xs font-bold transition flex items-center gap-1 shadow">
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- PORTAL 3: OPERATIONS & ADMIN -->
+        <div class="admin-card rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between group">
+          <div class="absolute -right-12 -top-12 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div>
+            <div class="flex justify-between items-start">
+              <div class="w-11 h-11 rounded-2xl bg-[#251e12] border border-amber-500/30 text-amber-400 flex items-center justify-center text-xl shadow-inner">
+                ⚙️
+              </div>
+              <span class="px-2.5 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase bg-amber-950 text-amber-300 border border-amber-500/30 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                OPS: CONTROL
+              </span>
+            </div>
+
+            <h3 class="font-serif font-bold text-lg text-white mt-4">Admin Command</h3>
+            <p class="text-xs text-stone-400 mt-1 font-light leading-relaxed">
+              Centralized operational cockpit for live bullion rates, multi-brand inventory CRUD, order dispatch, and VIP appointments.
+            </p>
+
+            <!-- Metrics Pills -->
+            <div class="grid grid-cols-2 gap-2 mt-4 text-xs font-mono">
+              <div class="bg-[#151a24] p-2.5 rounded-2xl border border-stone-800">
+                <span class="text-[9px] text-stone-400 block font-sans">Active Orders</span>
+                <strong id="card2-orders" class="text-white text-sm font-bold">3 Orders</strong>
+              </div>
+              <div class="bg-[#151a24] p-2.5 rounded-2xl border border-stone-800">
+                <span class="text-[9px] text-stone-400 block font-sans">Total Chits</span>
+                <strong id="card2-schemes" class="text-emerald-400 text-sm font-bold">3 Active</strong>
+              </div>
+            </div>
+
+            <div class="mt-3 text-[10px] text-stone-400 space-y-0.5">
+              <div>✓ Dynamic Multi-Brand Price Recalculation</div>
+              <div>✓ Armoured Vault Dispatch Workflow</div>
+            </div>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-stone-800 flex items-center gap-2">
+            <button onclick="setLiveStage('admin')" class="flex-1 py-2 px-3 rounded-full bg-[#1b2333] hover:bg-[#253046] text-amber-200 text-xs font-semibold border border-stone-700 transition text-center flex items-center justify-center gap-1">
+              <span>🖥️</span> Preview
+            </button>
+            <a href="/admin" target="_blank" class="py-2 px-3 rounded-full dark-pill-btn text-xs font-bold transition flex items-center gap-1">
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- PORTAL 4: GST INVOICE & ASSAYING -->
+        <div class="admin-card rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between group">
+          <div class="absolute -right-12 -top-12 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div>
+            <div class="flex justify-between items-start">
+              <div class="w-11 h-11 rounded-2xl bg-[#121c2c] border border-blue-500/30 text-blue-400 flex items-center justify-center text-xl shadow-inner">
+                📄
+              </div>
+              <span class="px-2.5 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase bg-blue-950 text-blue-300 border border-blue-500/30 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+                TAX: AUDITED
+              </span>
+            </div>
+
+            <h3 class="font-serif font-bold text-lg text-white mt-4">Tax Invoices</h3>
+            <p class="text-xs text-stone-400 mt-1 font-light leading-relaxed">
+              Official legal tax invoice engine with BIS license certification, multi-brand headers, HUID stamps, and print-ready PDF styling.
+            </p>
+
+            <!-- Metrics Pills -->
+            <div class="grid grid-cols-2 gap-2 mt-4 text-xs font-mono">
+              <div class="bg-[#151a24] p-2.5 rounded-2xl border border-stone-800">
+                <span class="text-[9px] text-stone-400 block font-sans">Invoices</span>
+                <strong id="card3-invoices" class="text-white text-sm font-bold">3 Issued</strong>
+              </div>
+              <div class="bg-[#151a24] p-2.5 rounded-2xl border border-stone-800">
+                <span class="text-[9px] text-stone-400 block font-sans">GST Audited</span>
+                <strong id="card3-gst" class="text-blue-300 text-sm font-bold">₹32,264</strong>
+              </div>
+            </div>
+
+            <div class="mt-3 text-[10px] text-stone-400 space-y-0.5">
+              <div>✓ Stamped BIS-HM/L-600017-0982 License</div>
+              <div>✓ Multi-Brand (Karthik & Viswanandini)</div>
+            </div>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-stone-800 flex items-center gap-2">
+            <button onclick="setLiveStage('invoice')" class="flex-1 py-2 px-3 rounded-full bg-[#1b2333] hover:bg-[#253046] text-amber-200 text-xs font-semibold border border-stone-700 transition text-center flex items-center justify-center gap-1">
+              <span>🖥️</span> Preview
+            </button>
+            <a href="/invoice" target="_blank" class="py-2 px-3 rounded-full dark-pill-btn text-xs font-bold transition flex items-center gap-1">
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. INTERACTIVE EMBEDDED MULTI-PORTAL LIVE STAGE -->
+    <section id="interactive-stage-section" class="scroll-mt-24">
+      <div class="admin-card rounded-3xl overflow-hidden border border-stone-800 shadow-2xl">
+        
+        <!-- Stage Control Bar -->
+        <div class="bg-[#11151f] p-4 sm:p-5 border-b border-stone-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-xs uppercase font-bold tracking-widest text-[#c5a059]">Interactive Live Stage</span>
+            <span class="text-xs text-stone-400 font-light">| Seamless In-Dashboard Portal Control</span>
+          </div>
+
+          <!-- Stage Selector Tabs -->
+          <div class="flex flex-wrap items-center gap-1.5 bg-[#0a0d13] p-1 rounded-2xl border border-stone-800">
+            <button onclick="setLiveStage('storefront')" id="stage-tab-storefront" class="stage-tab-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-[#c5a059] text-stone-950 shadow">
+              🛍️ Karthik Flagship
+            </button>
+            <button onclick="setLiveStage('viswanandini')" id="stage-tab-viswanandini" class="stage-tab-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition text-rose-300 hover:text-white">
+              👑 Viswanandini Bridal
+            </button>
+            <button onclick="setLiveStage('admin')" id="stage-tab-admin" class="stage-tab-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition text-stone-300 hover:text-white">
+              ⚙️ Admin Ops
+            </button>
+            <button onclick="setLiveStage('invoice')" id="stage-tab-invoice" class="stage-tab-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition text-stone-300 hover:text-white">
+              📄 Tax Invoice
+            </button>
+            <button onclick="setLiveStage('dual')" id="stage-tab-dual" class="stage-tab-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition text-stone-300 hover:text-white">
+              ⚡ Split: Store + Admin
+            </button>
+            <button onclick="setLiveStage('dual_brands')" id="stage-tab-dual_brands" class="stage-tab-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition text-amber-200 hover:text-white">
+              👑 Split: Both Brands
+            </button>
+          </div>
+
+          <!-- Viewport Sizing & Actions -->
+          <div class="flex items-center gap-2">
+            <div class="hidden sm:flex items-center gap-1 bg-[#161c28] p-1 rounded-xl border border-stone-800 text-[11px]">
+              <button onclick="setStageWidth('100%')" class="px-2.5 py-1 rounded-lg text-stone-300 hover:text-white hover:bg-stone-800" title="Full Width Desktop">Desktop</button>
+              <button onclick="setStageWidth('768px')" class="px-2.5 py-1 rounded-lg text-stone-300 hover:text-white hover:bg-stone-800" title="Tablet View">Tablet</button>
+              <button onclick="setStageWidth('414px')" class="px-2.5 py-1 rounded-lg text-stone-300 hover:text-white hover:bg-stone-800" title="Mobile View">Mobile</button>
+            </div>
+
+            <button onclick="reloadStageFrame()" class="p-2 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs" title="Reload Frame">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+
+            <a id="stage-external-link" href="/" target="_blank" class="p-2 rounded-xl bg-[#c5a059] text-stone-950 text-xs font-bold" title="Open Current Portal in New Tab">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Single Frame Viewport Container -->
+        <div id="stage-single-viewport" class="p-3 bg-[#080a0f] flex justify-center transition-all duration-300 overflow-hidden">
+          <div id="stage-frame-wrapper" class="w-full transition-all duration-300 rounded-2xl overflow-hidden border border-stone-800 bg-white shadow-2xl" style="height: 640px;">
+            <iframe id="master-stage-iframe" src="/" class="w-full h-full border-0" title="Interactive Portal Viewer"></iframe>
+          </div>
+        </div>
+
+        <!-- Split Screen Dual Viewport Container (Store + Admin side by side) -->
+        <div id="stage-dual-viewport" class="p-3 bg-[#080a0f] hidden grid grid-cols-1 lg:grid-cols-2 gap-3" style="height: 660px;">
+          <div class="rounded-2xl overflow-hidden border border-stone-800 bg-white flex flex-col shadow-2xl">
+            <div class="bg-[#11151f] px-4 py-2 border-b border-stone-800 flex justify-between items-center text-xs text-stone-300">
+              <span class="font-bold text-amber-200">🛍️ Storefront E-Commerce (/)</span>
+              <a href="/" target="_blank" class="text-[#c5a059] hover:underline text-[11px]">New Tab ↗</a>
+            </div>
+            <iframe src="/" class="w-full flex-1 border-0" title="Storefront Split View"></iframe>
+          </div>
+
+          <div class="rounded-2xl overflow-hidden border border-stone-800 bg-white flex flex-col shadow-2xl">
+            <div class="bg-[#11151f] px-4 py-2 border-b border-stone-800 flex justify-between items-center text-xs text-stone-300">
+              <span class="font-bold text-amber-200">👑 Admin Operations (/admin)</span>
+              <a href="/admin" target="_blank" class="text-[#c5a059] hover:underline text-[11px]">New Tab ↗</a>
+            </div>
+            <iframe src="/admin" class="w-full flex-1 border-0" title="Admin Split View"></iframe>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. UNIFIED GLOBAL OPERATIONS WORKSPACE TABS -->
+    <section class="space-y-6">
+      
+      <!-- Tab Strip -->
+      <div class="flex flex-wrap items-center gap-2 border-b border-stone-800 pb-3">
+        <button onclick="switchHubTab('analytics')" id="hub-tab-btn-analytics" class="hub-control-tab px-5 py-2.5 rounded-full text-xs font-bold transition bg-[#c5a059] text-stone-950">
+          📊 Consolidated Financials & KPIs
+        </button>
+        <button onclick="switchHubTab('invoices')" id="hub-tab-btn-invoices" class="hub-control-tab px-5 py-2.5 rounded-full text-xs font-semibold transition text-stone-400 hover:text-white hover:bg-stone-800">
+          🧾 Issued GST Tax Invoices Registry
+        </button>
+        <button onclick="switchHubTab('bullion')" id="hub-tab-btn-bullion" class="hub-control-tab px-5 py-2.5 rounded-full text-xs font-semibold transition text-stone-400 hover:text-white hover:bg-stone-800">
+          ⚡ Fast Bullion Rates Synchronizer
+        </button>
+        <button onclick="switchHubTab('announcements')" id="hub-tab-btn-announcements" class="hub-control-tab px-5 py-2.5 rounded-full text-xs font-semibold transition text-stone-400 hover:text-white hover:bg-stone-800">
+          📢 Storefront Announcements & Campaign
+        </button>
+      </div>
+
+      <!-- TAB 1: CONSOLIDATED FINANCIALS & KPIS -->
+      <div id="hub-tab-content-analytics" class="space-y-6">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="admin-card rounded-3xl p-5">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-stone-400">Total Net Revenue</span>
+            <div id="hub-kpi-revenue" class="text-2xl lg:text-3xl font-serif font-bold text-amber-300 font-mono mt-1.5">₹0</div>
+            <span class="text-[11px] text-emerald-400 mt-1 block">Pre-tax: <span id="hub-kpi-taxable" class="font-mono">₹0</span></span>
+          </div>
+
+          <div class="admin-card rounded-3xl p-5">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-stone-400">Total GST Remittance (3%)</span>
+            <div id="hub-kpi-gst" class="text-2xl lg:text-3xl font-serif font-bold text-white font-mono mt-1.5">₹0</div>
+            <span class="text-[11px] text-stone-400 mt-1 block">CGST (1.5%) + SGST (1.5%)</span>
+          </div>
+
+          <div class="admin-card rounded-3xl p-5">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-stone-400">Dispatched Gold Weight</span>
+            <div id="hub-kpi-gold-weight" class="text-2xl lg:text-3xl font-serif font-bold text-amber-200 font-mono mt-1.5">0.00g</div>
+            <span class="text-[11px] text-stone-400 mt-1 block">100% BIS Hallmarked</span>
+          </div>
+
+          <div class="admin-card rounded-3xl p-5">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-stone-400">Swarna Nidhi Accrued</span>
+            <div id="hub-kpi-scheme-grams" class="text-2xl lg:text-3xl font-serif font-bold text-emerald-400 font-mono mt-1.5">0.00g</div>
+            <span class="text-[11px] text-emerald-300 mt-1 block">Customer Savings Fund</span>
+          </div>
+        </div>
+
+        <!-- Multi-Brand Enterprise Breakdown -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="admin-card rounded-3xl p-5 border border-[#c5a059]/40 bg-gradient-to-r from-[#11151e] to-[#181d2a]">
+            <div class="flex justify-between items-center pb-3 border-b border-stone-800">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-[#c5a059] text-stone-950 font-serif font-black flex items-center justify-center text-sm">K</div>
+                <div>
+                  <h5 class="font-serif font-bold text-white text-sm">Karthik Jewellers</h5>
+                  <span class="text-[9px] uppercase tracking-wider text-[#c5a059] font-bold">Flagship House</span>
+                </div>
+              </div>
+              <a href="/" target="_blank" class="text-xs text-amber-200 hover:underline">View Store ↗</a>
+            </div>
+            <div class="grid grid-cols-3 gap-2 mt-3 text-center text-xs">
+              <div class="bg-black/40 p-2 rounded-xl">
+                <span class="text-[9px] text-stone-400 block">Catalog</span>
+                <strong id="karthik-kpi-prods" class="text-white font-mono">16 Pieces</strong>
+              </div>
+              <div class="bg-black/40 p-2 rounded-xl">
+                <span class="text-[9px] text-stone-400 block">Orders Revenue</span>
+                <strong id="karthik-kpi-rev" class="text-amber-300 font-mono">₹4,28,131</strong>
+              </div>
+              <div class="bg-black/40 p-2 rounded-xl">
+                <span class="text-[9px] text-stone-400 block">Active Chits</span>
+                <strong id="karthik-kpi-chits" class="text-emerald-400 font-mono">2</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-card rounded-3xl p-5 border border-[#781d2a]/60 bg-gradient-to-r from-[#1b080c] to-[#2b0e14]">
+            <div class="flex justify-between items-center pb-3 border-b border-stone-800">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#781d2a] to-[#d4af37] text-white font-serif font-black flex items-center justify-center text-sm">V</div>
+                <div>
+                  <h5 class="font-serif font-bold text-white text-sm">Viswanandini Jewellers</h5>
+                  <span class="text-[9px] uppercase tracking-wider text-rose-300 font-bold">Affiliate Luxury Bridal House</span>
+                </div>
+              </div>
+              <a href="/viswanandini" target="_blank" class="text-xs text-amber-300 hover:underline">View Store ↗</a>
+            </div>
+            <div class="grid grid-cols-3 gap-2 mt-3 text-center text-xs">
+              <div class="bg-black/40 p-2 rounded-xl">
+                <span class="text-[9px] text-stone-400 block">Bridal Pieces</span>
+                <strong id="viswa-kpi-prods" class="text-white font-mono">8 Pieces</strong>
+              </div>
+              <div class="bg-black/40 p-2 rounded-xl">
+                <span class="text-[9px] text-stone-400 block">Orders Revenue</span>
+                <strong id="viswa-kpi-rev" class="text-amber-300 font-mono">₹6,74,605</strong>
+              </div>
+              <div class="bg-black/40 p-2 rounded-xl">
+                <span class="text-[9px] text-stone-400 block">Bridal Chits</span>
+                <strong id="viswa-kpi-chits" class="text-emerald-400 font-mono">1</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 Column Breakdown -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="admin-card rounded-3xl p-6">
+            <h4 class="font-serif font-bold text-lg text-white mb-4">Enterprise Compliance & Hallmarking</h4>
+            <div class="space-y-3 text-xs">
+              <div class="flex justify-between py-2 border-b border-stone-800">
+                <span class="text-stone-400">Bureau of Indian Standards License:</span>
+                <strong class="text-amber-200 font-mono">BIS-HM/L-600017-0982</strong>
+              </div>
+              <div class="flex justify-between py-2 border-b border-stone-800">
+                <span class="text-stone-400">GST Identification Number (GSTIN):</span>
+                <strong class="text-amber-200 font-mono">33AAACK4928J1Z5 (Tamil Nadu)</strong>
+              </div>
+              <div class="flex justify-between py-2 border-b border-stone-800">
+                <span class="text-stone-400">Assaying Partner:</span>
+                <strong class="text-white">BVC Precious Assaying & Hallmarking Lab</strong>
+              </div>
+              <div class="flex justify-between py-2 border-b border-stone-800">
+                <span class="text-stone-400">Secured Logistics Partner:</span>
+                <strong class="text-white">BVC Armoured Vault Logistics</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-card rounded-3xl p-6">
+            <h4 class="font-serif font-bold text-lg text-white mb-4">Low Stock & Inventory Radar</h4>
+            <div id="hub-low-stock-list" class="space-y-2 text-xs">
+              <p class="text-stone-400">Analyzing stock levels...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: ISSUED GST TAX INVOICES REGISTRY -->
+      <div id="hub-tab-content-invoices" class="hidden admin-card rounded-3xl overflow-hidden border border-stone-800 shadow-xl">
+        <div class="p-5 bg-[#121622] border-b border-stone-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+          <div>
+            <h3 class="font-serif font-bold text-lg text-white">Official GST Tax Invoices Registry</h3>
+            <p class="text-xs text-stone-400">Directly print, review, or inspect any issued tax invoice across the ecosystem.</p>
+          </div>
+          <div class="text-xs font-mono text-emerald-400 bg-emerald-950 px-3 py-1 rounded-full border border-emerald-500/30">
+            100% Tax Compliant
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-stone-300">
+            <thead class="bg-[#151a26] text-[10px] uppercase tracking-wider text-stone-400 font-serif border-b border-stone-800">
+              <tr>
+                <th class="py-3 px-4">Invoice #</th>
+                <th class="py-3 px-4">Customer Details</th>
+                <th class="py-3 px-4">HUID Trace Code</th>
+                <th class="py-3 px-4 font-mono">Taxable Val</th>
+                <th class="py-3 px-4 font-mono">GST (3%)</th>
+                <th class="py-3 px-4 font-mono">Total (₹)</th>
+                <th class="py-3 px-4">Status</th>
+                <th class="py-3 px-4 text-right">Invoice Action</th>
+              </tr>
+            </thead>
+            <tbody id="hub-invoices-table" class="divide-y divide-stone-800/60">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 3: FAST BULLION RATES SYNCHRONIZER -->
+      <div id="hub-tab-content-bullion" class="hidden">
+        <div class="max-w-2xl bg-[#11151e] border border-[#c5a059]/40 rounded-3xl p-6 sm:p-8 shadow-2xl">
+          <div class="pb-4 border-b border-stone-800 mb-6">
+            <span class="text-[10px] font-bold text-[#c5a059] uppercase tracking-[0.2em]">Global Multi-Portal Broadcast</span>
+            <h3 class="font-serif font-bold text-2xl text-white mt-1">Fast Bullion Rate Synchronizer</h3>
+            <p class="text-xs text-stone-400 mt-1">Changing these values simultaneously synchronizes the Customer Storefront pricing, the Admin inventory formulas, and all Tax Invoice calculations.</p>
+          </div>
+
+          <form id="hub-bullion-form" onsubmit="handleHubRatesSync(event)" class="space-y-4 text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-amber-200 font-bold mb-1">Gold 24KT (999 Pure) (₹ / Gram)</label>
+                <input type="number" id="hub-rate-24k" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 font-mono font-bold text-sm focus:border-[#c5a059] focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-amber-200 font-bold mb-1">Gold 22KT (916 BIS Hallmark) (₹ / Gram)</label>
+                <input type="number" id="hub-rate-22k" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 font-mono font-bold text-sm focus:border-[#c5a059] focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-amber-200 font-bold mb-1">Gold 18KT (Diamond Jewellery) (₹ / Gram)</label>
+                <input type="number" id="hub-rate-18k" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 font-mono font-bold text-sm focus:border-[#c5a059] focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-slate-300 font-bold mb-1">Silver (999 Fine Silver) (₹ / Gram)</label>
+                <input type="number" id="hub-rate-silver" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 font-mono font-bold text-sm focus:border-slate-400 focus:outline-none" />
+              </div>
+            </div>
+
+            <div class="pt-4 flex items-center justify-between border-t border-stone-800">
+              <span id="hub-rate-timestamp" class="text-stone-400 font-mono text-[11px]"></span>
+              <button type="submit" class="px-8 py-3 gold-btn rounded-full font-bold uppercase tracking-wider text-xs shadow-lg">
+                Broadcast Rates Across All 3 Portals ⚡
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- TAB 4: STOREFRONT ANNOUNCEMENTS & CAMPAIGN -->
+      <div id="hub-tab-content-announcements" class="hidden">
+        <div class="max-w-2xl bg-[#11151e] border border-stone-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
+          <div class="pb-4 border-b border-stone-800 mb-6">
+            <span class="text-[10px] font-bold text-[#c5a059] uppercase tracking-[0.2em]">Customer Portal Ticker</span>
+            <h3 class="font-serif font-bold text-2xl text-white mt-1">Live Storefront Announcement</h3>
+            <p class="text-xs text-stone-400 mt-1">Update the promotional ticker and privilege banner shown to all customers on the storefront.</p>
+          </div>
+
+          <form id="hub-announcement-form" onsubmit="handleHubAnnouncementSubmit(event)" class="space-y-4 text-xs">
+            <div>
+              <label class="block text-stone-300 font-semibold mb-1">Announcement Banner Text</label>
+              <textarea id="hub-announcement-text" rows="3" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-2xl p-3 focus:border-[#c5a059] focus:outline-none leading-relaxed"></textarea>
+            </div>
+
+            <div class="flex gap-2">
+              <button type="button" onclick="document.getElementById('hub-announcement-text').value='✨ Akshaya & Festive Season: Complimentary Insured Armoured Vault Transit Across India'" class="px-3 py-1.5 bg-stone-800 hover:bg-stone-700 text-stone-300 rounded-full text-[10px]">Preset: Festive</button>
+              <button type="button" onclick="document.getElementById('hub-announcement-text').value='💎 Special Privilege: Flat 0% Making Charges on 24KT 999 Mahalakshmi Gold Coins'" class="px-3 py-1.5 bg-stone-800 hover:bg-stone-700 text-stone-300 rounded-full text-[10px]">Preset: Gold Coins</button>
+              <button type="button" onclick="document.getElementById('hub-announcement-text').value='👑 Swarna Nidhi Privilege: Pay 11 Months, Get Month 12 100% Free as Karthik Jewellers Blessing'" class="px-3 py-1.5 bg-stone-800 hover:bg-stone-700 text-stone-300 rounded-full text-[10px]">Preset: Swarna Nidhi</button>
+            </div>
+
+            <div class="pt-4 flex justify-end border-t border-stone-800">
+              <button type="submit" class="px-7 py-3 dark-pill-btn rounded-full font-bold uppercase tracking-wider text-xs shadow-lg">
+                Update Storefront Banner
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Reindex Diagnostic Audit Modal -->
+  <div id="reindex-modal" class="fixed inset-0 z-50 glass-overlay flex items-center justify-center p-4 hidden">
+    <div class="bg-[#11151e] border border-emerald-500/40 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative text-xs">
+      <div class="flex justify-between items-center pb-4 border-b border-stone-800">
+        <div class="flex items-center gap-2">
+          <span class="w-7 h-7 rounded-full bg-emerald-950 text-emerald-400 flex items-center justify-center font-bold border border-emerald-500/30">✓</span>
+          <h3 class="font-serif font-bold text-lg text-white">Ecosystem Health & Reindex Audit</h3>
+        </div>
+        <button onclick="closeReindexModal()" class="text-stone-400 hover:text-white text-xl">✕</button>
+      </div>
+
+      <div id="reindex-modal-body" class="py-4 space-y-3">
+        <div class="text-center py-6">
+          <div class="inline-block animate-spin rounded-full h-8 w-8 border-2 border-emerald-400 border-t-transparent mb-3"></div>
+          <p class="text-stone-300">Auditing and reindexing all products, orders, categories and live rates...</p>
+        </div>
+      </div>
+
+      <div class="pt-4 flex justify-end border-t border-stone-800">
+        <button onclick="closeReindexModal()" class="px-6 py-2.5 dark-pill-btn rounded-full font-bold">
+          Close Audit Report
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/sync-engine.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
+

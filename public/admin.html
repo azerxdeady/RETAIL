@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karthik Jewellers | Shopify-Style Executive Operations & Theme Customizer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-[#08090d] text-stone-100 min-h-screen flex flex-col font-sans selection:bg-[#c5a059] selection:text-black">
+
+  <!-- Top Executive Header -->
+  <header class="bg-[#0e1117] border-b border-stone-800/80 px-6 py-4 flex items-center justify-between sticky top-0 z-40 shadow-xl backdrop-blur-md">
+    <div class="flex items-center gap-4">
+      <div class="gold-crest text-xl w-10 h-10 shadow-md">
+        K
+      </div>
+      <div>
+        <h1 class="font-serif font-bold text-base md:text-lg tracking-wide text-white uppercase flex items-center gap-2">
+          <span>Karthik Jewellers</span>
+          <span class="text-[9px] bg-gradient-to-r from-[#d4af37] to-[#ecc874] text-stone-950 px-2.5 py-0.5 rounded-full font-sans font-black tracking-widest shadow-sm">SHOPIFY ADMIN</span>
+        </h1>
+        <p class="text-[11px] text-stone-400 font-light">Bureau of Indian Standards Registered Enterprise Ecosystem</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <a href="/dashboard" class="flex items-center gap-1.5 text-xs text-amber-300 hover:text-white bg-[#251e12] border border-amber-500/50 px-3.5 py-1.5 rounded-full transition font-bold">
+        <span>🎛️</span> Master Hub
+      </a>
+      <a href="/" target="_blank" class="hidden sm:flex items-center gap-1.5 text-xs text-amber-200 hover:text-white bg-[#1a2130] border border-stone-700 px-3.5 py-1.5 rounded-full transition font-medium">
+        <span>Karthik Store</span>
+        <span>↗</span>
+      </a>
+      <a href="/viswanandini" target="_blank" class="hidden lg:flex items-center gap-1.5 text-xs text-rose-300 hover:text-white bg-[#2a1017] border border-rose-500/40 px-3.5 py-1.5 rounded-full transition font-bold">
+        <span>👑</span> Viswanandini Store
+        <span>↗</span>
+      </a>
+      <div class="flex items-center gap-2 text-xs bg-[#141822] px-3.5 py-1.5 rounded-full border border-stone-800">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-rate"></span>
+        <span class="text-stone-300 font-medium">Live Synced Session</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace Layout -->
+  <div class="flex-1 flex flex-col md:flex-row overflow-hidden">
+    
+    <!-- Shopify-Style Sidebar Navigation -->
+    <aside class="w-full md:w-64 bg-[#0b0d13] border-r border-stone-800/80 p-4 flex flex-row md:flex-col gap-1.5 overflow-x-auto md:overflow-y-auto">
+      <div class="hidden md:block text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500 px-3 py-2">
+        Core Commerce
+      </div>
+
+      <button data-tab="overview" class="admin-nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold transition text-left whitespace-nowrap bg-[#c5a059] text-stone-950 shadow-sm">
+        <span class="w-5 text-center text-sm"><i class="fa-solid fa-chart-line"></i></span>
+        <span>Dashboard Overview</span>
+      </button>
+
+      <button data-tab="orders" class="admin-nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition text-left whitespace-nowrap text-stone-300 hover:bg-stone-850 hover:text-white">
+        <span class="w-5 text-center text-sm text-blue-400"><i class="fa-solid fa-truck-fast"></i></span>
+        <span>Orders & Dispatch</span>
+      </button>
+
+      <button data-tab="products" class="admin-nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition text-left whitespace-nowrap text-stone-300 hover:bg-stone-850 hover:text-white">
+        <span class="w-5 text-center text-sm text-amber-200"><i class="fa-solid fa-gem"></i></span>
+        <span>Masterpieces & Stock</span>
+      </button>
+
+      <button data-tab="customers" class="admin-nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition text-left whitespace-nowrap text-stone-300 hover:bg-stone-850 hover:text-white">
+        <span class="w-5 text-center text-sm text-sky-400"><i class="fa-solid fa-users"></i></span>
+        <span>Customers Directory</span>
+      </button>
+
+      <button data-tab="schemes" class="admin-nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition text-left whitespace-nowrap text-stone-300 hover:bg-stone-850 hover:text-white">
+        <span class="w-5 text-center text-sm text-emerald-400"><i class="fa-solid fa-piggy-bank"></i></span>
+        <span>Swarna Nidhi Chits</span>
+      </button>
+
+      <button data-tab="appointments" class="admin-nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition text-left whitespace-nowrap text-stone-300 hover:bg-stone-850 hover:text-white">
+        <span class="w-5 text-center text-sm text-purple-400"><i class="fa-solid fa-calendar-check"></i></span>
+        <span>VIP Appointments</span>
+      </button>
+
+      <button data-tab="coupons" class="admin-nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition text-left whitespace-nowrap text-stone-300 hover:bg-stone-850 hover:text-white">
+        <span class="w-5 text-center text-sm text-pink-400"><i class="fa-solid fa-tags"></i></span>
+        <span>Discounts & Coupons</span>
+      </button>
+
+      <div class="hidden md:flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.2em] text-[#d4af37] px-3 pt-4 pb-2 border-t border-stone-800/80 mt-2">
+        <span>Online Store</span>
+        <span class="text-[8px] bg-gradient-to-r from-amber-500/30 to-amber-600/10 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 font-mono">SHOPIFY UX</span>
+      </div>
+
+      <button data-tab="theme" class="admin-nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition text-left whitespace-nowrap text-amber-300 hover:bg-stone-850 hover:text-white border border-[#d4af37]/30 bg-[#161208]">
+        <span class="w-5 text-center text-sm text-amber-400"><i class="fa-solid fa-palette"></i></span>
+        <span class="font-bold">Theme Customizer</span>
+      </button>
+
+      <button data-tab="rates" class="admin-nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition text-left whitespace-nowrap text-stone-300 hover:bg-stone-850 hover:text-white">
+        <span class="w-5 text-center text-sm text-amber-400"><i class="fa-solid fa-coins"></i></span>
+        <span>Live Bullion Rates</span>
+      </button>
+
+      <button data-tab="settings" class="admin-nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition text-left whitespace-nowrap text-stone-300 hover:bg-stone-850 hover:text-white">
+        <span class="w-5 text-center text-sm text-stone-400"><i class="fa-solid fa-sliders"></i></span>
+        <span>Settings & Compliance</span>
+      </button>
+
+      <div class="hidden md:block mt-auto pt-6 border-t border-stone-800 text-[11px] text-stone-500 font-light">
+        <p class="font-bold text-stone-300">Karthik Jewellers HQ</p>
+        <p>T. Nagar, Chennai Flagship</p>
+        <p class="text-[10px] text-amber-300/80 mt-1 flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Ecosystem Real-Time Sync</span>
+        </p>
+      </div>
+    </aside>
+
+    <!-- Content Workspace -->
+    <main class="flex-1 p-4 md:p-8 overflow-y-auto bg-[#08090d]">
+
+      <!-- TAB 1: OVERVIEW DASHBOARD -->
+      <section id="tab-overview" class="admin-tab-section space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-5 border-b border-stone-800/80">
+          <div>
+            <span class="text-[10px] font-bold text-[#c5a059] uppercase tracking-[0.2em]">Executive Overview</span>
+            <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-0.5">Performance & Bullion Radar</h2>
+          </div>
+          <button onclick="openAddProductModal()" class="px-5 py-2.5 gold-btn rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg">
+            <span>+</span> Add New Jewellery
+          </button>
+        </div>
+
+        <!-- 4 Metric Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="admin-card rounded-2xl p-5 relative overflow-hidden">
+            <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">Total Net Sales</span>
+            <div id="stat-total-revenue" class="text-2xl lg:text-3xl font-serif font-bold text-amber-300 mt-2 font-mono">₹0</div>
+            <div class="text-[11px] text-emerald-400 flex items-center gap-1 mt-1 font-medium">
+              <span>▲ +18.4%</span> vs last month
+            </div>
+          </div>
+
+          <div class="admin-card rounded-2xl p-5">
+            <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">Total Orders</span>
+            <div id="stat-total-orders" class="text-2xl lg:text-3xl font-serif font-bold text-white mt-2 font-mono">0</div>
+            <div class="text-[11px] text-amber-200 mt-1">All verified & hallmarked</div>
+          </div>
+
+          <div class="admin-card rounded-2xl p-5">
+            <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">Active Catalog Items</span>
+            <div id="stat-total-products" class="text-2xl lg:text-3xl font-serif font-bold text-white mt-2 font-mono">0</div>
+            <div class="text-[11px] text-stone-400 mt-1">Certified Fine Pieces</div>
+          </div>
+
+          <div class="admin-card rounded-2xl p-5">
+            <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">Swarna Nidhi Members</span>
+            <div id="stat-active-schemes" class="text-2xl lg:text-3xl font-serif font-bold text-emerald-400 mt-2 font-mono">0</div>
+            <div class="text-[11px] text-emerald-300 mt-1">Active monthly accounts</div>
+          </div>
+        </div>
+
+        <!-- Two Columns: Category Analytics + Recent Orders -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="admin-card rounded-2xl p-6">
+            <h3 class="font-serif font-bold text-lg text-white mb-4 flex items-center justify-between">
+              <span>Inventory Spread</span>
+              <span class="text-xs font-sans text-stone-400 font-normal">By Category</span>
+            </h3>
+            <div id="overview-category-distribution" class="space-y-4">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <div class="admin-card rounded-2xl p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-serif font-bold text-lg text-white">Recent Customer Orders</h3>
+              <button onclick="switchTab('orders')" class="text-xs text-amber-300 hover:underline">View All →</button>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left">
+                <thead>
+                  <tr class="border-b border-stone-800 text-[10px] uppercase text-stone-400 tracking-wider">
+                    <th class="pb-2.5 px-3">Order ID</th>
+                    <th class="pb-2.5 px-3">Customer</th>
+                    <th class="pb-2.5 px-3">Total</th>
+                    <th class="pb-2.5 px-3">Status</th>
+                    <th class="pb-2.5 px-3 text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="overview-recent-orders">
+                  <!-- Rendered via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: ORDERS & DISPATCH -->
+      <section id="tab-orders" class="admin-tab-section hidden space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-4 border-b border-stone-800">
+          <div>
+            <span class="text-[10px] font-bold text-[#c5a059] uppercase tracking-[0.2em]">Logistics & Vault Transit</span>
+            <h2 class="text-2xl font-serif font-bold text-white mt-0.5">Customer Orders & Tax Invoices</h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <select id="admin-order-filter" onchange="filterAdminOrders()" class="bg-[#181e2b] border border-stone-700 text-stone-200 rounded-full px-4 py-2 text-xs font-semibold focus:border-[#c5a059] focus:outline-none">
+              <option value="all">All Orders</option>
+              <option value="Hallmarking Verified">Hallmarking Verified</option>
+              <option value="In Armoured Transit">In Armoured Transit</option>
+              <option value="Delivered">Delivered</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="admin-card rounded-2xl overflow-hidden border border-stone-850 shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead class="bg-[#141822] border-b border-stone-800 text-[11px] uppercase tracking-wider text-stone-400 font-serif">
+                <tr>
+                  <th class="py-3 px-3">Order Ref</th>
+                  <th class="py-3 px-3">Customer Details</th>
+                  <th class="py-3 px-3">Items Summary</th>
+                  <th class="py-3 px-3">Amount</th>
+                  <th class="py-3 px-3">Fulfillment Status</th>
+                  <th class="py-3 px-3 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-orders-table">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: PRODUCTS & STOCK -->
+      <section id="tab-products" class="admin-tab-section hidden space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-4 border-b border-stone-800">
+          <div>
+            <span class="text-[10px] font-bold text-[#c5a059] uppercase tracking-[0.2em]">Catalog & Inventory</span>
+            <h2 class="text-2xl font-serif font-bold text-white mt-0.5">Fine Jewellery Pieces</h2>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <select id="admin-brand-filter" onchange="filterAdminProducts()" class="bg-[#181e2b] border border-stone-700 text-stone-200 rounded-full px-4 py-2 text-xs font-semibold focus:border-[#c5a059] focus:outline-none">
+              <option value="all">All Brands (Ecosystem)</option>
+              <option value="karthik">Karthik Jewellers (Flagship)</option>
+              <option value="viswanandini">Viswanandini Jewellers (Affiliate)</option>
+            </select>
+            <button onclick="openAddProductModal()" class="px-5 py-2.5 gold-btn rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg">
+              <span>+</span> Add New Piece
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-card rounded-2xl overflow-hidden border border-stone-850 shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead class="bg-[#141822] border-b border-stone-800 text-[11px] uppercase tracking-wider text-stone-400 font-serif">
+                <tr>
+                  <th class="py-3 px-3">Masterpiece</th>
+                  <th class="py-3 px-3">Category & Metal</th>
+                  <th class="py-3 px-3">Weights</th>
+                  <th class="py-3 px-3">Current Retail Price</th>
+                  <th class="py-3 px-3">Stock</th>
+                  <th class="py-3 px-3 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-products-table">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: CUSTOMERS DIRECTORY -->
+      <section id="tab-customers" class="admin-tab-section hidden space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-4 border-b border-stone-800">
+          <div>
+            <span class="text-[10px] font-bold text-[#c5a059] uppercase tracking-[0.2em]">Patron Relationship Management</span>
+            <h2 class="text-2xl font-serif font-bold text-white mt-0.5">High-Net-Worth Customers & Subscribers</h2>
+          </div>
+          <div class="relative w-full sm:w-72">
+            <input type="text" id="cust-search-input" oninput="filterAdminCustomers()" placeholder="Search patron name, phone, city..." class="w-full bg-[#141822] border border-stone-700 text-white rounded-full px-4 py-2.5 text-xs focus:border-[#c5a059] focus:outline-none" />
+          </div>
+        </div>
+
+        <div class="admin-card rounded-2xl overflow-hidden border border-stone-850 shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead class="bg-[#141822] border-b border-stone-800 text-[11px] uppercase tracking-wider text-stone-400 font-serif">
+                <tr>
+                  <th class="py-3 px-3">Customer Patron</th>
+                  <th class="py-3 px-3">Contact & City</th>
+                  <th class="py-3 px-3">Total Orders</th>
+                  <th class="py-3 px-3">Lifetime Value</th>
+                  <th class="py-3 px-3">Savings Chits</th>
+                  <th class="py-3 px-3 text-right">VIP Privilege Tier</th>
+                </tr>
+              </thead>
+              <tbody id="admin-customers-table">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: SWARNA NIDHI SCHEME -->
+      <section id="tab-schemes" class="admin-tab-section hidden space-y-6">
+        <div class="pb-4 border-b border-stone-800">
+          <span class="text-[10px] font-bold text-[#c5a059] uppercase tracking-[0.2em]">Gold Chit Savings Fund</span>
+          <h2 class="text-2xl font-serif font-bold text-white mt-0.5">Swarna Nidhi 11+1 Bonus Plan Accounts</h2>
+          <p class="text-xs text-stone-400 mt-1 font-light">Customer monthly gold accrual records and installment tracking.</p>
+        </div>
+
+        <div class="admin-card rounded-2xl overflow-hidden border border-stone-850 shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead class="bg-[#141822] border-b border-stone-800 text-[11px] uppercase tracking-wider text-stone-400 font-serif">
+                <tr>
+                  <th class="py-3 px-3">Scheme ID</th>
+                  <th class="py-3 px-3">Subscriber</th>
+                  <th class="py-3 px-3">Monthly Commitment</th>
+                  <th class="py-3 px-3">Tenure & Gold Accrued</th>
+                  <th class="py-3 px-3">Status</th>
+                  <th class="py-3 px-3 text-right">Passbook Action</th>
+                </tr>
+              </thead>
+              <tbody id="admin-schemes-table">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 6: VIP APPOINTMENTS -->
+      <section id="tab-appointments" class="admin-tab-section hidden space-y-6">
+        <div class="pb-4 border-b border-stone-800">
+          <span class="text-[10px] font-bold text-[#c5a059] uppercase tracking-[0.2em]">Concierge Service</span>
+          <h2 class="text-2xl font-serif font-bold text-white mt-0.5">VIP Showroom Lounge & Video Consultations</h2>
+        </div>
+
+        <div class="admin-card rounded-2xl overflow-hidden border border-stone-850 shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead class="bg-[#141822] border-b border-stone-800 text-[11px] uppercase tracking-wider text-stone-400 font-serif">
+                <tr>
+                  <th class="py-3 px-3">Appt Ref</th>
+                  <th class="py-3 px-3">Client</th>
+                  <th class="py-3 px-3">Showroom & Time</th>
+                  <th class="py-3 px-3">Special Interest</th>
+                  <th class="py-3 px-3">Status</th>
+                  <th class="py-3 px-3 text-right">Concierge Action</th>
+                </tr>
+              </thead>
+              <tbody id="admin-appointments-table">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 7: COUPONS & PROMOTIONS -->
+      <section id="tab-coupons" class="admin-tab-section hidden space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-4 border-b border-stone-800">
+          <div>
+            <span class="text-[10px] font-bold text-[#c5a059] uppercase tracking-[0.2em]">Promotional Engine</span>
+            <h2 class="text-2xl font-serif font-bold text-white mt-0.5">Privilege Codes & Discount Campaigns</h2>
+          </div>
+          <button onclick="openCreateCouponModal()" class="px-5 py-2.5 gold-btn rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg">
+            <span>+</span> Create Coupon
+          </button>
+        </div>
+
+        <div class="admin-card rounded-2xl overflow-hidden border border-stone-850 shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead class="bg-[#141822] border-b border-stone-800 text-[11px] uppercase tracking-wider text-stone-400 font-serif">
+                <tr>
+                  <th class="py-3 px-3">Code</th>
+                  <th class="py-3 px-3">Benefit</th>
+                  <th class="py-3 px-3">Min Order</th>
+                  <th class="py-3 px-3">Description</th>
+                  <th class="py-3 px-3">Brand Scope</th>
+                  <th class="py-3 px-3 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="admin-coupons-table">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 8: SHOPIFY-STYLE LIVE THEME CUSTOMIZER -->
+      <section id="tab-theme" class="admin-tab-section hidden space-y-4">
+        <!-- Top Bar: Brand Switcher + Device Viewports + Save Actions -->
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-stone-800">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#d4af37] to-[#8c6a23] text-stone-950 font-bold flex items-center justify-center text-sm shadow">
+              🎨
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h2 class="text-xl font-serif font-bold text-white">Online Store Theme Customizer</h2>
+                <span class="text-[9px] uppercase font-bold tracking-widest bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded-full">Shopify 2.0 UX</span>
+              </div>
+              <p class="text-xs text-stone-400">Visually configure storefront sections, typography, gold foil tokens, and live banners in real-time.</p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <!-- Brand Toggle -->
+            <div class="flex items-center bg-[#141824] p-1 rounded-2xl border border-stone-800 text-xs font-semibold">
+              <button id="theme-brand-karthik" onclick="setCustomizerBrand('karthik')" class="px-3.5 py-1.5 rounded-xl transition bg-[#c5a059] text-stone-950 font-bold shadow">
+                🛍️ Karthik Flagship
+              </button>
+              <button id="theme-brand-viswa" onclick="setCustomizerBrand('viswanandini')" class="px-3.5 py-1.5 rounded-xl transition text-rose-300 hover:text-white">
+                👑 Viswanandini Bridal
+              </button>
+            </div>
+
+            <!-- Device Viewports -->
+            <div class="hidden sm:flex items-center gap-1 bg-[#141824] p-1 rounded-xl border border-stone-800 text-xs">
+              <button onclick="setThemePreviewDevice('100%')" id="device-desktop" class="px-2.5 py-1 rounded-lg bg-stone-800 text-white font-semibold" title="Desktop View">💻 Desktop</button>
+              <button onclick="setThemePreviewDevice('768px')" id="device-tablet" class="px-2.5 py-1 rounded-lg text-stone-400 hover:text-white" title="Tablet View">📱 Tablet</button>
+              <button onclick="setThemePreviewDevice('375px')" id="device-mobile" class="px-2.5 py-1 rounded-lg text-stone-400 hover:text-white" title="Mobile View">📱 Mobile</button>
+            </div>
+
+            <button onclick="resetThemeDefaults()" class="px-3.5 py-2 rounded-full border border-stone-700 hover:bg-stone-800 text-stone-300 text-xs font-semibold transition">
+              Reset Defaults
+            </button>
+
+            <button onclick="saveThemeChanges()" id="save-theme-btn" class="px-6 py-2 gold-btn rounded-full text-xs font-bold uppercase tracking-wider shadow-lg flex items-center gap-1.5">
+              <span>💾</span> Save & Publish
+            </button>
+          </div>
+        </div>
+
+        <!-- Customizer Workspace Layout: Left Settings Inspector (5 cols) + Right Live Preview Stage (7 cols) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <!-- Left Panel: Shopify-Style Sections & Blocks Inspector -->
+          <div class="lg:col-span-5 space-y-3 max-h-[780px] overflow-y-auto pr-1 text-xs">
+
+            <!-- PRESET LUXURY THEMES SELECTOR -->
+            <div class="admin-card rounded-2xl p-4 border border-[#d4af37]/40 bg-gradient-to-br from-[#1c160a] to-[#120e06] shadow-md">
+              <div class="flex items-center justify-between font-bold text-white mb-2">
+                <span class="flex items-center gap-2"><span class="text-amber-400">🏛️</span> Luxury Theme Presets</span>
+                <span class="text-[9px] uppercase tracking-wider bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-500/30">1-Click Apply</span>
+              </div>
+              <p class="text-[11px] text-stone-400 mb-3 font-light">Select an haute-joaillerie aesthetic preset to instantly re-theme the entire portal in real-time:</p>
+              
+              <div class="grid grid-cols-2 gap-2" id="theme-presets-container">
+                <button type="button" onclick="applyThemePreset('imperial')" class="theme-preset-btn p-2.5 rounded-xl border border-[#d4af37]/40 bg-[#161208] hover:border-[#d4af37] text-left transition flex items-center gap-2 group">
+                  <span class="w-4 h-4 rounded-full bg-gradient-to-tr from-[#d4af37] to-[#faecd0] shadow-sm flex-shrink-0"></span>
+                  <div class="min-w-0">
+                    <strong class="text-white block truncate text-[11px] group-hover:text-amber-300">Imperial 24K</strong>
+                    <span class="text-[9px] text-stone-500 block truncate">Flagship Gold</span>
+                  </div>
+                </button>
+
+                <button type="button" onclick="applyThemePreset('royal')" class="theme-preset-btn p-2.5 rounded-xl border border-stone-800 bg-[#180a0e] hover:border-rose-400/50 text-left transition flex items-center gap-2 group">
+                  <span class="w-4 h-4 rounded-full bg-gradient-to-tr from-[#781d2a] to-[#d4af37] shadow-sm flex-shrink-0"></span>
+                  <div class="min-w-0">
+                    <strong class="text-white block truncate text-[11px] group-hover:text-rose-300">Royal Burgundy</strong>
+                    <span class="text-[9px] text-stone-500 block truncate">Bridal Atelier</span>
+                  </div>
+                </button>
+
+                <button type="button" onclick="applyThemePreset('emerald')" class="theme-preset-btn p-2.5 rounded-xl border border-stone-800 bg-[#091611] hover:border-emerald-400/50 text-left transition flex items-center gap-2 group">
+                  <span class="w-4 h-4 rounded-full bg-gradient-to-tr from-[#0d4a38] to-[#e5c158] shadow-sm flex-shrink-0"></span>
+                  <div class="min-w-0">
+                    <strong class="text-white block truncate text-[11px] group-hover:text-emerald-300">Emerald Haute</strong>
+                    <span class="text-[9px] text-stone-500 block truncate">High Jewellery</span>
+                  </div>
+                </button>
+
+                <button type="button" onclick="applyThemePreset('rose')" class="theme-preset-btn p-2.5 rounded-xl border border-stone-800 bg-[#190e13] hover:border-pink-400/50 text-left transition flex items-center gap-2 group">
+                  <span class="w-4 h-4 rounded-full bg-gradient-to-tr from-[#b76e79] to-[#faecd0] shadow-sm flex-shrink-0"></span>
+                  <div class="min-w-0">
+                    <strong class="text-white block truncate text-[11px] group-hover:text-pink-300">Rose & Bloom</strong>
+                    <span class="text-[9px] text-stone-500 block truncate">Contemporary</span>
+                  </div>
+                </button>
+
+                <button type="button" onclick="applyThemePreset('obsidian')" class="theme-preset-btn col-span-2 p-2 rounded-xl border border-stone-800 bg-[#0d0f14] hover:border-amber-400/40 text-left transition flex items-center justify-between group">
+                  <div class="flex items-center gap-2">
+                    <span class="w-4 h-4 rounded-full bg-gradient-to-tr from-[#1a1f2c] to-[#c0a062] shadow-sm flex-shrink-0"></span>
+                    <div>
+                      <strong class="text-white text-[11px] group-hover:text-amber-200">Obsidian & Solitaire</strong>
+                      <span class="text-[9px] text-stone-500 block">Modern Minimalist Monochrome</span>
+                    </div>
+                  </div>
+                  <span class="text-[10px] text-amber-400/80">Apply →</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Section 1: Announcement Bar -->
+            <div class="admin-card rounded-2xl p-4 border border-stone-800">
+              <div class="flex items-center justify-between font-bold text-white mb-2">
+                <span class="flex items-center gap-2"><span class="text-amber-400">📢</span> Announcement Bar</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" id="theme-ann-enabled" checked onchange="updateThemePreviewLive()" class="sr-only peer">
+                  <div class="w-9 h-5 bg-stone-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#c5a059]"></div>
+                </label>
+              </div>
+              <div class="space-y-2.5 mt-3">
+                <div>
+                  <label class="block text-stone-400 mb-1">Announcement Text</label>
+                  <input type="text" id="theme-ann-text" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2.5 text-xs focus:border-[#c5a059] focus:outline-none" />
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="block text-stone-400 mb-1">Background Color</label>
+                    <input type="text" id="theme-ann-bgcolor" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 font-mono text-xs focus:border-[#c5a059] focus:outline-none" />
+                  </div>
+                  <div>
+                    <label class="block text-stone-400 mb-1">Text Color</label>
+                    <input type="text" id="theme-ann-textcolor" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 font-mono text-xs focus:border-[#c5a059] focus:outline-none" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Header & Brand Identity -->
+            <div class="admin-card rounded-2xl p-4 border border-stone-800">
+              <div class="font-bold text-white mb-2 flex items-center gap-2">
+                <span class="text-amber-400">👑</span> Header & Brand Monogram
+              </div>
+              <div class="space-y-2.5 mt-3">
+                <div class="grid grid-cols-3 gap-2">
+                  <div class="col-span-2">
+                    <label class="block text-stone-400 mb-1">Brand Name</label>
+                    <input type="text" id="theme-brand-name" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2.5 text-xs focus:border-[#c5a059] focus:outline-none font-serif" />
+                  </div>
+                  <div>
+                    <label class="block text-stone-400 mb-1">Monogram</label>
+                    <input type="text" maxlength="2" id="theme-monogram-char" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-amber-300 font-serif font-black rounded-xl p-2.5 text-center text-xs focus:border-[#c5a059] focus:outline-none" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-stone-400 mb-1">Brand Subtitle / Tagline</label>
+                  <input type="text" id="theme-brand-tagline" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2.5 text-xs focus:border-[#c5a059] focus:outline-none" />
+                </div>
+                <div>
+                  <label class="block text-stone-400 mb-1">VIP Lounge CTA Button Text</label>
+                  <input type="text" id="theme-vip-btn-text" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2.5 text-xs focus:border-[#c5a059] focus:outline-none" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Typography & Font Controls -->
+            <div class="admin-card rounded-2xl p-4 border border-stone-800">
+              <div class="font-bold text-white mb-2 flex items-center gap-2">
+                <span class="text-amber-400">✒️</span> Typography & Font Styling
+              </div>
+              <div class="space-y-2.5 mt-3">
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="block text-stone-400 mb-1">Heading Font Family</label>
+                    <select id="theme-heading-font" onchange="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs focus:border-[#c5a059] focus:outline-none">
+                      <option value="'Cinzel', serif">Cinzel (Imperial Display)</option>
+                      <option value="'Playfair Display', Georgia, serif">Playfair Display (Haute Vogue)</option>
+                      <option value="'Cormorant Garamond', Georgia, serif">Cormorant Garamond (Royal Heritage)</option>
+                      <option value="'Outfit', sans-serif">Outfit (Modern Clean)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-stone-400 mb-1">Body Text Font</label>
+                    <select id="theme-body-font" onchange="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs focus:border-[#c5a059] focus:outline-none">
+                      <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans</option>
+                      <option value="'Outfit', sans-serif">Outfit</option>
+                      <option value="'Cormorant Garamond', serif">Cormorant Garamond</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="block text-stone-400 mb-1">Heading Size Scale</label>
+                    <select id="theme-heading-scale" onchange="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs focus:border-[#c5a059] focus:outline-none">
+                      <option value="medium">Medium (Standard)</option>
+                      <option value="large">Large (Dramatic)</option>
+                      <option value="xlarge">Extra Large (Grandeur)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-stone-400 mb-1">Letter Spacing (Kerning)</label>
+                    <select id="theme-letter-spacing" onchange="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs focus:border-[#c5a059] focus:outline-none">
+                      <option value="normal">Normal (-0.01em)</option>
+                      <option value="wide">Wide Luxury (+0.05em)</option>
+                      <option value="ultra-wide">Ultra-Wide Crest (+0.12em)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 4: Navigation & Header Architecture -->
+            <div class="admin-card rounded-2xl p-4 border border-stone-800">
+              <div class="font-bold text-white mb-2 flex items-center gap-2">
+                <span class="text-amber-400">🧭</span> Navigation & Header Architecture
+              </div>
+              <div class="space-y-2.5 mt-3">
+                <div>
+                  <label class="block text-stone-400 mb-1">Navbar Style</label>
+                  <select id="theme-nav-style" onchange="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs focus:border-[#c5a059] focus:outline-none">
+                    <option value="glass">Glassmorphic Blur (Default Luxury)</option>
+                    <option value="solid">Solid Crisp Background</option>
+                    <option value="transparent">Minimal Transparent Header</option>
+                  </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 pt-1">
+                  <label class="flex items-center justify-between p-2 rounded-xl bg-[#141822] border border-stone-800 text-stone-300 cursor-pointer">
+                    <span>Sticky Navbar</span>
+                    <input type="checkbox" id="theme-nav-sticky" checked onchange="updateThemePreviewLive()" class="rounded border-stone-700 accent-[#c5a059]" />
+                  </label>
+                  <label class="flex items-center justify-between p-2 rounded-xl bg-[#141822] border border-stone-800 text-stone-300 cursor-pointer">
+                    <span>Show Search Bar</span>
+                    <input type="checkbox" id="theme-nav-search" checked onchange="updateThemePreviewLive()" class="rounded border-stone-700 accent-[#c5a059]" />
+                  </label>
+                  <label class="flex items-center justify-between p-2 rounded-xl bg-[#141822] border border-stone-800 text-stone-300 cursor-pointer">
+                    <span>Category Sub-Nav</span>
+                    <input type="checkbox" id="theme-nav-categories" checked onchange="updateThemePreviewLive()" class="rounded border-stone-700 accent-[#c5a059]" />
+                  </label>
+                  <label class="flex items-center justify-between p-2 rounded-xl bg-[#141822] border border-stone-800 text-stone-300 cursor-pointer">
+                    <span>VIP Lounge Button</span>
+                    <input type="checkbox" id="theme-nav-vip" checked onchange="updateThemePreviewLive()" class="rounded border-stone-700 accent-[#c5a059]" />
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 5: Editorial Hero Banner -->
+            <div class="admin-card rounded-2xl p-4 border border-stone-800">
+              <div class="font-bold text-white mb-2 flex items-center gap-2">
+                <span class="text-amber-400">✨</span> Editorial Hero Banner
+              </div>
+              <div class="space-y-2.5 mt-3">
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="block text-stone-400 mb-1">Hero Layout</label>
+                    <select id="theme-hero-layout" onchange="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs focus:border-[#c5a059] focus:outline-none">
+                      <option value="split">Split 2-Column (Editorial)</option>
+                      <option value="centered">Centered Grandeur</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-stone-400 mb-1">Text Alignment</label>
+                    <select id="theme-hero-align" onchange="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs focus:border-[#c5a059] focus:outline-none">
+                      <option value="left">Left Aligned</option>
+                      <option value="center">Center Aligned</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-stone-400 mb-1">Eyebrow Certification Badge</label>
+                  <input type="text" id="theme-hero-eyebrow" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2.5 text-xs focus:border-[#c5a059] focus:outline-none" />
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="block text-stone-400 mb-1">Headline Part 1</label>
+                    <input type="text" id="theme-hero-part1" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2.5 text-xs focus:border-[#c5a059] focus:outline-none font-serif" />
+                  </div>
+                  <div>
+                    <label class="block text-amber-300 mb-1">Gold Shimmer Word *</label>
+                    <input type="text" id="theme-hero-shimmer" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-[#d4af37]/40 text-amber-300 rounded-xl p-2.5 text-xs focus:border-[#d4af37] focus:outline-none font-serif font-bold" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-stone-400 mb-1">Editorial Subheading</label>
+                  <textarea id="theme-hero-subheading" rows="2" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2.5 text-xs focus:border-[#c5a059] focus:outline-none"></textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="block text-stone-400 mb-1">Primary CTA Button</label>
+                    <input type="text" id="theme-hero-btn1" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2.5 text-xs focus:border-[#c5a059] focus:outline-none" />
+                  </div>
+                  <div>
+                    <label class="block text-stone-400 mb-1">Secondary Button</label>
+                    <input type="text" id="theme-hero-btn2" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2.5 text-xs focus:border-[#c5a059] focus:outline-none" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 6: Imperial Color Palette -->
+            <div class="admin-card rounded-2xl p-4 border border-stone-800">
+              <div class="font-bold text-white mb-2 flex items-center gap-2">
+                <span class="text-amber-400">🎨</span> Brand Color Palette Tokens
+              </div>
+              <div class="grid grid-cols-2 gap-3 mt-3">
+                <div>
+                  <label class="block text-stone-400 mb-1">Primary Signature Hue</label>
+                  <div class="flex items-center gap-2">
+                    <input type="color" id="theme-color-primary-picker" onchange="document.getElementById('theme-color-primary').value = this.value; updateThemePreviewLive();" class="w-8 h-8 rounded border-0 cursor-pointer bg-transparent" />
+                    <input type="text" id="theme-color-primary" oninput="document.getElementById('theme-color-primary-picker').value = this.value; updateThemePreviewLive();" class="flex-1 bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs font-mono" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-stone-400 mb-1">Secondary Rich Accent</label>
+                  <div class="flex items-center gap-2">
+                    <input type="color" id="theme-color-rich-picker" onchange="document.getElementById('theme-color-rich').value = this.value; updateThemePreviewLive();" class="w-8 h-8 rounded border-0 cursor-pointer bg-transparent" />
+                    <input type="text" id="theme-color-rich" oninput="document.getElementById('theme-color-rich-picker').value = this.value; updateThemePreviewLive();" class="flex-1 bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs font-mono" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 7: Product Grid & Card Styling -->
+            <div class="admin-card rounded-2xl p-4 border border-stone-800">
+              <div class="font-bold text-white mb-2 flex items-center gap-2">
+                <span class="text-amber-400">💎</span> Product Grid & Masterpiece Cards
+              </div>
+              <div class="space-y-2.5 mt-3">
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="block text-stone-400 mb-1">Grid Columns (Desktop)</label>
+                    <select id="theme-grid-cols" onchange="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs focus:border-[#c5a059] focus:outline-none">
+                      <option value="4">4 Columns (Standard)</option>
+                      <option value="3">3 Columns (Editorial Large)</option>
+                      <option value="2">2 Columns (Haute Showcase)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-stone-400 mb-1">Card Style Elevation</label>
+                    <select id="theme-card-style" onchange="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs focus:border-[#c5a059] focus:outline-none">
+                      <option value="elevated">Elevated Shadow & Gold Edge</option>
+                      <option value="flat">Minimal Flat Border</option>
+                      <option value="bordered">Classic Solid Double Border</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="block text-stone-400 mb-1">Card Corner Radius</label>
+                    <select id="theme-card-radius" onchange="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs focus:border-[#c5a059] focus:outline-none">
+                      <option value="24px">Opulent Curved (24px)</option>
+                      <option value="12px">Subtle Rounded (12px)</option>
+                      <option value="0px">Sharp Luxury Edge (0px)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-stone-400 mb-1">Image Aspect Ratio</label>
+                    <select id="theme-image-ratio" onchange="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs focus:border-[#c5a059] focus:outline-none">
+                      <option value="portrait">Portrait (3:4 Atelier)</option>
+                      <option value="square">Square (1:1 Clean)</option>
+                      <option value="landscape">Landscape (4:3 Wide)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 pt-1">
+                  <label class="flex items-center justify-between p-2 rounded-xl bg-[#141822] border border-stone-800 text-stone-300 cursor-pointer">
+                    <span>Show Hallmark Badges</span>
+                    <input type="checkbox" id="theme-grid-badges" checked onchange="updateThemePreviewLive()" class="rounded border-stone-700 accent-[#c5a059]" />
+                  </label>
+                  <label class="flex items-center justify-between p-2 rounded-xl bg-[#141822] border border-stone-800 text-stone-300 cursor-pointer">
+                    <span>Show Live Price Breakup</span>
+                    <input type="checkbox" id="theme-grid-price" checked onchange="updateThemePreviewLive()" class="rounded border-stone-700 accent-[#c5a059]" />
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 8: Button Styling & Shape -->
+            <div class="admin-card rounded-2xl p-4 border border-stone-800">
+              <div class="font-bold text-white mb-2 flex items-center gap-2">
+                <span class="text-amber-400">🔘</span> Button Styling & Geometry
+              </div>
+              <div class="grid grid-cols-2 gap-2 mt-3">
+                <div>
+                  <label class="block text-stone-400 mb-1">Button Shape (Radius)</label>
+                  <select id="theme-btn-shape" onchange="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs focus:border-[#c5a059] focus:outline-none">
+                    <option value="pill">Pill Full Curve (9999px)</option>
+                    <option value="rounded">Soft Rounded (12px)</option>
+                    <option value="square">Sharp Luxury (0px)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-stone-400 mb-1">Hover Micro-Interaction</label>
+                  <select id="theme-btn-hover" onchange="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs focus:border-[#c5a059] focus:outline-none">
+                    <option value="shimmer">Golden Shimmer Glow</option>
+                    <option value="lift">Lift & Deep Shadow</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 9: Spacing & Section Density -->
+            <div class="admin-card rounded-2xl p-4 border border-stone-800">
+              <div class="font-bold text-white mb-2 flex items-center gap-2">
+                <span class="text-amber-400">📐</span> Section Spacing & Density
+              </div>
+              <div class="mt-3">
+                <label class="block text-stone-400 mb-1">Layout Spacing Rhythm</label>
+                <select id="theme-spacing-density" onchange="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 text-xs focus:border-[#c5a059] focus:outline-none">
+                  <option value="comfortable">Comfortable (Balanced Luxury Spacing)</option>
+                  <option value="compact">Compact (High Information Density)</option>
+                  <option value="spacious">Spacious (Opulent Air & High Fashion)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Section 10: Footer Customization -->
+            <div class="admin-card rounded-2xl p-4 border border-stone-800">
+              <div class="font-bold text-white mb-2 flex items-center gap-2">
+                <span class="text-amber-400">📄</span> Storefront Footer
+              </div>
+              <div class="space-y-2.5 mt-3">
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="block text-stone-400 mb-1">Footer Background</label>
+                    <input type="text" id="theme-footer-bg" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 font-mono text-xs focus:border-[#c5a059] focus:outline-none" />
+                  </div>
+                  <div>
+                    <label class="block text-stone-400 mb-1">Footer Text Color</label>
+                    <input type="text" id="theme-footer-color" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2 font-mono text-xs focus:border-[#c5a059] focus:outline-none" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-stone-400 mb-1">Copyright Notice Text</label>
+                  <input type="text" id="theme-footer-copyright" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2.5 text-xs focus:border-[#c5a059] focus:outline-none" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 11: Feature Flags & Toggles -->
+            <div class="admin-card rounded-2xl p-4 border border-stone-800">
+              <div class="font-bold text-white mb-2 flex items-center gap-2">
+                <span class="text-amber-400">⚡</span> Storefront Feature Modules
+              </div>
+              <div class="space-y-2 mt-3">
+                <label class="flex items-center justify-between text-stone-300 cursor-pointer py-1">
+                  <span>📸 Virtual AR Try-On Studio</span>
+                  <input type="checkbox" id="theme-feat-ar" checked onchange="updateThemePreviewLive()" class="rounded border-stone-700 accent-[#c5a059]" />
+                </label>
+                <label class="flex items-center justify-between text-stone-300 cursor-pointer py-1">
+                  <span>🛡️ BIS Hallmark HUID Verifier</span>
+                  <input type="checkbox" id="theme-feat-huid" checked onchange="updateThemePreviewLive()" class="rounded border-stone-700 accent-[#c5a059]" />
+                </label>
+                <label class="flex items-center justify-between text-stone-300 cursor-pointer py-1">
+                  <span>💰 Swarna Nidhi Savings Calculator</span>
+                  <input type="checkbox" id="theme-feat-chits" checked onchange="updateThemePreviewLive()" class="rounded border-stone-700 accent-[#c5a059]" />
+                </label>
+                <label class="flex items-center justify-between text-stone-300 cursor-pointer py-1">
+                  <span>📦 Armoured Transit Order Tracker</span>
+                  <input type="checkbox" id="theme-feat-tracker" checked onchange="updateThemePreviewLive()" class="rounded border-stone-700 accent-[#c5a059]" />
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Panel: Live Reactive Viewport Frame (Shopify-style live stage) -->
+          <div class="lg:col-span-7 flex flex-col items-center w-full">
+            <div class="w-full bg-[#11151f] p-3 rounded-t-2xl border border-b-0 border-stone-800 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-mono text-stone-300 text-[11px]" id="preview-url-indicator">http://localhost:5000/</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="reloadThemePreviewFrame()" class="p-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-300" title="Reload Preview Frame">
+                  <i class="fa-solid fa-arrows-rotate"></i>
+                </button>
+                <a id="preview-external-link" href="/" target="_blank" class="p-1.5 rounded-lg bg-[#c5a059] text-stone-950 font-bold" title="Open Storefront in New Tab">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Viewport Container -->
+            <div id="theme-preview-wrapper" class="w-full transition-all duration-300 bg-black/60 p-2 rounded-b-2xl border border-stone-800 flex justify-center overflow-hidden">
+              <div id="theme-preview-inner" class="w-full transition-all duration-300 rounded-xl overflow-hidden border border-stone-800 shadow-2xl bg-white" style="height: 720px;">
+                <iframe id="theme-preview-iframe" src="/" class="w-full h-full border-0" title="Shopify Theme Live Preview"></iframe>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TAB 9: LIVE BULLION RATES -->
+      <section id="tab-rates" class="admin-tab-section hidden space-y-6">
+        <div class="pb-4 border-b border-stone-800">
+          <span class="text-[10px] font-bold text-[#c5a059] uppercase tracking-[0.2em]">Live Pricing Engine</span>
+          <h2 class="text-2xl font-serif font-bold text-white mt-0.5">Dynamic Bullion Rate Controller</h2>
+          <p class="text-xs text-stone-400 mt-1 font-light">Updating these values automatically recalculates the retail pricing for every gold and silver piece across the entire store.</p>
+        </div>
+
+        <div class="max-w-2xl bg-[#11151e] border border-[#c5a059]/40 rounded-3xl p-6 sm:p-8 shadow-xl">
+          <form id="live-rate-form" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-amber-300 mb-1">Gold 24KT (999 Pure) Rate (₹ / Gram)</label>
+                <input type="number" id="rate-24k" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 text-sm font-mono font-bold focus:border-[#c5a059] focus:outline-none" />
+                <span class="text-[10px] text-stone-400">Used for bullion bars & 24K Lakshmi coins</span>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-amber-300 mb-1">Gold 22KT (916 BIS Hallmark) (₹ / Gram)</label>
+                <input type="number" id="rate-22k" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 text-sm font-mono font-bold focus:border-[#c5a059] focus:outline-none" />
+                <span class="text-[10px] text-stone-400">Used for traditional bridal harams, bangles & rings</span>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-amber-300 mb-1">Gold 18KT (Diamond Studded) (₹ / Gram)</label>
+                <input type="number" id="rate-18k" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 text-sm font-mono font-bold focus:border-[#c5a059] focus:outline-none" />
+                <span class="text-[10px] text-stone-400">Used for solitaire rings & fine diamond necklaces</span>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-300 mb-1">Silver (999 Fine Silver) (₹ / Gram)</label>
+                <input type="number" id="rate-silver" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 text-sm font-mono font-bold focus:border-slate-400 focus:outline-none" />
+                <span class="text-[10px] text-stone-400">Used for silver bars & pooja articles</span>
+              </div>
+            </div>
+
+            <div class="pt-4 flex items-center justify-between border-t border-stone-800">
+              <span id="rate-updated-time" class="text-xs text-stone-400 font-mono"></span>
+              <button type="submit" class="px-7 py-3 gold-btn rounded-full font-bold text-xs uppercase tracking-wider shadow-lg">
+                Save & Update Storefront Rates ⚡
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- TAB 10: SETTINGS & COMPLIANCE -->
+      <section id="tab-settings" class="admin-tab-section hidden space-y-6">
+        <div class="pb-4 border-b border-stone-800">
+          <span class="text-[10px] font-bold text-[#c5a059] uppercase tracking-[0.2em]">Enterprise Governance</span>
+          <h2 class="text-2xl font-serif font-bold text-white mt-0.5">Store Settings, Hallmarking & Tax Compliance</h2>
+          <p class="text-xs text-stone-400 mt-1 font-light">Bureau of Indian Standards legal licensing, GST registration, assaying partner and logistical configuration.</p>
+        </div>
+
+        <div class="max-w-4xl bg-[#11151e] border border-stone-800 rounded-3xl p-6 sm:p-8 shadow-xl">
+          <form id="store-settings-form" onsubmit="handleStoreSettingsSubmit(event)" class="space-y-4 text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-stone-300 font-semibold mb-1">Registered Enterprise Name *</label>
+                <input type="text" id="set-store-name" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none" />
+              </div>
+              <div>
+                <label class="block text-stone-300 font-semibold mb-1">Legal Entity Title *</label>
+                <input type="text" id="set-legal-entity" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-amber-300 font-semibold mb-1">GSTIN Registration Number *</label>
+                <input type="text" id="set-gstin" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none font-mono font-bold" />
+              </div>
+              <div>
+                <label class="block text-amber-300 font-semibold mb-1">BIS Hallmarking License *</label>
+                <input type="text" id="set-bis-license" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none font-mono font-bold" />
+              </div>
+              <div>
+                <label class="block text-stone-300 font-semibold mb-1">GST Tax Percentage (%) *</label>
+                <input type="number" step="0.1" id="set-gst-pct" required value="3.0" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none font-mono" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-stone-300 font-semibold mb-1">Support Email Address *</label>
+                <input type="email" id="set-support-email" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none" />
+              </div>
+              <div>
+                <label class="block text-stone-300 font-semibold mb-1">VIP Concierge Telephone *</label>
+                <input type="tel" id="set-support-phone" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none font-mono" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-stone-300 font-semibold mb-1">Headquarters Showroom Address *</label>
+              <textarea id="set-headquarters" rows="2" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none"></textarea>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-stone-300 font-semibold mb-1">Certified Assaying Partner Lab</label>
+                <input type="text" id="set-assaying-lab" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none" />
+              </div>
+              <div>
+                <label class="block text-stone-300 font-semibold mb-1">Insured Armoured Logistics Partner</label>
+                <input type="text" id="set-courier-partner" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none" />
+              </div>
+            </div>
+
+            <div class="pt-4 flex justify-end">
+              <button type="submit" class="px-8 py-3 gold-btn rounded-full font-bold uppercase tracking-wider text-xs shadow-lg">
+                Save Compliance & Store Settings
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Add/Edit Product Modal -->
+  <div id="product-modal" class="fixed inset-0 z-50 glass-overlay flex items-center justify-center p-4 hidden">
+    <div class="bg-[#11151e] border border-stone-700/80 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl">
+      <div class="flex justify-between items-center pb-4 border-b border-stone-800">
+        <h3 id="product-modal-title" class="font-serif font-bold text-lg text-white">Add New Fine Jewellery Masterpiece</h3>
+        <button onclick="closeAddProductModal()" class="text-stone-400 hover:text-white text-xl">✕</button>
+      </div>
+
+      <form id="add-product-form" class="space-y-4 mt-5 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="sm:col-span-1">
+            <label class="block text-amber-300 font-semibold mb-1">Brand House *</label>
+            <select id="prod-brand" required class="w-full bg-[#181e2b] border border-amber-500/40 text-amber-200 rounded-xl p-3 focus:border-[#c5a059] focus:outline-none font-bold">
+              <option value="karthik">Karthik Jewellers (Flagship)</option>
+              <option value="viswanandini">Viswanandini Jewellers (Affiliate)</option>
+            </select>
+          </div>
+
+          <div class="sm:col-span-1">
+            <label class="block text-stone-300 font-semibold mb-1">Product Title *</label>
+            <input type="text" id="prod-name" required placeholder="e.g. Maharani Temple Ruby Haram" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none" />
+          </div>
+
+          <div class="sm:col-span-1">
+            <label class="block text-stone-300 font-semibold mb-1">Category *</label>
+            <select id="prod-category" required class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none">
+              <option value="necklaces">Necklaces & Harams</option>
+              <option value="earrings">Earrings & Jhumkas</option>
+              <option value="rings">Rings & Solitaires</option>
+              <option value="bangles">Bangles & Kadas</option>
+              <option value="mangalsutra">Mangalsutras</option>
+              <option value="coins">Gold & Silver Coins</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">Purity *</label>
+            <select id="prod-purity" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none">
+              <option value="22KT">22KT (916 Hallmark)</option>
+              <option value="18KT">18KT (Diamond)</option>
+              <option value="24KT">24KT (999 Pure)</option>
+              <option value="925 Silver">925 Silver</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">Metal Color *</label>
+            <select id="prod-metal" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none">
+              <option value="Yellow Gold">Yellow Gold</option>
+              <option value="Rose Gold">Rose Gold</option>
+              <option value="White Gold">White Gold</option>
+              <option value="Fine Silver 999">Fine Silver 999</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">Gross Weight (g) *</label>
+            <input type="number" step="0.01" id="prod-gross-weight" required placeholder="32.50" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none font-mono" />
+          </div>
+
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">Net Gold Weight (g) *</label>
+            <input type="number" step="0.01" id="prod-net-weight" required placeholder="30.20" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none font-mono" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">Stone / Gemstone Details</label>
+            <input type="text" id="prod-stone-type" placeholder="Burmese Rubies, 0.50ct Diamond" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none" />
+          </div>
+
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">Stone Weight (g/ct)</label>
+            <input type="number" step="0.01" id="prod-stone-weight" placeholder="2.30" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none font-mono" />
+          </div>
+
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">Stone / Gem Value (₹)</label>
+            <input type="number" id="prod-stone-price" placeholder="15000" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none font-mono" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">Making Charge Calculation *</label>
+            <select id="prod-mc-type" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none">
+              <option value="percentage">Percentage (%) on Gold</option>
+              <option value="perGram">Fixed Flat (₹ / Gram)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">Making Charge Rate *</label>
+            <input type="number" step="0.1" id="prod-mc-val" value="12" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none font-mono" />
+          </div>
+
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">Inventory Stock Count *</label>
+            <input type="number" id="prod-stock" value="5" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none font-mono" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-stone-300 font-semibold mb-1">High-Res Jewellery Image URL *</label>
+          <input type="url" id="prod-image" placeholder="https://images.unsplash.com/photo-..." class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none" />
+          <div class="flex gap-2 mt-2">
+            <button type="button" onclick="document.getElementById('prod-image').value='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80'" class="px-2.5 py-1 bg-[#181e2b] hover:bg-stone-700 rounded-full text-[10px] text-stone-300">Preset: Necklace</button>
+            <button type="button" onclick="document.getElementById('prod-image').value='https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80'" class="px-2.5 py-1 bg-[#181e2b] hover:bg-stone-700 rounded-full text-[10px] text-stone-300">Preset: Ring</button>
+            <button type="button" onclick="document.getElementById('prod-image').value='https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=800&q=80'" class="px-2.5 py-1 bg-[#181e2b] hover:bg-stone-700 rounded-full text-[10px] text-stone-300">Preset: Earrings</button>
+            <button type="button" onclick="document.getElementById('prod-image').value='https://images.unsplash.com/photo-1611591475817-47b2df31d454?auto=format&fit=crop&w=800&q=80'" class="px-2.5 py-1 bg-[#181e2b] hover:bg-stone-700 rounded-full text-[10px] text-stone-300">Preset: Bangle</button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-stone-300 font-semibold mb-1">Heritage Craftsmanship Description</label>
+          <textarea id="prod-desc" rows="3" placeholder="Artisan handcrafted in 22KT gold..." class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none"></textarea>
+        </div>
+
+        <div class="flex items-center gap-6 pt-1">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="prod-featured" checked class="rounded border-stone-700 accent-[#c5a059]" />
+            <span class="text-stone-300">Feature on Storefront Showcase</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="prod-bestseller" class="rounded border-stone-700 accent-[#c5a059]" />
+            <span class="text-stone-300">Mark as Royal Bestseller</span>
+          </label>
+        </div>
+
+        <!-- Real-time Retail Price calculation box -->
+        <div class="p-3.5 bg-[#0e1f18] border border-emerald-500/30 rounded-2xl text-emerald-300">
+          <p id="prod-price-preview" class="font-medium">
+            Estimated Retail: <strong class="text-amber-300 text-sm font-mono">Calculating...</strong>
+          </p>
+        </div>
+
+        <div class="pt-4 flex justify-end gap-3 border-t border-stone-800">
+          <button type="button" onclick="closeAddProductModal()" class="px-5 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-300 rounded-full font-bold">
+            Cancel
+          </button>
+          <button type="submit" class="px-7 py-2.5 gold-btn rounded-full font-bold uppercase tracking-wider shadow-lg">
+            Save Jewellery Piece
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Create Coupon Modal -->
+  <div id="coupon-modal" class="fixed inset-0 z-50 glass-overlay flex items-center justify-center p-4 hidden">
+    <div class="bg-[#11151e] border border-stone-700/80 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl">
+      <div class="flex justify-between items-center pb-4 border-b border-stone-800">
+        <h3 class="font-serif font-bold text-lg text-white">Create Privilege Discount Coupon</h3>
+        <button onclick="closeCreateCouponModal()" class="text-stone-400 hover:text-white text-xl">✕</button>
+      </div>
+
+      <form id="create-coupon-form" onsubmit="handleCreateCoupon(event)" class="space-y-4 mt-4 text-xs">
+        <div>
+          <label class="block text-amber-300 font-semibold mb-1">Coupon Code *</label>
+          <input type="text" id="cpn-code" required placeholder="e.g. FESTIVE2026" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 uppercase font-mono font-bold focus:border-[#c5a059] focus:outline-none" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">Discount Type *</label>
+            <select id="cpn-type" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none">
+              <option value="percentage">Percentage (%) Off</option>
+              <option value="flat">Flat Amount (₹) Off</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">Discount Value *</label>
+            <input type="number" id="cpn-val" required placeholder="5 or 10000" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none font-mono" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">Min Order Amount (₹)</label>
+            <input type="number" id="cpn-min" placeholder="50000" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none font-mono" />
+          </div>
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">Max Discount Cap (₹)</label>
+            <input type="number" id="cpn-cap" placeholder="25000" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none font-mono" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-stone-300 font-semibold mb-1">Brand Scope *</label>
+          <select id="cpn-brand" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none">
+            <option value="all">Entire Ecosystem (Karthik & Viswanandini)</option>
+            <option value="karthik">Karthik Jewellers Flagship Only</option>
+            <option value="viswanandini">Viswanandini Bridal House Only</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-stone-300 font-semibold mb-1">Campaign Description</label>
+          <input type="text" id="cpn-desc" placeholder="Special Akshaya Tritiya Privilege..." class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none" />
+        </div>
+
+        <div class="pt-4 flex justify-end gap-3 border-t border-stone-800">
+          <button type="button" onclick="closeCreateCouponModal()" class="px-5 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-300 rounded-full font-bold">
+            Cancel
+          </button>
+          <button type="submit" class="px-7 py-2.5 gold-btn rounded-full font-bold uppercase tracking-wider shadow-lg">
+            Create Discount Code
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/sync-engine.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

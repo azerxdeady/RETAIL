@@ -1,0 +1,426 @@
+/* ==========================================================================
+   KARTHIK JEWELLERS - MODERN LUXURY EDITORIAL DESIGN SYSTEM
+   Contemporary High-End Fine Jewellery Aesthetic (Opulent Gold • Imperial Luxury)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --surface-cream: #faf7f2;
+  --text-main: #14110b;
+  --theme-heading-font: 'Cinzel', serif;
+  --theme-body-font: 'Plus Jakarta Sans', sans-serif;
+  --theme-btn-radius: 9999px;
+  --theme-card-radius: 1.5rem;
+  --theme-primary-gold: #D4AF37;
+  --theme-rich-gold: #C5A059;
+  --theme-nav-bg: rgba(255, 253, 248, 0.92);
+  --theme-footer-bg: #0b0804;
+  --theme-footer-text: #faecd0;
+  --font-serif: var(--theme-heading-font), 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-display: var(--theme-heading-font), 'Cinzel', 'Cormorant Garamond', serif;
+  --font-sans: var(--theme-body-font), 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Base Reset & Smooth Render */
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--surface-cream);
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* ==========================================================================
+   GOLD METALLIC FOILS & TEXT SHIMMERS
+   ========================================================================== */
+
+.gold-shimmer-text {
+  background: linear-gradient(90deg, #a37c27 0%, #faecd0 25%, #d4af37 50%, #faecd0 75%, #a37c27 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 5s linear infinite;
+}
+
+@keyframes goldShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ==========================================================================
+   OPULENT IMPERIAL BUTTONS & CTAS
+   ========================================================================== */
+
+.gold-btn {
+  background: linear-gradient(135deg, #d4af37 0%, #fef3c7 40%, #b4860b 80%, #d4af37 100%);
+  color: #120e06;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  border: 1px solid rgba(255, 235, 175, 0.6);
+  border-radius: var(--theme-btn-radius, 9999px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.38), 0 0 0 1px rgba(255, 235, 175, 0.5) inset;
+}
+
+.gold-btn:hover {
+  background: linear-gradient(135deg, #fef3c7 0%, #d4af37 40%, #996515 80%, #fef3c7 100%);
+  box-shadow: 0 10px 32px rgba(212, 175, 55, 0.55), 0 0 15px rgba(255, 235, 175, 0.6);
+  transform: translateY(-2px);
+}
+
+.dark-pill-btn {
+  background: linear-gradient(135deg, #14110b 0%, #241c0e 100%);
+  color: #faecd0;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: var(--theme-btn-radius, 9999px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark-pill-btn:hover {
+  background: linear-gradient(135deg, #241c0e 0%, #3a2d14 100%);
+  border-color: #d4af37;
+  color: #ffffff;
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
+  transform: translateY(-1.5px);
+}
+
+/* ==========================================================================
+   HEADER NAVIGATION STYLES
+   ========================================================================== */
+
+.glass-nav {
+  background: var(--theme-nav-bg, rgba(255, 253, 248, 0.92)) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.32);
+  box-shadow: 0 4px 30px rgba(184, 138, 56, 0.06);
+}
+
+.solid-nav {
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid #e7e5e4 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+}
+
+.transparent-nav {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+
+.glass-overlay {
+  background: rgba(10, 8, 4, 0.82);
+  backdrop-filter: blur(12px);
+}
+
+/* ==========================================================================
+   ROYAL GOLD BADGES & ACCENTS
+   ========================================================================== */
+
+.badge-hallmark {
+  background: linear-gradient(135deg, #fdfbf7 0%, #faecd0 100%);
+  border: 1px solid #d4af37;
+  color: #6d4f13;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+}
+
+.badge-diamond {
+  background: linear-gradient(135deg, #f0f7ff 0%, #e0effe 100%);
+  border: 1px solid #93c5fd;
+  color: #1e40af;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+}
+
+/* Gold Monogram Crest */
+.gold-crest {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #ECC874 0%, #FAF0CD 25%, #D4AF37 55%, #8B6508 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #120e06;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.35rem;
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.45), 0 0 0 2px rgba(255, 245, 210, 0.6) inset;
+  border: 1px solid #8c6a23;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gold-crest:hover {
+  transform: scale(1.08) rotate(3deg);
+  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.65), 0 0 0 2px rgba(255, 245, 210, 0.8) inset;
+}
+
+/* Luxury Divider */
+.gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.gold-divider::before,
+.gold-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+/* ==========================================================================
+   LIVE BULLION TICKER
+   ========================================================================== */
+
+.gold-ticker-wrapper {
+  background: linear-gradient(90deg, #0e0b05 0%, #1c1507 50%, #0e0b05 100%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+.pulse-rate {
+  animation: pulseNeon 2.2s infinite;
+}
+
+@keyframes pulseNeon {
+  0% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 2px #d4af37); }
+  50% { transform: scale(1.2); opacity: 0.85; filter: drop-shadow(0 0 8px #fef3c7); }
+  100% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 2px #d4af37); }
+}
+
+/* ==========================================================================
+   FINE JEWELLERY PIECE CARDS
+   ========================================================================== */
+
+.jewellery-card {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  background: #ffffff;
+  border-radius: var(--theme-card-radius, 1.5rem);
+  box-shadow: 0 6px 25px rgba(184, 138, 56, 0.05);
+  position: relative;
+}
+
+.jewellery-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.75);
+  box-shadow: 0 22px 50px -12px rgba(212, 175, 55, 0.24), 0 0 0 1px rgba(212, 175, 55, 0.45);
+}
+
+/* Card Style Variants */
+.card-elevated {
+  box-shadow: 0 10px 30px rgba(184, 138, 56, 0.12) !important;
+  border: 1px solid rgba(212, 175, 55, 0.4) !important;
+}
+
+.card-flat {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.card-bordered {
+  box-shadow: none !important;
+  border: 2px solid rgba(212, 175, 55, 0.7) !important;
+}
+
+/* Aspect Ratio Variants */
+.aspect-portrait { aspect-ratio: 3 / 4; }
+.aspect-square { aspect-ratio: 1 / 1; }
+.aspect-landscape { aspect-ratio: 4 / 3; }
+
+/* Density / Spacing Variants */
+body.density-compact section { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+body.density-comfortable section { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+body.density-spacious section { padding-top: 6rem !important; padding-bottom: 6rem !important; }
+
+.jewellery-card .img-zoom {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jewellery-card:hover .img-zoom {
+  transform: scale(1.08);
+}
+
+/* Category Modern Arches */
+.category-card {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(184, 138, 56, 0.05);
+}
+
+.category-card:hover {
+  transform: translateY(-6px);
+  border-color: #d4af37;
+  box-shadow: 0 18px 40px -10px rgba(212, 175, 55, 0.28);
+}
+
+/* ==========================================================================
+   ADMIN & DASHBOARD (IMPERIAL GOLD TELEMETRY)
+   ========================================================================== */
+
+.admin-card {
+  background: linear-gradient(145deg, #120e06 0%, #0d0b06 100%);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+}
+
+.admin-card:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 14px 45px rgba(212, 175, 55, 0.15);
+}
+
+/* Smooth Modern Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0804;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d4af37 0%, #8c6a23 100%);
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #fef3c7 0%, #d4af37 100%);
+}
+
+/* Animations */
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ==========================================================================
+   PRINT INVOICE STYLES
+   ========================================================================== */
+
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .invoice-container {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* ==========================================================================
+   VISWANANDINI JEWELLERS - ROYAL BRIDAL & POLKI LUXURY IDENTITY
+   ========================================================================== */
+
+.viswa-btn {
+  background: linear-gradient(135deg, #781d2a 0%, #9e2a3b 60%, #5c0f1b 100%);
+  color: #ffffff;
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  border-radius: var(--theme-btn-radius, 9999px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(120, 29, 42, 0.45), 0 0 0 1px rgba(212, 175, 55, 0.3) inset;
+}
+
+.viswa-btn:hover {
+  background: linear-gradient(135deg, #9e2a3b 0%, #781d2a 60%, #460c14 100%);
+  box-shadow: 0 8px 30px rgba(120, 29, 42, 0.6), 0 0 15px rgba(212, 175, 55, 0.5);
+  transform: translateY(-2px);
+}
+
+.viswa-gold-btn {
+  background: linear-gradient(135deg, #d4af37 0%, #fef3c7 40%, #b4860b 80%, #d4af37 100%);
+  color: #210d11;
+  font-weight: 800;
+  border-radius: var(--theme-btn-radius, 9999px);
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.42), 0 0 0 1px rgba(255, 235, 175, 0.5) inset;
+  border: 1px solid rgba(255, 235, 175, 0.6);
+}
+
+.viswa-gold-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #fef3c7 0%, #d4af37 40%, #996515 80%, #fef3c7 100%);
+  box-shadow: 0 10px 35px rgba(212, 175, 55, 0.65), 0 0 15px rgba(255, 235, 175, 0.6);
+}
+
+.viswa-nav {
+  background: rgba(253, 249, 243, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 4px 30px rgba(120, 29, 42, 0.08);
+}
+
+.viswa-ticker-wrapper {
+  background: linear-gradient(90deg, #2b050c 0%, #5c0f1b 50%, #2b050c 100%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+.viswa-card {
+  background: #ffffff;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--theme-card-radius, 1.5rem);
+  box-shadow: 0 6px 25px rgba(120, 29, 42, 0.06);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.viswa-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 175, 55, 0.85);
+  box-shadow: 0 20px 45px rgba(120, 29, 42, 0.16), 0 0 0 1px rgba(212, 175, 55, 0.45);
+}

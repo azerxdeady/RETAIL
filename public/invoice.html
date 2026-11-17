@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GST Tax Invoice & BIS Hallmark Certificate - Karthik Jewellers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-[#f8f7f4] min-h-screen py-10 text-stone-900 font-sans">
+
+  <!-- Printable Action Bar -->
+  <div class="max-w-4xl mx-auto mb-6 px-4 flex justify-between items-center no-print">
+    <div class="flex items-center gap-3 text-xs font-semibold text-stone-600">
+      <a href="/" class="hover:text-stone-900 flex items-center gap-1 transition">
+        <span>←</span> Karthik Storefront
+      </a>
+      <span class="text-stone-300">|</span>
+      <a href="/viswanandini" class="text-[#781d2a] hover:underline flex items-center gap-1 font-bold transition">
+        <span>👑</span> Viswanandini Storefront
+      </a>
+      <span class="text-stone-300">|</span>
+      <a href="/dashboard" class="text-amber-700 hover:text-amber-900 flex items-center gap-1 font-bold transition">
+        <span>🎛️</span> Master Hub
+      </a>
+      <span class="text-stone-300">|</span>
+      <a href="/admin" class="hover:text-stone-900 flex items-center gap-1 transition">
+        <span>👑</span> Admin Ops
+      </a>
+    </div>
+    <div class="flex gap-3">
+      <button onclick="window.print()" class="px-6 py-2.5 gold-btn text-xs font-bold uppercase tracking-wider rounded-full shadow flex items-center gap-2">
+        <span>🖨️</span> Print / Save PDF
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Invoice Document -->
+  <div id="invoice-container" class="invoice-container max-w-4xl mx-auto bg-white border border-[#d4af37]/40 shadow-xl rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+    <!-- Royal Watermark Background -->
+    <div class="absolute inset-0 flex items-center justify-center opacity-[0.025] pointer-events-none">
+      <span id="inv-watermark" class="text-9xl font-serif font-black tracking-widest text-stone-950">KJ</span>
+    </div>
+
+    <!-- Header Section -->
+    <div id="inv-header-bar" class="border-b-2 border-[#d4af37] pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div>
+        <div class="flex items-center gap-3.5">
+          <div id="inv-monogram" class="gold-crest text-xl w-12 h-12 shadow">
+            K
+          </div>
+          <div>
+            <h1 id="inv-brand-name" class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-stone-900 uppercase">
+              Karthik Jewellers
+            </h1>
+            <p id="inv-brand-tagline" class="text-[10px] uppercase tracking-[0.25em] text-[#b4860b] font-bold">
+              Heritage Goldsmiths & Certified Solitaire Ateliers
+            </p>
+          </div>
+        </div>
+        <p id="inv-brand-contact" class="text-[11px] text-stone-500 mt-2.5 font-light leading-relaxed">
+          Flagship: 14 Usman Road, T. Nagar, Chennai - 600017, Tamil Nadu, India<br>
+          Phone: +91 44 2434 8899 | Email: concierge@karthikjewellers.com | Web: www.karthikjewellers.com
+        </p>
+      </div>
+
+      <div class="text-right sm:border-l sm:border-stone-200 sm:pl-6">
+        <span class="inline-block bg-[#0b0e14] text-emerald-400 text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-1">
+          TAX INVOICE (ORIGINAL)
+        </span>
+        <p class="text-xs font-bold text-stone-800 mt-1">GSTIN: <span class="font-mono">33AAACK4928J1Z5</span></p>
+        <p class="text-[11px] text-stone-500">BIS License: <span class="font-mono">BIS-HM/L-600017-0982</span></p>
+        <p class="text-[11px] text-stone-500">State Code: 33 (Tamil Nadu)</p>
+      </div>
+    </div>
+
+    <!-- Invoice Meta Data -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 py-4 border-b border-stone-200 text-xs">
+      <div>
+        <span class="text-stone-400 uppercase text-[9px] font-bold tracking-wider block">Invoice Number</span>
+        <strong id="inv-number" class="text-stone-900 font-mono text-sm">INV-KJ-2026-9041</strong>
+      </div>
+      <div>
+        <span class="text-stone-400 uppercase text-[9px] font-bold tracking-wider block">Date & Time</span>
+        <strong id="inv-date" class="text-stone-900">07 Nov 2026</strong>
+      </div>
+      <div>
+        <span class="text-stone-400 uppercase text-[9px] font-bold tracking-wider block">Order Reference</span>
+        <strong id="inv-order-id" class="text-stone-900 font-mono">ORD-KJ-2026-9041</strong>
+      </div>
+      <div>
+        <span class="text-stone-400 uppercase text-[9px] font-bold tracking-wider block">Payment Mode</span>
+        <strong id="inv-payment-mode" class="text-stone-900 text-emerald-700">UPI (Paid)</strong>
+      </div>
+    </div>
+
+    <!-- Customer Billed to & Shipped To -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 py-4 border-b border-stone-200 text-xs">
+      <div>
+        <h4 class="font-serif font-bold text-stone-900 uppercase text-[11px] tracking-wider mb-1 text-[#996515]">
+          Billed To:
+        </h4>
+        <p id="inv-customer-name" class="font-bold text-stone-900 text-sm">Sundararajan M.</p>
+        <p id="inv-customer-address" class="text-stone-600 mt-0.5 font-light">Old No 42, New No 19, North Usman Road</p>
+        <p id="inv-customer-city" class="text-stone-600 font-light">Chennai, Tamil Nadu - 600017</p>
+        <p id="inv-customer-contact" class="text-stone-600 mt-1 font-light">Phone: +91 94440 12890 | Email: sundar.m@example.com</p>
+      </div>
+
+      <div>
+        <h4 class="font-serif font-bold text-stone-900 uppercase text-[11px] tracking-wider mb-1 text-[#996515]">
+          Armoured Vault Shipping Consignment:
+        </h4>
+        <p class="text-stone-700 font-light"><strong>Carrier:</strong> BVC Logistics High-Security Armoured Transit</p>
+        <p class="font-light"><strong>Tracking / Waybill #:</strong> <span id="inv-tracking-no" class="font-mono font-bold text-stone-900">BVC-INSURED-89210</span></p>
+        <p class="font-light"><strong>Insurance Policy:</strong> Fully Insured Under Karthik Marine & Transit Blanket Cover</p>
+        <p class="font-light"><strong>Estimated Delivery:</strong> <span id="inv-delivery-date" class="font-bold text-emerald-800">10 Nov 2026</span></p>
+      </div>
+    </div>
+
+    <!-- Itemized Jewellery Table -->
+    <div class="py-6">
+      <table class="w-full text-left text-xs border border-stone-200">
+        <thead class="bg-stone-50 border-b border-stone-200 font-serif font-bold text-stone-800 text-[11px]">
+          <tr>
+            <th class="py-2.5 px-3">#</th>
+            <th class="py-2.5 px-3">Description & HUID Code</th>
+            <th class="py-2.5 px-3 text-center">Purity</th>
+            <th class="py-2.5 px-3 text-right">Gross Wt</th>
+            <th class="py-2.5 px-3 text-right">Net Wt</th>
+            <th class="py-2.5 px-3 text-right">Metal Rate</th>
+            <th class="py-2.5 px-3 text-right">Making / Stones</th>
+            <th class="py-2.5 px-3 text-right">Taxable Val</th>
+            <th class="py-2.5 px-3 text-right">GST (3%)</th>
+            <th class="py-2.5 px-3 text-right">Amount (₹)</th>
+          </tr>
+        </thead>
+        <tbody id="inv-items-body" class="divide-y divide-stone-100 text-stone-700">
+          <!-- Dynamic Items -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Totals & Tax Breakup -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-stone-200 text-xs">
+      <div class="space-y-2">
+        <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200">
+          <h5 class="font-bold text-stone-900 mb-1 flex items-center gap-1.5 font-serif">
+            <span>🛡️</span> BIS Hallmark Purity Certification
+          </h5>
+          <p class="text-[11px] text-stone-600 leading-relaxed font-light">
+            All 22KT gold jewellery is certified by BIS Assaying Centres and bears the 3 mandatory hallmarks: (1) BIS Logo, (2) Purity (22K916), and (3) Hallmark Unique Identification (HUID) laser micro-inscribed.
+          </p>
+        </div>
+
+        <div class="text-[11px] text-stone-500 font-light">
+          <strong>Bank NEFT Details:</strong><br>
+          Bank: HDFC Bank Ltd | Branch: T. Nagar, Chennai<br>
+          A/c: Karthik Jewellers Pvt Ltd | A/c No: 50200088921102 | IFSC: HDFC0000042
+        </div>
+      </div>
+
+      <div class="space-y-1.5 text-right font-mono">
+        <div class="flex justify-between py-1 border-b border-stone-100">
+          <span class="text-stone-500 font-sans">Total Metal Value:</span>
+          <strong id="inv-metal-val">₹2,30,880</strong>
+        </div>
+        <div class="flex justify-between py-1 border-b border-stone-100">
+          <span class="text-stone-500 font-sans">Making Charges (Artisanal Crafting):</span>
+          <strong id="inv-making-val">₹18,560</strong>
+        </div>
+        <div class="flex justify-between py-1 border-b border-stone-100">
+          <span class="text-stone-500 font-sans">Certified Gemstones:</span>
+          <strong id="inv-stones-val">₹0</strong>
+        </div>
+        <div class="flex justify-between py-1 border-b border-stone-100">
+          <span class="text-stone-500 font-sans">Taxable Value (Before GST):</span>
+          <strong id="inv-taxable-val" class="font-bold text-stone-900">₹2,49,440</strong>
+        </div>
+        <div class="flex justify-between py-1 border-b border-stone-100 text-stone-600">
+          <span class="font-sans">CGST (1.5%):</span>
+          <span id="inv-cgst-val">₹3,741.50</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-stone-100 text-stone-600">
+          <span class="font-sans">SGST (1.5%):</span>
+          <span id="inv-sgst-val">₹3,741.50</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-stone-100 text-stone-600">
+          <span class="font-sans">Special Privilege Discount:</span>
+          <span id="inv-discount-val" class="text-emerald-700">-₹0</span>
+        </div>
+        <div class="flex justify-between py-2 text-base font-bold font-serif text-stone-900 border-t-2 border-stone-900 font-sans">
+          <span>Grand Total Payable:</span>
+          <span id="inv-grand-total" class="text-[#996515] text-lg font-mono">₹2,56,923</span>
+        </div>
+        <p id="inv-amount-words" class="text-[10px] text-stone-500 italic mt-1 font-sans"></p>
+      </div>
+    </div>
+
+    <!-- Signatures & Footer -->
+    <div class="mt-10 pt-6 border-t border-stone-200 flex justify-between items-end text-xs">
+      <div>
+        <div id="inv-stamp-box" class="w-20 h-20 border-2 border-[#c5a059] rounded-full flex flex-col items-center justify-center p-1 text-[9px] font-bold text-[#996515] uppercase tracking-tighter text-center">
+          <span id="inv-stamp-text">KARTHIK</span>
+          <span class="text-xs">★</span>
+          <span>CERTIFIED</span>
+        </div>
+        <p class="text-[10px] text-stone-400 mt-2 font-light">Computer Generated Tax Invoice</p>
+      </div>
+
+      <div class="text-right">
+        <p id="inv-signatory-company" class="font-serif font-bold text-stone-900">For KARTHIK JEWELLERS PRIVATE LIMITED</p>
+        <div class="h-12 flex items-end justify-end">
+          <span id="inv-signatory-name" class="font-serif italic text-sm text-[#996515] font-semibold">Karthik R. (Managing Director)</span>
+        </div>
+        <p class="text-[10px] text-stone-500 border-t border-stone-300 pt-1 font-light">Authorized Assayer & Signatory</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const orderId = urlParams.get('orderId') || 'ORD-KJ-2026-9041';
+      const forceBrand = urlParams.get('brand');
+      
+      try {
+        const res = await StoreAPI.getOrderById(orderId);
+        if (res.success && res.order) {
+          if (forceBrand) res.order.brand = forceBrand;
+          renderInvoice(res.order);
+        } else {
+          const ordRes = await StoreAPI.getOrders();
+          if (ordRes.success && ordRes.orders.length) {
+            const first = ordRes.orders[0];
+            if (forceBrand) first.brand = forceBrand;
+            renderInvoice(first);
+          }
+        }
+      } catch (e) {
+        console.error('Error fetching order for invoice:', e);
+      }
+    });
+
+    function renderInvoice(ord) {
+      const isViswa = (ord.brand === 'viswanandini') || (ord.id && ord.id.includes('VJ'));
+
+      // Apply Dynamic Branding
+      if (isViswa) {
+        document.getElementById('inv-watermark').innerText = 'VJ';
+        document.getElementById('inv-monogram').innerText = 'V';
+        document.getElementById('inv-monogram').className = 'w-12 h-12 rounded-full bg-gradient-to-tr from-[#781d2a] via-[#a8273a] to-[#d4af37] flex items-center justify-center text-white font-serif font-black text-xl shadow border border-amber-300/40';
+        document.getElementById('inv-brand-name').innerText = 'Viswanandini Jewellers';
+        document.getElementById('inv-brand-tagline').innerText = 'Heirloom Polki & Royal Bridal House • An Affiliate of Karthik Jewellers Private Limited';
+        document.getElementById('inv-brand-tagline').className = 'text-[10px] uppercase tracking-[0.2em] text-[#781d2a] font-bold';
+        document.getElementById('inv-brand-contact').innerHTML = 'Viswanandini Flagship Atelier: 14 Usman Road, T. Nagar, Chennai - 600017, Tamil Nadu<br>Phone: +91 44 2434 8899 | Email: bridal@viswanandinijewellers.com | Web: www.karthikjewellers.com/viswanandini';
+        document.getElementById('inv-header-bar').className = 'border-b-2 border-[#781d2a] pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4';
+        
+        document.getElementById('inv-stamp-box').className = 'w-20 h-20 border-2 border-[#781d2a] rounded-full flex flex-col items-center justify-center p-1 text-[9px] font-bold text-[#781d2a] uppercase tracking-tighter text-center';
+        document.getElementById('inv-stamp-text').innerText = 'VISWANANDINI';
+        document.getElementById('inv-signatory-company').innerText = 'For VISWANANDINI JEWELLERS (A Division of Karthik Jewellers Private Limited)';
+        document.getElementById('inv-signatory-name').innerText = 'Smt. Nandini Karthik (Creative Director)';
+        document.getElementById('inv-signatory-name').className = 'font-serif italic text-sm text-[#781d2a] font-semibold';
+      }
+
+      document.getElementById('inv-number').innerText = 'INV-' + ord.id.replace('ORD-', '');
+      document.getElementById('inv-order-id').innerText = ord.id;
+      document.getElementById('inv-date').innerText = new Date(ord.createdAt).toLocaleDateString('en-IN', {
+        day: '2-digit', month: 'short', year: 'numeric'
+      });
+      document.getElementById('inv-payment-mode').innerText = `${ord.payment.method} (${ord.payment.status})`;
+      document.getElementById('inv-tracking-no').innerText = ord.trackingNumber || 'BVC-INSURED-89210';
+      document.getElementById('inv-delivery-date').innerText = ord.deliveryEstimated || '10 Nov 2026';
+
+      document.getElementById('inv-customer-name').innerText = ord.customer.name;
+      document.getElementById('inv-customer-address').innerText = ord.customer.address;
+      document.getElementById('inv-customer-city').innerText = `${ord.customer.city}, ${ord.customer.state} - ${ord.customer.pincode}`;
+      document.getElementById('inv-customer-contact').innerText = `Phone: ${ord.customer.phone} | Email: ${ord.customer.email}`;
+
+      let totalMetal = 0;
+      let totalMaking = 0;
+      let totalStones = 0;
+
+      const tbody = document.getElementById('inv-items-body');
+      tbody.innerHTML = ord.items.map((item, idx) => {
+        totalMetal += item.metalValue || 0;
+        totalMaking += item.makingCharges || 0;
+        totalStones += item.stonePrice || 0;
+        const taxable = (item.metalValue || 0) + (item.makingCharges || 0) + (item.stonePrice || 0);
+
+        return `
+          <tr>
+            <td class="py-3 px-3">${idx + 1}</td>
+            <td class="py-3 px-3 font-medium text-stone-900">
+              ${item.name}
+              <div class="text-[10px] text-[#996515] font-mono font-bold">HUID: ${item.huid}</div>
+            </td>
+            <td class="py-3 px-3 text-center font-bold font-mono">${item.purity}</td>
+            <td class="py-3 px-3 text-right font-mono">${item.grossWeight}g</td>
+            <td class="py-3 px-3 text-right font-mono">${item.netWeight}g</td>
+            <td class="py-3 px-3 text-right font-mono">₹${(item.metalPricePerGram || 7215).toLocaleString('en-IN')}</td>
+            <td class="py-3 px-3 text-right font-mono">₹${((item.makingCharges || 0) + (item.stonePrice || 0)).toLocaleString('en-IN')}</td>
+            <td class="py-3 px-3 text-right font-medium font-mono">₹${taxable.toLocaleString('en-IN')}</td>
+            <td class="py-3 px-3 text-right font-mono">₹${(item.gstAmount || 0).toLocaleString('en-IN')}</td>
+            <td class="py-3 px-3 text-right font-bold text-stone-900 font-mono">₹${(item.totalPrice || 0).toLocaleString('en-IN')}</td>
+          </tr>
+        `;
+      }).join('');
+
+      document.getElementById('inv-metal-val').innerText = formatINR(totalMetal);
+      document.getElementById('inv-making-val').innerText = formatINR(totalMaking);
+      document.getElementById('inv-stones-val').innerText = formatINR(totalStones);
+      document.getElementById('inv-taxable-val').innerText = formatINR(ord.summary.subtotal);
+      document.getElementById('inv-cgst-val').innerText = formatINR(ord.summary.gst / 2);
+      document.getElementById('inv-sgst-val').innerText = formatINR(ord.summary.gst / 2);
+      document.getElementById('inv-discount-val').innerText = '-' + formatINR(ord.summary.discount || 0);
+      document.getElementById('inv-grand-total').innerText = formatINR(ord.summary.grandTotal);
+
+      // Amount in words
+      const wordsEl = document.getElementById('inv-amount-words');
+      if (wordsEl) {
+        wordsEl.innerText = 'Amount in Words: INR ' + numberToIndianWords(ord.summary.grandTotal) + ' Only';
+      }
+    }
+
+    function numberToIndianWords(num) {
+      if (!num || isNaN(num)) return 'Zero';
+      const a = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+      const b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+      function inWords(n) {
+        if (n < 20) return a[n];
+        const digit = n % 10;
+        return b[Math.floor(n / 10)] + (digit ? ' ' + a[digit] : '');
+      }
+
+      num = Math.round(num);
+      let str = '';
+      const crore = Math.floor(num / 10000000);
+      num %= 10000000;
+      const lakh = Math.floor(num / 100000);
+      num %= 100000;
+      const thousand = Math.floor(num / 1000);
+      num %= 1000;
+      const hundred = Math.floor(num / 100);
+      const remaining = num % 100;
+
+      if (crore) str += inWords(crore) + ' Crore ';
+      if (lakh) str += inWords(lakh) + ' Lakh ';
+      if (thousand) str += inWords(thousand) + ' Thousand ';
+      if (hundred) str += inWords(hundred) + ' Hundred ';
+      if (remaining) {
+        if (str !== '') str += 'and ';
+        str += inWords(remaining) + ' ';
+      }
+      return str.trim();
+    }
+  </script>
+  <script src="/js/sync-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "karthik-jewellers",
+  "version": "1.0.0",
+  "description": "Karthik Jewellers - Complete Luxury Fine Jewellery E-Commerce Ecosystem & Admin Operations Center",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "jewellery",
+    "ecommerce",
+    "gold-rates",
+    "hallmark",
+    "huid",
+    "admin-panel",
+    "karthik-jewellers"
+  ],
+  "author": "Karthik Jewellers",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}
