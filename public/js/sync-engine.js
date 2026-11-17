@@ -242,7 +242,9 @@
       // 2. Update Brand Monogram, Name & Tagline
       const monogramEl = document.getElementById(isViswa ? 'viswa-brand-monogram' : 'navbar-brand-monogram');
       if (monogramEl && settings.monogramChar) {
-        monogramEl.innerText = settings.monogramChar;
+        if (!monogramEl.querySelector('img')) {
+          monogramEl.innerText = settings.monogramChar;
+        }
       }
 
       const brandNameEl = document.getElementById(isViswa ? 'viswa-brand-name' : 'navbar-brand-name');

@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GST Tax Invoice & BIS Hallmark Certificate - Karthik Jewellers</title>
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -38,16 +40,16 @@
   <!-- Main Invoice Document -->
   <div id="invoice-container" class="invoice-container max-w-4xl mx-auto bg-white border border-[#d4af37]/40 shadow-xl rounded-3xl p-8 sm:p-12 relative overflow-hidden">
     <!-- Royal Watermark Background -->
-    <div class="absolute inset-0 flex items-center justify-center opacity-[0.025] pointer-events-none">
-      <span id="inv-watermark" class="text-9xl font-serif font-black tracking-widest text-stone-950">KJ</span>
+    <div class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
+      <img id="inv-watermark-img" src="/images/karthik-logo-full.png" alt="KJ Hallmark Watermark" class="w-88 max-h-88 object-contain" />
     </div>
 
     <!-- Header Section -->
     <div id="inv-header-bar" class="border-b-2 border-[#d4af37] pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
       <div>
-        <div class="flex items-center gap-3.5">
-          <div id="inv-monogram" class="gold-crest text-xl w-12 h-12 shadow">
-            K
+        <div class="flex items-center gap-4">
+          <div id="inv-monogram" class="w-14 h-14 flex-shrink-0">
+            <img src="/images/karthik-emblem.png" alt="Karthik Jewellers Official Logo" class="w-full h-full object-contain filter drop-shadow-sm" />
           </div>
           <div>
             <h1 id="inv-brand-name" class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-stone-900 uppercase">

@@ -1338,7 +1338,7 @@ function updateThemePreviewLive() {
       const bTag = doc.getElementById('navbar-brand-tagline') || doc.getElementById('viswa-brand-tagline');
       const vipBtn = doc.getElementById('vip-lounge-btn') || doc.getElementById('viswa-vip-lounge-btn');
 
-      if (monogram) monogram.innerText = updatedTheme.monogramChar;
+      if (monogram && !monogram.querySelector('img')) monogram.innerText = updatedTheme.monogramChar;
       if (bName) bName.innerText = updatedTheme.brandName;
       if (bTag) bTag.innerText = updatedTheme.brandTagline;
       if (vipBtn && updatedTheme.header?.vipLoungeText) {
