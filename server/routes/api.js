@@ -562,7 +562,7 @@ router.post('/schemes/enroll', (req, res) => {
 
   const schemeBrand = (brand || 'karthik').toLowerCase();
   const defaultPlan = schemeBrand === 'viswanandini' ? 'Nandini Swarna Varsha (Bridal Chit Fund)' : 'Swarna Nidhi 11+1 Bonus Plan';
-  const defaultBranch = schemeBrand === 'viswanandini' ? 'Chennai - T. Nagar Viswanandini Lounge' : 'Chennai - T. Nagar Flagship';
+  const defaultBranch = schemeBrand === 'viswanandini' ? 'Coimbatore - Viswanandini Studio (West Lokamaya St, R.S. Puram)' : 'Coimbatore - R.S. Puram Headquarters';
 
   const scheme = {
     id: (schemeBrand === 'viswanandini' ? 'SCH-VJ-' : 'SCH-KJ-') + Math.floor(1000 + Math.random() * 9000),
@@ -643,7 +643,7 @@ router.post('/appointments', (req, res) => {
     customerPhone,
     customerEmail: customerEmail || '',
     serviceType: serviceType || 'VIP Showroom Consultation',
-    branch: branch || 'Chennai - T. Nagar Flagship',
+    branch: branch || 'Coimbatore - R.S. Puram Headquarters',
     preferredDate,
     preferredTime: preferredTime || '11:00 AM',
     budget: budget || 'Above ₹2,00,000',

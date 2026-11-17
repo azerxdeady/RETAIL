@@ -56,13 +56,13 @@
               Karthik Jewellers
             </h1>
             <p id="inv-brand-tagline" class="text-[10px] uppercase tracking-[0.25em] text-[#b4860b] font-bold">
-              Heritage Goldsmiths & Certified Solitaire Ateliers
+              Manufacturing Jewellers • Coimbatore
             </p>
           </div>
         </div>
         <p id="inv-brand-contact" class="text-[11px] text-stone-500 mt-2.5 font-light leading-relaxed">
-          Flagship: 14 Usman Road, T. Nagar, Chennai - 600017, Tamil Nadu, India<br>
-          Phone: +91 44 2434 8899 | Email: concierge@karthikjewellers.com | Web: www.karthikjewellers.com
+          Headquarters: 51/36, Second Floor, M.R. Complex, D.B. Road, R.S. Puram, Coimbatore - 641002, Tamil Nadu, India<br>
+          Phone: +91 9790644448 | 0422 - 2547522 | Email: viswa7007@gmail.com | GDL: 44/86
         </p>
       </div>
 
@@ -156,8 +156,8 @@
 
         <div class="text-[11px] text-stone-500 font-light">
           <strong>Bank NEFT Details:</strong><br>
-          Bank: HDFC Bank Ltd | Branch: T. Nagar, Chennai<br>
-          A/c: Karthik Jewellers Pvt Ltd | A/c No: 50200088921102 | IFSC: HDFC0000042
+          Bank: HDFC Bank Ltd | Branch: R.S. Puram, Coimbatore<br>
+          A/c: Karthik Jewellers | A/c No: 50200088921102 | IFSC: HDFC0000042
         </div>
       </div>
 
@@ -249,19 +249,21 @@
 
       // Apply Dynamic Branding
       if (isViswa) {
-        document.getElementById('inv-watermark').innerText = 'VJ';
-        document.getElementById('inv-monogram').innerText = 'V';
-        document.getElementById('inv-monogram').className = 'w-12 h-12 rounded-full bg-gradient-to-tr from-[#781d2a] via-[#a8273a] to-[#d4af37] flex items-center justify-center text-white font-serif font-black text-xl shadow border border-amber-300/40';
+        if (document.getElementById('inv-watermark-img')) {
+          document.getElementById('inv-watermark-img').src = '/images/viswanandini-logo.png';
+        }
+        document.getElementById('inv-monogram').className = 'w-14 h-14 flex-shrink-0 flex items-center justify-center';
+        document.getElementById('inv-monogram').innerHTML = '<img src="/images/viswanandini-emblem.png" alt="Viswanandini Jewellers Official Logo" class="w-full h-full object-contain filter drop-shadow-sm" />';
         document.getElementById('inv-brand-name').innerText = 'Viswanandini Jewellers';
-        document.getElementById('inv-brand-tagline').innerText = 'Heirloom Polki & Royal Bridal House • An Affiliate of Karthik Jewellers Private Limited';
+        document.getElementById('inv-brand-tagline').innerText = 'Manufacturing Jewellers • Coimbatore • Est. 2014';
         document.getElementById('inv-brand-tagline').className = 'text-[10px] uppercase tracking-[0.2em] text-[#781d2a] font-bold';
-        document.getElementById('inv-brand-contact').innerHTML = 'Viswanandini Flagship Atelier: 14 Usman Road, T. Nagar, Chennai - 600017, Tamil Nadu<br>Phone: +91 44 2434 8899 | Email: bridal@viswanandinijewellers.com | Web: www.karthikjewellers.com/viswanandini';
+        document.getElementById('inv-brand-contact').innerHTML = 'Studio: 98, West Lokamaya Street, R.S. Puram, Coimbatore - 641002, Tamil Nadu, India<br>Parent Enterprise: Karthik Jewellers (GDL 44/86) | Phone: +91 9790644448 | Email: viswa7007@gmail.com';
         document.getElementById('inv-header-bar').className = 'border-b-2 border-[#781d2a] pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4';
         
         document.getElementById('inv-stamp-box').className = 'w-20 h-20 border-2 border-[#781d2a] rounded-full flex flex-col items-center justify-center p-1 text-[9px] font-bold text-[#781d2a] uppercase tracking-tighter text-center';
         document.getElementById('inv-stamp-text').innerText = 'VISWANANDINI';
-        document.getElementById('inv-signatory-company').innerText = 'For VISWANANDINI JEWELLERS (A Division of Karthik Jewellers Private Limited)';
-        document.getElementById('inv-signatory-name').innerText = 'Smt. Nandini Karthik (Creative Director)';
+        document.getElementById('inv-signatory-company').innerText = 'For VISWANANDINI JEWELLERS (A Division of Karthik Jewellers, Coimbatore)';
+        document.getElementById('inv-signatory-name').innerText = 'Viswanandini Jewellers - Manufacturing Jewellers';
         document.getElementById('inv-signatory-name').className = 'font-serif italic text-sm text-[#781d2a] font-semibold';
       }
 

@@ -920,7 +920,7 @@ module.exports = {
       startDate: "2026-03-15",
       nextDueDate: "2026-11-15",
       status: "Active",
-      branch: "Chennai - T. Nagar"
+      branch: "Coimbatore - R.S. Puram Headquarters"
     },
     {
       id: "SCH-1002",
@@ -954,7 +954,7 @@ module.exports = {
       startDate: "2026-05-10",
       nextDueDate: "2026-11-10",
       status: "Active",
-      branch: "Chennai - T. Nagar Viswanandini Lounge"
+      branch: "Coimbatore - Viswanandini Studio"
     }
   ],
 
@@ -966,7 +966,7 @@ module.exports = {
       customerPhone: "+91 97909 11223",
       customerEmail: "priyanka.s@example.com",
       serviceType: "Bridal Jewellery VIP Lounge Consultation",
-      branch: "Chennai - T. Nagar Heritage Flagship",
+      branch: "Coimbatore - R.S. Puram Headquarters",
       preferredDate: "2026-11-10",
       preferredTime: "11:30 AM",
       budget: "₹5,00,000 - ₹15,00,000",
@@ -1152,6 +1152,8 @@ module.exports = {
     email: "admin@karthikjewellers.com",
     role: "SuperAdmin",
     storeBranches: [
+      { id: "cbe-hq", name: "Coimbatore - R.S. Puram Headquarters", address: "51/36, Second Floor, M.R. Complex, D.B. Road, R.S. Puram, Coimbatore - 641002", phone: "+91 9790644448 | 0422 2547522" },
+      { id: "cbe-vj", name: "Coimbatore - Viswanandini Studio", address: "98, West Lokamaya Street, R.S. Puram, Coimbatore - 641002", phone: "+91 9790644448" },
       { id: "chn", name: "Chennai - T. Nagar Flagship", address: "14 Usman Road, T. Nagar, Chennai - 600017", phone: "+91 44 2434 8899" },
       { id: "hyd", name: "Hyderabad - Banjara Hills", address: "Road No. 10, Banjara Hills, Hyderabad - 500034", phone: "+91 40 6677 8899" },
       { id: "blr", name: "Bangalore - MG Road", address: "88 MG Road, Bangalore - 560001", phone: "+91 80 4123 4567" },
