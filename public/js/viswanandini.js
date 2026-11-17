@@ -382,11 +382,16 @@ function closeViswaPriceModal() {
 }
 
 // ==========================================
-// 4. VIRTUAL AR TRY-ON PREVIEW
+// 4. REAL VIRTUAL AR TRY-ON STUDIO (Live Camera & AI Landmark Tracking)
 // ==========================================
 function openViswaTryOnModal(productId) {
   const prod = viswaState.allProducts.find(p => p.id === productId);
   if (!prod) return;
+
+  if (window.ARTryOn && typeof window.ARTryOn.open === 'function') {
+    window.ARTryOn.open(prod, 'viswanandini');
+    return;
+  }
 
   const modal = document.getElementById('viswa-tryon-modal');
   const title = document.getElementById('viswa-tryon-title');
@@ -404,6 +409,9 @@ function openViswaTryOnModal(productId) {
 }
 
 function closeViswaTryOnModal() {
+  if (window.ARTryOn && typeof window.ARTryOn.close === 'function') {
+    window.ARTryOn.close();
+  }
   document.getElementById('viswa-tryon-modal')?.classList.add('hidden');
 }
 

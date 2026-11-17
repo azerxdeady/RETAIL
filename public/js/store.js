@@ -570,10 +570,15 @@ function closePriceBreakupModal() {
   document.body.style.overflow = '';
 }
 
-// 6. Virtual Try-On AR Studio Modal
+// 6. Real Virtual Try-On AR Studio Modal (Live Camera & AI Tracking)
 function openTryOnModal(productId) {
   const product = appState.products.find(p => p.id === productId) || appState.selectedProduct;
   if (!product) return;
+
+  if (window.ARTryOn && typeof window.ARTryOn.open === 'function') {
+    window.ARTryOn.open(product, 'karthik');
+    return;
+  }
 
   const modal = document.getElementById('tryon-modal');
   const titleEl = document.getElementById('tryon-title');
@@ -589,6 +594,9 @@ function openTryOnModal(productId) {
 }
 
 function closeTryOnModal() {
+  if (window.ARTryOn && typeof window.ARTryOn.close === 'function') {
+    window.ARTryOn.close();
+  }
   const modal = document.getElementById('tryon-modal');
   if (modal) modal.classList.add('hidden');
   document.body.style.overflow = '';
