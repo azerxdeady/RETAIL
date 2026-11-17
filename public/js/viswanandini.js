@@ -179,29 +179,36 @@ function renderViswaProductsGrid(products) {
     return;
   }
 
+  const fallbackImg = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80';
+
   gridEl.innerHTML = products.map(prod => {
     const isWishlisted = viswaState.wishlist.some(id => id === prod.id);
+    const img1 = (prod.images && prod.images[0]) ? prod.images[0] : fallbackImg;
+    const img2 = (prod.images && prod.images[1]) ? prod.images[1] : img1;
 
     return `
       <div class="viswa-card rounded-3xl overflow-hidden flex flex-col justify-between group bg-white border border-[#d4af37]/35 shadow-[0_12px_35px_rgba(212,175,55,0.12)] hover:border-[#d4af37] transition duration-500">
         
-        <!-- Image Area -->
-        <div class="relative overflow-hidden aspect-square bg-[#fcf9f2]">
-          <img src="${prod.images[0]}" alt="${prod.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+        <!-- Image Area with Dual-Angle Crossfade -->
+        <div class="product-image-container relative overflow-hidden aspect-square bg-[#fcf9f2]">
+          <img src="${img1}" alt="${prod.name}" class="img-primary w-full h-full object-cover" loading="lazy" onerror="this.onerror=null; this.src='${fallbackImg}';">
+          <img src="${img2}" alt="${prod.name} Alternate Angle" class="img-secondary" loading="lazy" onerror="this.onerror=null; this.src='${img1}';">
           
-          <div class="absolute top-3 left-3 flex flex-col gap-1 items-start">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+          <div class="absolute top-3 left-3 flex flex-col gap-1 items-start z-10 pointer-events-none">
             <span class="px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-[#781d2a] text-white shadow border border-amber-300/40">
               ${prod.purity} BIS 916
             </span>
             ${prod.isFeatured ? '<span class="px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wider bg-gradient-to-r from-[#d4af37] to-[#ecc874] text-stone-950 shadow">ROYAL BRIDAL</span>' : ''}
           </div>
 
-          <button onclick="toggleViswaWishlist('${prod.id}', event)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm shadow flex items-center justify-center text-xs ${isWishlisted ? 'text-[#781d2a]' : 'text-stone-400'} hover:text-[#781d2a] transition">
+          <button onclick="toggleViswaWishlist('${prod.id}', event)" class="absolute top-3 right-3 z-20 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm shadow flex items-center justify-center text-xs ${isWishlisted ? 'text-[#781d2a]' : 'text-stone-400'} hover:text-[#781d2a] transition">
             <i class="${isWishlisted ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
           </button>
 
           <!-- Quick Try-On Overlay trigger -->
-          <button onclick="openViswaTryOnModal('${prod.id}')" class="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-black/80 hover:bg-black text-[#d4af37] text-[10px] font-bold tracking-wider backdrop-blur-md shadow flex items-center gap-1 transition border border-[#d4af37]/40">
+          <button onclick="openViswaTryOnModal('${prod.id}')" class="absolute bottom-3 right-3 z-10 px-3 py-1 rounded-full bg-black/80 hover:bg-black text-[#d4af37] text-[10px] font-bold tracking-wider backdrop-blur-md shadow flex items-center gap-1 transition border border-[#d4af37]/40">
             <span>✨</span> Virtual AR
           </button>
         </div>

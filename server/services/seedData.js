@@ -66,7 +66,7 @@ module.exports = {
       name: "Bangles & Kadas",
       slug: "bangles",
       description: "Traditional Patla Bangles, Nakshi Kadas & Diamond Bracelets",
-      image: "https://images.unsplash.com/photo-1611591475817-47b2df31d454?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80",
       itemCount: 8
     },
     {
@@ -374,7 +374,7 @@ module.exports = {
       gender: "Women",
       occasion: "Bridal",
       images: [
-        "https://images.unsplash.com/photo-1611591475817-47b2df31d454?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80"
       ],
       description: "Masterpiece antique kada featuring intertwined peacock heads with screw clasp mechanism. Intricately carved by multigenerational Karigars."
@@ -407,7 +407,7 @@ module.exports = {
       occasion: "Festive",
       images: [
         "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1611591475817-47b2df31d454?auto=format&fit=crop&w=800&q=80"
+        "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80"
       ],
       description: "Seamless row of prong-set sparkling diamonds encircling the wrist. Flexible hinge with double safety latch for confident everyday luxury."
     },
@@ -730,7 +730,7 @@ module.exports = {
       gender: "Women",
       occasion: "Bridal",
       images: [
-        "https://images.unsplash.com/photo-1611591475817-47b2df31d454?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80"
       ],
       description: "Sacred South Indian bridal armlet shaped in an inverted V curve, featuring dancing peacocks and blooming lotus buds in antique repoussé gold."
@@ -763,7 +763,7 @@ module.exports = {
       occasion: "Bridal",
       images: [
         "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1611591475817-47b2df31d454?auto=format&fit=crop&w=800&q=80"
+        "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80"
       ],
       description: "Grand bridal gold kamarbandh / oddiyanam with an embossed central Lakshmi darshan frame. Hand-chased by Viswanandini master Karigars over 45 days."
     },
@@ -826,7 +826,7 @@ module.exports = {
       gender: "Women",
       occasion: "Bridal",
       images: [
-        "https://images.unsplash.com/photo-1611591475817-47b2df31d454?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80"
       ],
       description: "Pair of solid Rajputana Gokhru bangles with faceted pyramidal studs and intricate wire filigree detailing. Timeless royal family heirlooms."

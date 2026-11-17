@@ -106,7 +106,8 @@ class Database {
           showcaseTag: "22KT BIS 916",
           showcaseTitle: "Mayuri Heritage Antique Haram",
           showcaseSubtitle: "Burmese Rubies & Emerald Cabochons",
-          showcaseWeight: "45.2g Net"
+          showcaseWeight: "45.2g Net",
+          imageUrl: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80"
         },
         colors: {
           primaryGold: "#D4AF37",
@@ -207,7 +208,8 @@ class Database {
           secondaryBtnText: "✨ Nandini Swarna Varsha",
           signatureTitle: "Maharani Gayatri Uncut Polki Choker",
           signatureSubtitle: "62.00g 22KT Gold • 12.50ct Uncut Diamonds • Zambian Emeralds",
-          signaturePrice: "₹6,74,605"
+          signaturePrice: "₹6,74,605",
+          imageUrl: "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80"
         },
         colors: {
           royalBurgundy: "#781D2A",

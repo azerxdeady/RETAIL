@@ -419,7 +419,8 @@ function setupProductForm() {
       isBestseller: document.getElementById('prod-bestseller').checked,
       description: document.getElementById('prod-desc').value,
       images: [
-        document.getElementById('prod-image').value || 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80'
+        document.getElementById('prod-image').value.trim() || 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80',
+        ...(document.getElementById('prod-image-secondary')?.value.trim() ? [document.getElementById('prod-image-secondary').value.trim()] : [])
       ]
     };
 
@@ -495,6 +496,11 @@ function openAddProductModal() {
   if (title) title.innerText = 'Add New Fine Jewellery Masterpiece';
   if (form) form.reset();
 
+  if (document.getElementById('prod-image-secondary')) {
+    document.getElementById('prod-image-secondary').value = '';
+  }
+  updateAdminProdImagePreviews();
+
   calculateAdminProductPreview();
   if (modal) modal.classList.remove('hidden');
 }
@@ -503,6 +509,52 @@ function closeAddProductModal() {
   const modal = document.getElementById('product-modal');
   if (modal) modal.classList.add('hidden');
   adminState.editingProductId = null;
+}
+
+function updateAdminProdImagePreviews() {
+  const priInput = document.getElementById('prod-image');
+  const secInput = document.getElementById('prod-image-secondary');
+  const priPrev = document.getElementById('prod-image-preview');
+  const secPrev = document.getElementById('prod-image-secondary-preview');
+  const fallback = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80';
+
+  if (priPrev) {
+    const val = priInput?.value?.trim();
+    priPrev.src = val || fallback;
+  }
+  if (secPrev) {
+    const val = secInput?.value?.trim();
+    secPrev.src = val || priInput?.value?.trim() || fallback;
+  }
+}
+
+function selectAdminPhotoPreset(url, event) {
+  const priInput = document.getElementById('prod-image');
+  const secInput = document.getElementById('prod-image-secondary');
+
+  if (event && event.altKey) {
+    // Alt + Click explicitly assigns to Secondary
+    if (secInput) secInput.value = url;
+    showToast('✨ Alternate (hover) angle photo updated', 'info');
+  } else if (priInput && priInput.value.trim() && (!secInput || !secInput.value.trim())) {
+    // If primary is already set and secondary is empty, set secondary
+    if (secInput) secInput.value = url;
+    showToast('✨ Alternate (hover) angle photo set', 'info');
+  } else {
+    // Set primary
+    if (priInput) priInput.value = url;
+    showToast('✨ Primary angle photo set', 'info');
+  }
+  updateAdminProdImagePreviews();
+}
+
+function setAdminHeroImage(url) {
+  const input = document.getElementById('theme-hero-image');
+  const prev = document.getElementById('theme-hero-img-preview');
+  if (input) input.value = url;
+  if (prev) prev.src = url;
+  updateThemePreviewLive();
+  showToast('✨ Hero showcase banner image updated', 'info');
 }
 
 function editProduct(productId) {
@@ -533,8 +585,12 @@ function editProduct(productId) {
   document.getElementById('prod-featured').checked = Boolean(p.isFeatured);
   document.getElementById('prod-bestseller').checked = Boolean(p.isBestseller);
   document.getElementById('prod-image').value = p.images?.[0] || '';
+  if (document.getElementById('prod-image-secondary')) {
+    document.getElementById('prod-image-secondary').value = p.images?.[1] || '';
+  }
   document.getElementById('prod-desc').value = p.description || '';
 
+  updateAdminProdImagePreviews();
   calculateAdminProductPreview();
   if (modal) modal.classList.remove('hidden');
 }
@@ -1076,6 +1132,15 @@ function populateThemeCustomizerForm(theme) {
   if (hBtn1) hBtn1.value = theme.hero?.primaryBtnText || 'Explore Masterpieces';
   if (hBtn2) hBtn2.value = theme.hero?.secondaryBtnText || 'Live Gold Rates';
 
+  const hImg = document.getElementById('theme-hero-image');
+  const hImgPrev = document.getElementById('theme-hero-img-preview');
+  const defaultHeroImg = adminState.customizerBrand === 'viswanandini' 
+    ? 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80'
+    : 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80';
+
+  if (hImg) hImg.value = theme.hero?.imageUrl || defaultHeroImg;
+  if (hImgPrev) hImgPrev.src = theme.hero?.imageUrl || defaultHeroImg;
+
   // 6. Color Palette Tokens
   const cPri = document.getElementById('theme-color-primary');
   const cPriPick = document.getElementById('theme-color-primary-picker');
@@ -1180,7 +1245,8 @@ function getThemeFormValues() {
     headingShimmer: document.getElementById('theme-hero-shimmer')?.value || '',
     subheading: document.getElementById('theme-hero-subheading')?.value || '',
     primaryBtnText: document.getElementById('theme-hero-btn1')?.value || '',
-    secondaryBtnText: document.getElementById('theme-hero-btn2')?.value || ''
+    secondaryBtnText: document.getElementById('theme-hero-btn2')?.value || '',
+    imageUrl: document.getElementById('theme-hero-image')?.value || 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80'
   };
 
   if (!current.colors) current.colors = {};
@@ -1347,6 +1413,12 @@ function updateThemePreviewLive() {
       if (hSub) hSub.innerText = updatedTheme.hero?.subheading || '';
       if (cta1 && updatedTheme.hero?.primaryBtnText) cta1.innerText = updatedTheme.hero.primaryBtnText;
       if (cta2 && updatedTheme.hero?.secondaryBtnText) cta2.innerText = updatedTheme.hero.secondaryBtnText;
+
+      // Hero Showcase Image
+      const heroImg = doc.getElementById('hero-showcase-img') || doc.getElementById('viswa-hero-showcase-img');
+      if (heroImg && updatedTheme.hero?.imageUrl) {
+        heroImg.src = updatedTheme.hero.imageUrl;
+      }
 
       // Hero alignment
       const heroText = doc.getElementById('hero-text-block') || doc.getElementById('viswa-hero-text-block');

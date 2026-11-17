@@ -693,6 +693,23 @@
                     <input type="text" id="theme-hero-btn2" oninput="updateThemePreviewLive()" class="w-full bg-[#141822] border border-stone-700 text-white rounded-xl p-2.5 text-xs focus:border-[#c5a059] focus:outline-none" />
                   </div>
                 </div>
+
+                <!-- Hero Showcase Image URL Customizer -->
+                <div class="pt-2 border-t border-stone-800">
+                  <label class="block text-amber-200 font-semibold mb-1">Hero Showcase Image URL</label>
+                  <div class="flex gap-3 items-center">
+                    <div class="w-14 h-14 rounded-xl overflow-hidden bg-stone-900 border border-stone-700 flex-shrink-0 shadow-inner">
+                      <img id="theme-hero-img-preview" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80';" />
+                    </div>
+                    <input type="url" id="theme-hero-image" oninput="document.getElementById('theme-hero-img-preview').src = this.value; updateThemePreviewLive();" class="flex-1 bg-[#141822] border border-stone-700 text-white rounded-xl p-2.5 text-xs focus:border-[#c5a059] focus:outline-none" placeholder="https://images.unsplash.com/photo-..." />
+                  </div>
+                  <div class="flex flex-wrap gap-1.5 mt-2">
+                    <button type="button" onclick="setAdminHeroImage('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80')" class="px-2.5 py-1 bg-[#141822] hover:bg-stone-700 border border-stone-700 hover:border-amber-400 rounded-full text-[10px] text-stone-300">Peacock Haram</button>
+                    <button type="button" onclick="setAdminHeroImage('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80')" class="px-2.5 py-1 bg-[#141822] hover:bg-stone-700 border border-stone-700 hover:border-amber-400 rounded-full text-[10px] text-stone-300">Polki Choker</button>
+                    <button type="button" onclick="setAdminHeroImage('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80')" class="px-2.5 py-1 bg-[#141822] hover:bg-stone-700 border border-stone-700 hover:border-amber-400 rounded-full text-[10px] text-stone-300">Solitaire Ring</button>
+                    <button type="button" onclick="setAdminHeroImage('https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80')" class="px-2.5 py-1 bg-[#141822] hover:bg-stone-700 border border-stone-700 hover:border-amber-400 rounded-full text-[10px] text-stone-300">Gold Bangles</button>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -1119,14 +1136,144 @@
           </div>
         </div>
 
-        <div>
-          <label class="block text-stone-300 font-semibold mb-1">High-Res Jewellery Image URL *</label>
-          <input type="url" id="prod-image" placeholder="https://images.unsplash.com/photo-..." class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-3 focus:border-[#c5a059] focus:outline-none" />
-          <div class="flex gap-2 mt-2">
-            <button type="button" onclick="document.getElementById('prod-image').value='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80'" class="px-2.5 py-1 bg-[#181e2b] hover:bg-stone-700 rounded-full text-[10px] text-stone-300">Preset: Necklace</button>
-            <button type="button" onclick="document.getElementById('prod-image').value='https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80'" class="px-2.5 py-1 bg-[#181e2b] hover:bg-stone-700 rounded-full text-[10px] text-stone-300">Preset: Ring</button>
-            <button type="button" onclick="document.getElementById('prod-image').value='https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=800&q=80'" class="px-2.5 py-1 bg-[#181e2b] hover:bg-stone-700 rounded-full text-[10px] text-stone-300">Preset: Earrings</button>
-            <button type="button" onclick="document.getElementById('prod-image').value='https://images.unsplash.com/photo-1611591475817-47b2df31d454?auto=format&fit=crop&w=800&q=80'" class="px-2.5 py-1 bg-[#181e2b] hover:bg-stone-700 rounded-full text-[10px] text-stone-300">Preset: Bangle</button>
+        <!-- High-Resolution Product Media with Dual-Angle & Visual Photo Picker -->
+        <div class="bg-[#141822] p-4 rounded-2xl border border-stone-800 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-amber-200 uppercase tracking-wider flex items-center gap-1.5">
+              <span>📸</span> High-Res Product Media & Dual-Angle Views
+            </span>
+            <span class="text-[10px] text-stone-400">Enables Kalyan-style hover flip</span>
+          </div>
+
+          <!-- Dual Angle Inputs -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Primary Image -->
+            <div>
+              <label class="block text-stone-300 font-semibold mb-1">Primary Angle Image URL *</label>
+              <div class="flex gap-2 items-center">
+                <div class="w-12 h-12 rounded-xl overflow-hidden bg-stone-900 border border-stone-700 flex-shrink-0 shadow-inner">
+                  <img id="prod-image-preview" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80';" />
+                </div>
+                <input type="url" id="prod-image" placeholder="Primary front view URL" oninput="updateAdminProdImagePreviews()" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-2.5 text-xs focus:border-[#c5a059] focus:outline-none" />
+              </div>
+            </div>
+
+            <!-- Secondary Image -->
+            <div>
+              <label class="block text-stone-300 font-semibold mb-1">Alternate / Model Wear Angle URL</label>
+              <div class="flex gap-2 items-center">
+                <div class="w-12 h-12 rounded-xl overflow-hidden bg-stone-900 border border-stone-700 flex-shrink-0 shadow-inner">
+                  <img id="prod-image-secondary-preview" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80';" />
+                </div>
+                <input type="url" id="prod-image-secondary" placeholder="Alternate angle / model wear URL" oninput="updateAdminProdImagePreviews()" class="w-full bg-[#181e2b] border border-stone-700 text-white rounded-xl p-2.5 text-xs focus:border-[#c5a059] focus:outline-none" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual 16-Thumbnail Photo Picker -->
+          <div class="pt-2 border-t border-stone-800">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[11px] font-bold text-stone-300">Visual Jewellery Gallery Picker (16 Certified Presets):</span>
+              <span class="text-[10px] text-amber-400">Click = Primary | Alt+Click = Secondary</span>
+            </div>
+            
+            <div class="grid grid-cols-4 sm:grid-cols-8 gap-2 max-h-48 overflow-y-auto p-1 bg-[#10141d] rounded-xl border border-stone-800/80">
+              <!-- Item 1: Haram -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Peacock Haram</span>
+              </div>
+
+              <!-- Item 2: Polki Choker -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Polki Choker</span>
+              </div>
+
+              <!-- Item 3: Bridal Necklace -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Bridal Set</span>
+              </div>
+
+              <!-- Item 4: Ruby Jhumkas -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Ruby Jhumka</span>
+              </div>
+
+              <!-- Item 5: Diamond Studs -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Diamond Studs</span>
+              </div>
+
+              <!-- Item 6: Temple Chandbalis -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Chandbalis</span>
+              </div>
+
+              <!-- Item 7: Solitaire Ring -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Solitaire Ring</span>
+              </div>
+
+              <!-- Item 8: Navaratna Ring -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Cocktail Ring</span>
+              </div>
+
+              <!-- Item 9: Filigree Ring -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Filigree Ring</span>
+              </div>
+
+              <!-- Item 10: Gold Bangles -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Gold Bangles</span>
+              </div>
+
+              <!-- Item 11: Kasu Kada -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Kasu Kada</span>
+              </div>
+
+              <!-- Item 12: Diamond Bangle -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Diamond Bangle</span>
+              </div>
+
+              <!-- Item 13: Sacred Mangalsutra -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Mangalsutra</span>
+              </div>
+
+              <!-- Item 14: Diamond Pendant -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Pendant</span>
+              </div>
+
+              <!-- Item 15: 24KT Gold Coin -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">24KT Coin</span>
+              </div>
+
+              <!-- Item 16: Temple Brooch -->
+              <div onclick="selectAdminPhotoPreset('https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?auto=format&fit=crop&w=800&q=80', event)" class="admin-photo-preset group cursor-pointer rounded-lg overflow-hidden border border-stone-700 hover:border-amber-400 transition bg-stone-900 p-1 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?auto=format&fit=crop&w=150&q=80" class="w-full h-12 object-cover rounded" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&q=80';" />
+                <span class="text-[9px] text-stone-300 truncate w-full mt-1 group-hover:text-amber-300">Temple Brooch</span>
+              </div>
+            </div>
           </div>
         </div>
 

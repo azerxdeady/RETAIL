@@ -177,8 +177,8 @@ function renderCategories(categories) {
 
   container.innerHTML = categories.map(cat => `
     <div onclick="filterByCategory('${cat.id}')" class="category-card group cursor-pointer rounded-2xl p-4 flex flex-col items-center text-center">
-      <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden mb-3.5 border-2 border-stone-200/70 group-hover:border-[#c5a059] transition duration-300 p-1 bg-stone-50">
-        <img src="${cat.image}" alt="${cat.name}" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition duration-500" loading="lazy" />
+      <div class="kalyan-story-ring w-20 h-20 sm:w-24 sm:h-24 overflow-hidden mb-3.5 p-1 bg-stone-50">
+        <img src="${cat.image}" alt="${cat.name}" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition duration-500" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80';" />
       </div>
       <h4 class="font-serif font-bold text-sm text-stone-900 group-hover:text-[#996515] transition">${cat.name}</h4>
       <p class="text-[11px] text-stone-500 mt-0.5 line-clamp-1 font-light">${cat.description}</p>
@@ -244,32 +244,46 @@ function renderProductsGrid(products) {
     return;
   }
 
+  const fallbackImg = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80';
+
   gridEl.innerHTML = products.map(prod => {
     const isWish = WishlistManager.has(prod.id);
     const p = prod.pricing;
+    const img1 = (prod.images && prod.images[0]) ? prod.images[0] : fallbackImg;
+    const img2 = (prod.images && prod.images[1]) ? prod.images[1] : img1;
 
     return `
-      <div class="jewellery-card flex flex-col group relative overflow-hidden">
+      <div class="jewellery-card flex flex-col group relative overflow-hidden bg-white rounded-3xl border border-[#d4af37]/30 hover:border-[#d4af37] shadow-[0_10px_30px_rgba(212,175,55,0.08)] hover:shadow-[0_20px_45px_rgba(212,175,55,0.18)] transition-all duration-500">
         <!-- Badges & Wishlist -->
-        <div class="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
+        <div class="absolute top-3 left-3 z-10 flex flex-col gap-1.5 pointer-events-none">
           <span class="badge-hallmark shadow-sm">
             <span>🛡️</span> ${prod.purity} BIS 916
           </span>
           ${prod.stoneType && prod.stoneType !== 'None' ? `<span class="badge-diamond shadow-sm"><span>💎</span> Certified Gems</span>` : ''}
-          ${prod.isBestseller ? `<span class="bg-[#0b0e14] text-amber-200 text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm tracking-wider uppercase">Bestseller</span>` : ''}
+          ${prod.isBestseller ? `<span class="bg-[#0b0e14] text-amber-200 text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm tracking-wider uppercase border border-amber-300/30">Bestseller</span>` : ''}
         </div>
 
-        <button onclick="toggleWishlist('${prod.id}', event)" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur shadow-sm flex items-center justify-center hover:bg-rose-50 hover:text-rose-500 transition ${isWish ? 'text-rose-500' : 'text-stone-400'}">
+        <button onclick="toggleWishlist('${prod.id}', event)" class="absolute top-3 right-3 z-20 w-9 h-9 rounded-full bg-white/95 backdrop-blur shadow-md flex items-center justify-center hover:bg-rose-50 hover:text-rose-500 transition ${isWish ? 'text-rose-500' : 'text-stone-400'}">
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
           </svg>
         </button>
 
-        <!-- Product Image -->
-        <div onclick="openProductModal('${prod.id}')" class="h-64 sm:h-72 overflow-hidden bg-stone-100 cursor-pointer relative">
-          <img src="${prod.images[0]}" alt="${prod.name}" class="img-zoom w-full h-full object-cover" loading="lazy" />
-          <div class="absolute inset-0 bg-black/5 group-hover:bg-black/15 transition duration-300"></div>
-          <span class="absolute bottom-2.5 left-2.5 bg-black/60 backdrop-blur-md text-white text-[10px] px-2.5 py-1 rounded-full font-medium">
+        <!-- Product Image Container with Dual-Angle Crossfade -->
+        <div onclick="openProductModal('${prod.id}')" class="product-image-container h-64 sm:h-72 cursor-pointer relative overflow-hidden bg-stone-50">
+          <img src="${img1}" alt="${prod.name}" class="img-primary w-full h-full object-cover" loading="lazy" onerror="this.onerror=null; this.src='${fallbackImg}';" />
+          <img src="${img2}" alt="${prod.name} Alternate Angle" class="img-secondary" loading="lazy" onerror="this.onerror=null; this.src='${img1}';" />
+          
+          <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+          <!-- Quick Try-on Virtual AR pill -->
+          <div class="absolute bottom-2.5 right-2.5 opacity-90 group-hover:opacity-100 transition">
+            <span class="bg-black/75 backdrop-blur-md text-[#d4af37] border border-[#d4af37]/40 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow">
+              <span>✨</span> Virtual AR
+            </span>
+          </div>
+
+          <span class="absolute bottom-2.5 left-2.5 bg-black/70 backdrop-blur-md text-white text-[10px] px-2.5 py-1 rounded-full font-medium">
             Gross: ${prod.grossWeight}g | Net: ${prod.netWeight}g
           </span>
         </div>
@@ -281,13 +295,22 @@ function renderProductsGrid(products) {
               <span class="uppercase font-semibold tracking-wider text-[#b4860b] text-[10px]">${prod.category}</span>
               <span class="text-stone-400 text-[10px] font-mono">HUID: ${prod.huid}</span>
             </div>
+            
             <h3 onclick="openProductModal('${prod.id}')" class="font-serif font-bold text-base text-stone-900 group-hover:text-[#b4860b] transition cursor-pointer line-clamp-1">
               ${prod.name}
             </h3>
-            <p class="text-xs text-stone-500 mt-1 line-clamp-2 font-light">${prod.description}</p>
+
+            <!-- Kalyan Style Ratings -->
+            <div class="flex items-center gap-1.5 mt-1 text-[11px] text-stone-500">
+              <span class="text-amber-500 font-bold">★ 4.9</span>
+              <span class="text-stone-300">•</span>
+              <span class="text-stone-500 font-medium">100% Certified Natural</span>
+            </div>
+
+            <p class="text-xs text-stone-500 mt-1.5 line-clamp-2 font-light">${prod.description}</p>
           </div>
 
-          <div class="mt-4 pt-4 border-t border-stone-100">
+          <div class="mt-4 pt-3.5 border-t border-stone-100">
             <div class="flex items-baseline justify-between">
               <div>
                 <span class="text-[10px] text-stone-400 uppercase font-semibold">Price (Incl. 3% GST)</span>
@@ -302,7 +325,7 @@ function renderProductsGrid(products) {
             </div>
 
             <!-- Action buttons -->
-            <div class="grid grid-cols-2 gap-2 mt-4">
+            <div class="grid grid-cols-2 gap-2 mt-3.5">
               <button onclick="openProductModal('${prod.id}')" class="py-2.5 px-3 rounded-full text-xs font-semibold text-stone-800 bg-amber-50/70 hover:bg-amber-100/90 border border-[#d4af37]/40 transition text-center shadow-sm">
                 Try-On & Details
               </button>
@@ -334,7 +357,7 @@ async function openProductModal(productId) {
         <!-- Media Column -->
         <div class="flex flex-col gap-4">
           <div class="w-full h-80 sm:h-96 rounded-2xl overflow-hidden bg-stone-100 border border-stone-200 relative group">
-            <img id="main-modal-img" src="${p.images[0]}" alt="${p.name}" class="w-full h-full object-cover transition duration-300" />
+            <img id="main-modal-img" src="${p.images[0]}" alt="${p.name}" class="w-full h-full object-cover transition duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80';" />
             <div class="absolute bottom-3 left-3 bg-black/75 backdrop-blur text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-2">
               <span>HUID: <strong class="font-mono">${p.huid}</strong></span>
               <span>•</span>
@@ -345,7 +368,7 @@ async function openProductModal(productId) {
           <div class="flex gap-2 overflow-x-auto pb-1">
             ${p.images.map((img, i) => `
               <button onclick="document.getElementById('main-modal-img').src='${img}'" class="w-16 h-16 rounded-xl overflow-hidden border-2 border-stone-200 hover:border-[#c5a059] flex-shrink-0 transition">
-                <img src="${img}" class="w-full h-full object-cover" />
+                <img src="${img}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80';" />
               </button>
             `).join('')}
           </div>

@@ -171,7 +171,7 @@
       <div class="w-full max-w-md">
         <div class="bg-white p-4 rounded-3xl border border-[#d4af37]/40 shadow-[0_25px_60px_-12px_rgba(212,175,55,0.22)] relative group hover:border-[#d4af37] transition duration-500">
           <div class="relative h-88 sm:h-96 rounded-2xl overflow-hidden mb-4 bg-stone-100">
-            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80" alt="Mayuri Heritage Peacock Antique Gold Haram" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+            <img id="hero-showcase-img" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80" alt="Mayuri Heritage Peacock Antique Gold Haram" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80';" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"></div>
             <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
               <div>
@@ -199,6 +199,83 @@
   <section id="rates-overview-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-20">
     <div id="rates-overview-card">
       <!-- Injected via store.js -->
+    </div>
+  </section>
+
+  <!-- 4.5 KALYAN SIGNATURE CURATED LUXURY LINES -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-4">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-stone-200/60">
+      <div>
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.22em] text-[#b4860b] mb-1">
+          <span>✨</span> Kalyan Curated Luxury Lines
+        </div>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">Iconic Signature Sub-Brands</h2>
+      </div>
+      <p class="text-xs text-stone-500 max-w-md mt-2 md:mt-0 font-light">
+        Curated design houses celebrating India's bridal majesty, royal temple heritage, flawless solitaires, and antique craftsmanship.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      <!-- Collection 1: Muhurat Bridal -->
+      <div onclick="filterByCategory('necklaces')" class="group cursor-pointer bg-white rounded-2xl p-4 border border-[#d4af37]/30 hover:border-[#d4af37] shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center">
+        <div class="kalyan-story-ring w-20 h-20 mb-3 overflow-hidden bg-amber-50">
+          <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80" alt="Muhurat Bridal Collection" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
+        </div>
+        <span class="text-[9px] font-bold text-[#b4860b] uppercase tracking-wider">Bridal Suite</span>
+        <h4 class="font-serif font-bold text-sm text-stone-900 mt-0.5 group-hover:text-[#b4860b] transition">Muhurat</h4>
+        <span class="text-[10px] text-stone-400 mt-0.5">Grand Wedding Gold</span>
+      </div>
+
+      <!-- Collection 2: Mudhra Temple -->
+      <div onclick="filterByCategory('necklaces')" class="group cursor-pointer bg-white rounded-2xl p-4 border border-[#d4af37]/30 hover:border-[#d4af37] shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center">
+        <div class="kalyan-story-ring w-20 h-20 mb-3 overflow-hidden bg-amber-50">
+          <img src="https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?auto=format&fit=crop&w=400&q=80" alt="Mudhra Antique Temple Jewellery" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
+        </div>
+        <span class="text-[9px] font-bold text-[#b4860b] uppercase tracking-wider">Heritage</span>
+        <h4 class="font-serif font-bold text-sm text-stone-900 mt-0.5 group-hover:text-[#b4860b] transition">Mudhra</h4>
+        <span class="text-[10px] text-stone-400 mt-0.5">Antique Handcrafted</span>
+      </div>
+
+      <!-- Collection 3: Ziah Solitaires -->
+      <div onclick="filterByCategory('rings')" class="group cursor-pointer bg-white rounded-2xl p-4 border border-[#d4af37]/30 hover:border-[#d4af37] shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center">
+        <div class="kalyan-story-ring w-20 h-20 mb-3 overflow-hidden bg-amber-50">
+          <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=400&q=80" alt="Ziah Certified Diamonds" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
+        </div>
+        <span class="text-[9px] font-bold text-[#b4860b] uppercase tracking-wider">Diamonds</span>
+        <h4 class="font-serif font-bold text-sm text-stone-900 mt-0.5 group-hover:text-[#b4860b] transition">Ziah</h4>
+        <span class="text-[10px] text-stone-400 mt-0.5">IGI Solitaires & Rings</span>
+      </div>
+
+      <!-- Collection 4: Nimah Polki -->
+      <div onclick="filterByCategory('earrings')" class="group cursor-pointer bg-white rounded-2xl p-4 border border-[#d4af37]/30 hover:border-[#d4af37] shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center">
+        <div class="kalyan-story-ring w-20 h-20 mb-3 overflow-hidden bg-amber-50">
+          <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=400&q=80" alt="Nimah Royal Polki & Kundan" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
+        </div>
+        <span class="text-[9px] font-bold text-[#b4860b] uppercase tracking-wider">Royal Kundan</span>
+        <h4 class="font-serif font-bold text-sm text-stone-900 mt-0.5 group-hover:text-[#b4860b] transition">Nimah</h4>
+        <span class="text-[10px] text-stone-400 mt-0.5">Precious Polki Jhumkas</span>
+      </div>
+
+      <!-- Collection 5: Sankalp Pure Gold -->
+      <div onclick="filterByCategory('bangles')" class="group cursor-pointer bg-white rounded-2xl p-4 border border-[#d4af37]/30 hover:border-[#d4af37] shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center">
+        <div class="kalyan-story-ring w-20 h-20 mb-3 overflow-hidden bg-amber-50">
+          <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=400&q=80" alt="Sankalp Daily Gold Bangles" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
+        </div>
+        <span class="text-[9px] font-bold text-[#b4860b] uppercase tracking-wider">Daily Elegance</span>
+        <h4 class="font-serif font-bold text-sm text-stone-900 mt-0.5 group-hover:text-[#b4860b] transition">Sankalp</h4>
+        <span class="text-[10px] text-stone-400 mt-0.5">Pure 22KT Bangles</span>
+      </div>
+
+      <!-- Collection 6: Akshaya Bullion -->
+      <div onclick="filterByCategory('coins')" class="group cursor-pointer bg-white rounded-2xl p-4 border border-[#d4af37]/30 hover:border-[#d4af37] shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center">
+        <div class="kalyan-story-ring w-20 h-20 mb-3 overflow-hidden bg-amber-50">
+          <img src="https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&w=400&q=80" alt="Akshaya 24KT Gold Minted Coins" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
+        </div>
+        <span class="text-[9px] font-bold text-[#b4860b] uppercase tracking-wider">Investment</span>
+        <h4 class="font-serif font-bold text-sm text-stone-900 mt-0.5 group-hover:text-[#b4860b] transition">Akshaya</h4>
+        <span class="text-[10px] text-stone-400 mt-0.5">24KT 999.9 Coins</span>
+      </div>
     </div>
   </section>
 
@@ -260,6 +337,72 @@
     <!-- Product Grid -->
     <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       <!-- Injected via store.js -->
+    </div>
+  </section>
+
+  <!-- 6.5 KALYAN 4-PILLAR GOLDEN TRUST GUARANTEE -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="bg-gradient-to-br from-[#151108] via-[#1c160a] to-[#0e0a04] text-white rounded-3xl p-8 sm:p-12 border border-[#d4af37]/50 shadow-[0_20px_60px_rgba(212,175,55,0.15)] relative overflow-hidden">
+      <div class="absolute -right-20 -top-20 w-80 h-80 bg-[#d4af37]/15 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#20180a] border border-[#d4af37]/40 text-amber-300 text-xs font-semibold mb-3">
+          <span>🛡️</span> The Kalyan Assurance Promise
+        </div>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          4-Point Golden Trust Guarantee
+        </h2>
+        <div class="gold-divider max-w-[160px] mx-auto my-3"></div>
+        <p class="text-amber-100/70 text-xs sm:text-sm font-light">
+          Pioneering 100% transparency, pure certified metals, and unshakeable customer faith for three generations.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Pillar 1 -->
+        <div class="trust-pillar-card bg-[#1a1409] p-6 rounded-2xl border border-[#d4af37]/35 relative">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#d4af37] to-[#996515] flex items-center justify-center text-stone-950 font-bold text-xl mb-4 shadow">
+            1
+          </div>
+          <h4 class="font-serif font-bold text-base text-amber-200">100% BIS 916 Stamped</h4>
+          <p class="text-stone-300 text-xs mt-2 leading-relaxed font-light">
+            Every gram is hallmarked at Govt. of India assaying centers with a unique laser-engraved 6-digit HUID code verifiable in the official BIS CARE database.
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="trust-pillar-card bg-[#1a1409] p-6 rounded-2xl border border-[#d4af37]/35 relative">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#d4af37] to-[#996515] flex items-center justify-center text-stone-950 font-bold text-xl mb-4 shadow">
+            2
+          </div>
+          <h4 class="font-serif font-bold text-base text-amber-200">Transparent Price Breakup</h4>
+          <p class="text-stone-300 text-xs mt-2 leading-relaxed font-light">
+            Exact live bullion rate, gross weight, net gold weight, stone weight, and explicit making charges clearly stated on your invoice with zero hidden deductions.
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="trust-pillar-card bg-[#1a1409] p-6 rounded-2xl border border-[#d4af37]/35 relative">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#d4af37] to-[#996515] flex items-center justify-center text-stone-950 font-bold text-xl mb-4 shadow">
+            3
+          </div>
+          <h4 class="font-serif font-bold text-base text-amber-200">Lifetime Exchange & Buyback</h4>
+          <p class="text-stone-300 text-xs mt-2 leading-relaxed font-light">
+            Receive 100% current benchmark gold value when exchanging your jewellery at any of our flagship showrooms across India, anytime, forever.
+          </p>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="trust-pillar-card bg-[#1a1409] p-6 rounded-2xl border border-[#d4af37]/35 relative">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#d4af37] to-[#996515] flex items-center justify-center text-stone-950 font-bold text-xl mb-4 shadow">
+            4
+          </div>
+          <h4 class="font-serif font-bold text-base text-amber-200">Armoured Insured Transit</h4>
+          <p class="text-stone-300 text-xs mt-2 leading-relaxed font-light">
+            Secured end-to-end armoured vehicle transit with tamper-evident serial security seals, OTP gate check, and 100% full transit insurance until safely in your hands.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -355,10 +498,86 @@
       </div>
     </div>
   </section>
-            <p class="text-[10px] text-stone-500 text-center mt-2">
-              Govt. regulated. 100% transparent purity redemption.
-            </p>
-          </form>
+
+  <!-- 7.5 VIP BRIDAL & WEDDING CUSTOMER STORIES SECTION -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-stone-200/80">
+    <div class="text-center max-w-xl mx-auto mb-12">
+      <span class="text-xs uppercase font-bold tracking-[0.25em] text-[#b4860b]">Karthik Jewellers Brides</span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">Weddings & Customer Stories</h2>
+      <div class="gold-divider max-w-[180px] mx-auto my-3"></div>
+      <p class="text-xs text-stone-500 font-light">Cherished memories crafted in 22KT gold & certified natural diamonds</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Testimonial 1 -->
+      <div class="bg-white rounded-3xl p-6 border border-[#d4af37]/30 shadow-md hover:shadow-xl transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-1 text-amber-400 text-sm mb-3">
+            ★★★★★ <span class="text-stone-400 text-xs ml-2 font-sans font-semibold">5.0 / 5.0</span>
+          </div>
+          <p class="text-xs text-stone-700 leading-relaxed font-light italic">
+            "We bought our entire Muhurat bridal trousseau from Karthik Jewellers. The Peacock Antique Haram and Jhumkas were the talk of our wedding in Bangalore. The transparent price breakup gave my father complete peace of mind."
+          </p>
+        </div>
+        <div class="flex items-center gap-3.5 mt-6 pt-4 border-t border-stone-100">
+          <div class="w-11 h-11 rounded-full overflow-hidden bg-amber-100 border border-[#d4af37]/40 flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Dr. Pooja Ramachandran" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80';" />
+          </div>
+          <div>
+            <h5 class="font-serif font-bold text-sm text-stone-900">Dr. Pooja Ramachandran</h5>
+            <div class="flex items-center gap-1.5 text-[10px] text-stone-500">
+              <span class="text-emerald-600 font-bold">✓ Verified Bride</span>
+              <span>• Bangalore</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="bg-white rounded-3xl p-6 border border-[#d4af37]/30 shadow-md hover:shadow-xl transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-1 text-amber-400 text-sm mb-3">
+            ★★★★★ <span class="text-stone-400 text-xs ml-2 font-sans font-semibold">5.0 / 5.0</span>
+          </div>
+          <p class="text-xs text-stone-700 leading-relaxed font-light italic">
+            "The 1-on-1 VIP Video Preview was seamless. The stylist showed me the Kasu Malai and Polki bangles in high resolution under 10x magnification. The armoured parcel reached Chennai in 24 hours with flawless tamper seals."
+          </p>
+        </div>
+        <div class="flex items-center gap-3.5 mt-6 pt-4 border-t border-stone-100">
+          <div class="w-11 h-11 rounded-full overflow-hidden bg-amber-100 border border-[#d4af37]/40 flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Siddharth & Ananya Menon" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80';" />
+          </div>
+          <div>
+            <h5 class="font-serif font-bold text-sm text-stone-900">Siddharth & Ananya Menon</h5>
+            <div class="flex items-center gap-1.5 text-[10px] text-stone-500">
+              <span class="text-emerald-600 font-bold">✓ Verified Purchase</span>
+              <span>• Chennai</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="bg-white rounded-3xl p-6 border border-[#d4af37]/30 shadow-md hover:shadow-xl transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-1 text-amber-400 text-sm mb-3">
+            ★★★★★ <span class="text-stone-400 text-xs ml-2 font-sans font-semibold">5.0 / 5.0</span>
+          </div>
+          <p class="text-xs text-stone-700 leading-relaxed font-light italic">
+            "I enrolled in the Swarna Nidhi 11+1 savings plan last year. Karthik Jewellers gave the 12th installment free and waived all making charges when I redeemed it for my sister's engagement ring. Unbelievable value and honesty!"
+          </p>
+        </div>
+        <div class="flex items-center gap-3.5 mt-6 pt-4 border-t border-stone-100">
+          <div class="w-11 h-11 rounded-full overflow-hidden bg-amber-100 border border-[#d4af37]/40 flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" alt="Lavanya Reddy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80';" />
+          </div>
+          <div>
+            <h5 class="font-serif font-bold text-sm text-stone-900">Lavanya Reddy</h5>
+            <div class="flex items-center gap-1.5 text-[10px] text-stone-500">
+              <span class="text-emerald-600 font-bold">✓ Swarna Nidhi Member</span>
+              <span>• Hyderabad</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

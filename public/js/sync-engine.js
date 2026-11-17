@@ -344,6 +344,12 @@
         }
       }
 
+      // Hero Showcase Image Dynamic Sync
+      const heroImg = document.getElementById(isViswa ? 'viswa-hero-showcase-img' : 'hero-showcase-img');
+      if (heroImg && settings.hero?.imageUrl) {
+        heroImg.src = settings.hero.imageUrl;
+      }
+
       // 8. Product Grid & Cards
       const pGrid = document.getElementById(isViswa ? 'viswa-products-grid' : 'products-grid');
       if (pGrid && settings.productGrid?.columns) {
