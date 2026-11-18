@@ -1135,6 +1135,16 @@ function filterByCategory(catId) {
   if (filterSelect) filterSelect.value = catId;
   loadProducts();
 
+  // Highlight active category pill in category navbar
+  try {
+    const navLinks = document.querySelectorAll('#category-navbar a');
+    navLinks.forEach(link => {
+      const oc = link.getAttribute('onclick') || '';
+      const isMatch = oc.includes("'" + catId + "'");
+      link.classList.toggle('active-category', Boolean(isMatch));
+    });
+  } catch (_) {}
+
   const section = document.getElementById('products-section');
   if (section) section.scrollIntoView({ behavior: 'smooth' });
 }
@@ -1184,16 +1194,85 @@ function initEventListeners() {
   }
 
   const searchInput = document.getElementById('search-input');
+  const mobileSearchInput = document.getElementById('mobile-search-input');
+
+  function handleSearchInput(val) {
+    if (searchInput && searchInput.value !== val) searchInput.value = val;
+    if (mobileSearchInput && mobileSearchInput.value !== val) mobileSearchInput.value = val;
+    const clearBtn = document.getElementById('mobile-search-clear-btn');
+    if (clearBtn) clearBtn.classList.toggle('hidden', !val);
+
+    appState.currentSearch = val.trim();
+    loadProducts();
+  }
+
   if (searchInput) {
     let timeout = null;
     searchInput.addEventListener('input', (e) => {
       clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        appState.currentSearch = e.target.value.trim();
-        loadProducts();
-      }, 350);
+      timeout = setTimeout(() => handleSearchInput(e.target.value), 300);
     });
   }
+
+  if (mobileSearchInput) {
+    let mTimeout = null;
+    mobileSearchInput.addEventListener('input', (e) => {
+      clearTimeout(mTimeout);
+      mTimeout = setTimeout(() => handleSearchInput(e.target.value), 300);
+    });
+  }
+
+  // Mobile Header Navigation Utilities
+  window.toggleMobileNavDrawer = function(force) {
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const backdrop = document.getElementById('mobile-nav-backdrop');
+    if (!drawer) return;
+    const isCurrentlyOpen = !drawer.classList.contains('-translate-x-full');
+    const shouldOpen = force !== undefined ? force : !isCurrentlyOpen;
+    if (shouldOpen) {
+      drawer.classList.remove('-translate-x-full', 'pointer-events-none');
+      if (backdrop) backdrop.classList.remove('opacity-0');
+      document.body.style.overflow = 'hidden';
+    } else {
+      drawer.classList.add('-translate-x-full', 'pointer-events-none');
+      if (backdrop) backdrop.classList.add('opacity-0');
+      document.body.style.overflow = '';
+    }
+  };
+
+  window.toggleMobileSearchDropdown = function() {
+    const dd = document.getElementById('mobile-search-dropdown');
+    const input = document.getElementById('mobile-search-input');
+    if (!dd) return;
+    const isHidden = dd.classList.contains('hidden');
+    if (isHidden) {
+      dd.classList.remove('hidden');
+      if (input) setTimeout(() => input.focus(), 60);
+    } else {
+      dd.classList.add('hidden');
+    }
+  };
+
+  window.clearMobileSearch = function() {
+    const input = document.getElementById('mobile-search-input');
+    const dInput = document.getElementById('search-input');
+    const clearBtn = document.getElementById('mobile-search-clear-btn');
+    if (input) input.value = '';
+    if (dInput) dInput.value = '';
+    if (clearBtn) clearBtn.classList.add('hidden');
+    if (window.appState) {
+      window.appState.currentSearch = '';
+      loadProducts();
+    }
+  };
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (window.toggleMobileNavDrawer) window.toggleMobileNavDrawer(false);
+      const dd = document.getElementById('mobile-search-dropdown');
+      if (dd && !dd.classList.contains('hidden')) dd.classList.add('hidden');
+    }
+  });
 
   // Scheme calculator
   const schemeSlider = document.getElementById('scheme-amount-slider');

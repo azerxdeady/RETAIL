@@ -180,7 +180,7 @@
       "huid": "KJ916K2031B",
       "certification": "BIS 916 Hallmarked",
       "inStock": true,
-      "stockCount": 7,
+      "stockCount": 6,
       "rating": 4.8,
       "reviewsCount": 62,
       "gender": "Women",
@@ -197,7 +197,8 @@
       "featured": false,
       "isFeatured": false,
       "isBestseller": true,
-      "isNew": false
+      "isNew": false,
+      "updatedAt": "2026-11-18T13:05:57.141Z"
     },
     {
       "id": "KJ-GLD-ER-004",
@@ -1595,6 +1596,62 @@
     }
   ],
   "orders": [
+    {
+      "id": "ORD-KJ-2026-25804",
+      "brand": "karthik",
+      "customer": {
+        "name": "S. Karthikeyan",
+        "phone": "+91 98401 55678",
+        "email": "karthik.customer@example.com",
+        "address": "Villa 42, Palm Meadows, Whitefield",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "pincode": "560066"
+      },
+      "items": [
+        {
+          "productId": "KJ-GLD-NK-003",
+          "name": "Lakshmi Kasu Malai Traditional Coin Necklace",
+          "purity": "22KT",
+          "grossWeight": 32,
+          "netWeight": 32,
+          "metalPricePerGram": 10335,
+          "metalValue": 330720,
+          "makingCharges": 18560,
+          "stonePrice": 0,
+          "gstAmount": 10478,
+          "totalPrice": 359758,
+          "quantity": 1,
+          "huid": "KJ916K2031B",
+          "image": "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=800&q=80"
+        }
+      ],
+      "payment": {
+        "method": "UPI (Google Pay)",
+        "status": "Paid",
+        "transactionId": "UPI_GPAY_1795007152683",
+        "gateway": "Razorpay / Cashfree Luxury Sandbox",
+        "rrn": "RRN747132551612",
+        "upiId": null,
+        "cardLast4": null,
+        "emiTenure": null,
+        "bankName": null,
+        "paidAt": "2026-11-18T13:05:57.112Z"
+      },
+      "summary": {
+        "subtotal": 349280,
+        "discount": 0,
+        "gst": 10478,
+        "insuredShipping": 0,
+        "grandTotal": 359758
+      },
+      "status": "Hallmarking Verified",
+      "trackingNumber": "BVC-KJ-667318",
+      "courier": "BVC Logistics Armoured Vault Transit",
+      "createdAt": "2026-11-18T13:05:57.112Z",
+      "deliveryEstimated": "2026-11-21",
+      "updatedAt": "2026-11-18T13:05:57.113Z"
+    },
     {
       "id": "ORD-KJ-2026-16675",
       "brand": "karthik",

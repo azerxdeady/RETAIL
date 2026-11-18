@@ -2297,3 +2297,105 @@ img[loading="lazy"] {
 .kj-splash-enter-btn:hover .kj-enter-arrow {
   transform: translateX(3px);
 }
+
+
+/* ==========================================================================
+   MULTI-DEVICE RESPONSIVE HEADER ENHANCEMENTS (Mobile • Tablet • Desktop)
+   Fluid typography · Touch Momentum · Mobile Search & Navigation Drawer
+   ========================================================================== */
+
+/* ── Fluid Brand Name Typography ── */
+#navbar-brand-name {
+  font-size: clamp(1rem, 1.8vw + 0.4rem, 1.75rem);
+}
+
+/* ── Mobile Navigation Drawer Backdrop & Transitions ── */
+#mobile-nav-drawer {
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+#mobile-nav-backdrop {
+  transition: opacity 0.3s ease;
+}
+
+#mobile-nav-drawer:not(.-translate-x-full) #mobile-nav-backdrop {
+  opacity: 1 !important;
+}
+
+/* ── Mobile Search Dropdown Transitions ── */
+#mobile-search-dropdown {
+  animation: slideDownMobileSearch 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDownMobileSearch {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Touch-Friendly Horizontal Smooth Scrolling ── */
+.gold-ticker-wrapper,
+#category-navbar {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Category Navbar Active Item Highlight */
+#category-navbar a {
+  position: relative;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+#category-navbar a:hover,
+#category-navbar a.active-category {
+  color: #b4860b !important;
+}
+
+html.dark #category-navbar a:hover,
+html.dark #category-navbar a.active-category {
+  color: #ecc874 !important;
+}
+
+#category-navbar a.active-category::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #d4af37, #fef3c7, #d4af37);
+  border-radius: 999px;
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);
+}
+
+/* ── Safe Area Insets for iOS Home Indicator & Notches ── */
+@supports (padding: max(0px)) {
+  .safe-area-bottom {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+  #main-navbar {
+    padding-left: max(0.75rem, env(safe-area-inset-left));
+    padding-right: max(0.75rem, env(safe-area-inset-right));
+  }
+}
+
+/* ── Compact adjustments for very small screens (<= 375px) ── */
+@media (max-width: 375px) {
+  #navbar-brand-name {
+    font-size: 0.95rem !important;
+  }
+  #navbar-brand-tagline {
+    font-size: 6.5px !important;
+    letter-spacing: 0.14em !important;
+  }
+  .city-display-pill {
+    padding-left: 0.4rem !important;
+    padding-right: 0.4rem !important;
+  }
+}
