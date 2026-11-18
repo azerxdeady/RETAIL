@@ -1,4 +1,4 @@
-# Configure Windows Defender Firewall Inbound Rules for Port 5000 and 8080
+# Configure Windows Defender Firewall Inbound Rules for Port 80 (Apache), Port 5000 (Node.js), and Port 8080 (Spring Boot)
 Write-Host "====================================================================" -ForegroundColor Cyan
 Write-Host "  CONFIGURING WINDOWS DEFENDER FIREWALL FOR LOCAL NETWORK ACCESS     " -ForegroundColor Yellow
 Write-Host "====================================================================" -ForegroundColor Cyan
@@ -14,7 +14,11 @@ if (-not $isAdmin) {
 }
 
 try {
-    Write-Host "Adding Inbound Rule for Port 5000 (Node.js Server)..." -ForegroundColor Yellow
+    Write-Host "Adding Inbound Rule for Port 80 (Apache HTTP Server)..." -ForegroundColor Yellow
+    netsh advfirewall firewall delete rule name="Apache HTTP Server (Port 80)" > $null 2>&1
+    netsh advfirewall firewall add rule name="Apache HTTP Server (Port 80)" dir=in action=allow protocol=TCP localport=80 > $null
+
+    Write-Host "Adding Inbound Rule for Port 5000 (Node.js Backend)..." -ForegroundColor Yellow
     netsh advfirewall firewall delete rule name="Karthik Jewellers Local Server (Port 5000)" > $null 2>&1
     netsh advfirewall firewall add rule name="Karthik Jewellers Local Server (Port 5000)" dir=in action=allow protocol=TCP localport=5000 > $null
 
@@ -24,7 +28,7 @@ try {
 
     Write-Host ""
     Write-Host "[SUCCESS] Windows Defender Firewall rules created successfully!" -ForegroundColor Green
-    Write-Host "Phones, tablets, and billing computers on your Wi-Fi network can now connect." -ForegroundColor Cyan
+    Write-Host "Phones, tablets, and billing computers on your Wi-Fi network can now connect directly via Port 80 (http://<your-ip>/)." -ForegroundColor Cyan
 } catch {
     Write-Host "[ERROR] Failed to configure firewall: $_" -ForegroundColor Red
 }

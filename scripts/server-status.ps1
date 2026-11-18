@@ -3,30 +3,37 @@ Write-Host "  KARTHIK JEWELLERS - LOCAL SERVER HEALTH & ACCESS STATUS           
 Write-Host "====================================================================" -ForegroundColor Cyan
 Write-Host ""
 
-$conn = Get-NetTCPConnection -LocalPort 5000 -State Listen -ErrorAction SilentlyContinue
-if ($conn) {
-    Write-Host "[STATUS] SERVER IS ONLINE AND LISTENING ON PORT 5000" -ForegroundColor Green
-    $ip = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.InterfaceAlias -notmatch 'Loopback|vEthernet' -and $_.IPAddress -notmatch '169\.254' } | Select-Object -First 1).IPAddress
-    $hostName = $env:COMPUTERNAME
+$apacheConn = Get-NetTCPConnection -LocalPort 80 -State Listen -ErrorAction SilentlyContinue
+$nodeConn = Get-NetTCPConnection -LocalPort 5000 -State Listen -ErrorAction SilentlyContinue
 
+$ip = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.InterfaceAlias -notmatch 'Loopback|vEthernet' -and $_.IPAddress -notmatch '169\.254' } | Select-Object -First 1).IPAddress
+$hostName = $env:COMPUTERNAME
+
+if ($apacheConn -and $nodeConn) {
+    Write-Host "[STATUS] ENTERPRISE SERVER SUITE ONLINE (Apache Port 80 + Node Port 5000)" -ForegroundColor Green
     Write-Host ""
     Write-Host "====================================================================" -ForegroundColor Yellow
-    Write-Host "  ACCESS URLS FOR DEVICES ON YOUR LOCAL NETWORK (Wi-Fi / LAN)       " -ForegroundColor Yellow
+    Write-Host "  PRIMARY ACCESS URLS (PORT 80 - NO PORT NUMBER REQUIRED!)          " -ForegroundColor Yellow
     Write-Host "====================================================================" -ForegroundColor Yellow
-    Write-Host "  [PC]   On this computer:          http://localhost:5000" -ForegroundColor Cyan
-    Write-Host "  [LAN]  On phones/tablets/POS PCs: http://$($ip):5000" -ForegroundColor Green
-    Write-Host "  [HOST] Via Computer Name:        http://$($hostName):5000" -ForegroundColor Cyan
+    Write-Host "  [PC]   On this computer:          http://localhost/" -ForegroundColor Cyan
+    Write-Host "  [LAN]  On phones/tablets/POS PCs: http://$($ip)/" -ForegroundColor Green
+    Write-Host "  [HOST] Via Computer Name:         http://$($hostName)/" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "  DIRECT PORTALS:" -ForegroundColor White
-    Write-Host "   * Karthik Storefront:        http://$($ip):5000"
-    Write-Host "   * Viswanandini Bridal House: http://$($ip):5000/viswanandini"
-    Write-Host "   * Master Hub Cockpit:        http://$($ip):5000/dashboard"
-    Write-Host "   * Admin Command Center:      http://$($ip):5000/admin"
-    Write-Host "   * GST Tax Invoice System:    http://$($ip):5000/invoice"
+    Write-Host "   * Karthik Storefront:        http://$($ip)/"
+    Write-Host "   * Viswanandini Bridal House: http://$($ip)/viswanandini"
+    Write-Host "   * Master Hub Cockpit:        http://$($ip)/dashboard"
+    Write-Host "   * Chit Scheme (11+1):        http://$($ip)/chit"
+    Write-Host "   * Admin Live Rates Portal:   http://$($ip)/admin"
+    Write-Host "   * Real-Time Bullion API:     http://$($ip)/api/rates"
     Write-Host "====================================================================" -ForegroundColor Yellow
+} elseif ($nodeConn) {
+    Write-Host "[STATUS] NODE.JS BACKEND ONLINE (PORT 5000), APACHE OFFLINE" -ForegroundColor Yellow
+    Write-Host "Direct Node.js URL: http://$($ip):5000" -ForegroundColor Cyan
+    Write-Host "To start Apache Port 80 proxy, run start-apache.bat" -ForegroundColor Yellow
 } else {
     Write-Host "[STATUS] SERVER IS CURRENTLY STOPPED" -ForegroundColor Red
-    Write-Host "Run start.bat or start-background.vbs to start the server." -ForegroundColor Yellow
+    Write-Host "Run start-apache.bat or start.bat to start the servers." -ForegroundColor Yellow
 }
 
 Write-Host ""
