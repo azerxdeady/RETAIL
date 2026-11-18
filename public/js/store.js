@@ -956,11 +956,42 @@ async function processOrderPlacement() {
   const methodRadio = document.querySelector('input[name="payment-method"]:checked');
   const paymentMethod = methodRadio ? methodRadio.value : 'UPI';
   const cart = CartManager.getCart();
+  const subtotal = CartManager.getTotal();
+  const discount = appState.activeCoupon ? appState.activeCoupon.discount : 0;
+  const grandTotal = Math.max(0, subtotal - discount);
 
+  // If Luxury Payment Gateway is loaded, launch it
+  if (window.KJPaymentGateway && typeof window.KJPaymentGateway.openCheckout === 'function') {
+    window.KJPaymentGateway.openCheckout({
+      brand: 'karthik',
+      amount: grandTotal,
+      customer: customerDetailsCache,
+      items: cart,
+      onPaymentSuccess: async (payDetails) => {
+        await submitFinalOrder(payDetails);
+      },
+      onCancel: () => {
+        renderCheckoutStep(2);
+      }
+    });
+    return;
+  }
+
+  // Fallback direct placement
+  await submitFinalOrder({
+    method: paymentMethod,
+    transactionId: 'TXN_' + Date.now().toString(36).toUpperCase()
+  });
+}
+
+async function submitFinalOrder(payDetails) {
+  const cart = CartManager.getCart();
   const payload = {
+    brand: 'karthik',
     customer: customerDetailsCache,
     items: cart,
-    paymentMethod,
+    paymentMethod: payDetails?.method || 'UPI (Google Pay / PhonePe)',
+    paymentDetails: payDetails,
     couponCode: appState.activeCoupon ? appState.activeCoupon.code : null
   };
 
@@ -995,12 +1026,18 @@ function renderOrderSuccess(order) {
   const container = document.getElementById('checkout-step-content');
   if (!container) return;
 
+  const txnId = order.payment?.transactionId || 'TXN_VERIFIED';
+  const rrn = order.payment?.rrn ? ` | Ref: ${order.payment.rrn}` : '';
+  const waMsg = encodeURIComponent(
+    `✨ Karthik Jewellers Order Confirmation\nOrder ID: ${order.id}\nCustomer: ${order.customer.name}\nTotal Paid: ${formatINR(order.summary.grandTotal)}\nTransaction: ${txnId}\nTracking: ${order.trackingNumber}\nThank you for choosing certified BIS 916 gold.`
+  );
+
   container.innerHTML = `
     <div class="text-center py-6">
       <div class="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mx-auto mb-3 border border-emerald-200 shadow-sm">
         ✓
       </div>
-      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#996515]">Order Successfully Placed</span>
+      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#996515]">Order Successfully Placed & Insured</span>
       <h3 class="font-serif text-2xl font-bold text-stone-900 mt-1">Thank You, ${order.customer.name}!</h3>
       <p class="text-xs text-stone-500 mt-1">Order Ref: <strong class="text-stone-800 font-mono">${order.id}</strong></p>
 
@@ -1021,18 +1058,25 @@ function renderOrderSuccess(order) {
           <span class="text-stone-500">Payment Mode:</span>
           <strong class="text-stone-800">${order.payment.method} (${order.payment.status})</strong>
         </div>
+        <div class="flex justify-between">
+          <span class="text-stone-500">Bank Transaction ID:</span>
+          <strong class="text-stone-800 font-mono text-[11px]">${txnId}${rrn}</strong>
+        </div>
         <div class="flex justify-between text-sm font-bold pt-2 border-t border-stone-200">
           <span class="text-stone-900">Total Paid:</span>
           <span class="text-[#996515] font-mono">${formatINR(order.summary.grandTotal)}</span>
         </div>
       </div>
 
-      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+      <div class="mt-6 flex flex-col sm:flex-row gap-2.5">
         <a href="/invoice?orderId=${order.id}" target="_blank" class="flex-1 py-3 px-4 rounded-full dark-pill-btn text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2">
-          <span>📄</span> Print Official GST Tax Invoice
+          <span>📄</span> Official GST Invoice
         </a>
-        <button onclick="closeCheckoutModal()" class="flex-1 py-3 px-4 rounded-full bg-stone-100 text-stone-800 hover:bg-stone-200 transition text-xs font-bold uppercase tracking-wider">
-          Continue Shopping
+        <a href="https://api.whatsapp.com/send?phone=919790644448&text=${waMsg}" target="_blank" class="flex-1 py-3 px-4 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2 transition">
+          <span>💬</span> WhatsApp Receipt
+        </a>
+        <button onclick="closeCheckoutModal()" class="py-3 px-5 rounded-full bg-stone-100 text-stone-800 hover:bg-stone-200 transition text-xs font-bold uppercase tracking-wider">
+          Done
         </button>
       </div>
     </div>
@@ -1157,11 +1201,54 @@ async function handleSchemeEnrollment(event) {
     if (res.success) {
       showToast('Enrolled in Swarna Nidhi Gold Savings Scheme! Passbook generated.', 'success');
       document.getElementById('scheme-enroll-form').reset();
+
+      // Offer immediate 1st installment online payment via gateway
+      if (window.KJPaymentGateway && res.scheme) {
+        setTimeout(() => {
+          if (confirm('🎉 Enrollment Successful!\n\nWould you like to pay your 1st monthly installment online now to lock today\'s 22KT gold rate?')) {
+            KJPaymentGateway.openSchemePayment(res.scheme);
+          }
+        }, 500);
+      }
     } else {
       showToast(res.message, 'error');
     }
   } catch (err) {
     showToast('Failed to enroll in scheme', 'error');
+  }
+}
+
+async function openSchemePayModal() {
+  const accountInput = prompt('Enter your Swarna Nidhi Passbook ID or Registered Mobile Number:\n(e.g. SCH-KJ-2026-101 or 9790644448)');
+  if (!accountInput) return;
+
+  try {
+    const res = await StoreAPI.getSchemes();
+    if (!res.success || !res.schemes || !res.schemes.length) {
+      alert('No active schemes found.');
+      return;
+    }
+
+    const trimmed = accountInput.trim().toLowerCase();
+    const match = res.schemes.find(s => 
+      (s.id && s.id.toLowerCase() === trimmed) || 
+      (s.customerPhone && s.customerPhone.includes(trimmed)) ||
+      (s.customerName && s.customerName.toLowerCase().includes(trimmed))
+    );
+
+    if (!match) {
+      alert('No active Swarna Nidhi account found matching: ' + accountInput + '\nPlease verify your Passbook ID or enroll below.');
+      return;
+    }
+
+    if (window.KJPaymentGateway) {
+      window.KJPaymentGateway.openSchemePayment(match);
+    } else {
+      alert(`Account Found: ${match.customerName} (${match.id})\nMonthly Amount: ₹${match.monthlyAmount}\nPaid: ${match.paidInstallments}/${match.tenureMonths}`);
+    }
+  } catch (err) {
+    console.error('Scheme lookup error:', err);
+    alert('Failed to connect to scheme database.');
   }
 }
 

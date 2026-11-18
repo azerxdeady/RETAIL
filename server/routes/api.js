@@ -447,9 +447,16 @@ router.post('/orders', (req, res) => {
     customer,
     items: processedItems,
     payment: {
-      method: paymentMethod || 'UPI (Google Pay / PhonePe)',
-      status: paymentMethod === 'COD' ? 'Pending on Delivery' : 'Paid',
-      transactionId: 'TXN_' + Date.now().toString(36).toUpperCase()
+      method: (req.body.paymentDetails && req.body.paymentDetails.method) || paymentMethod || 'UPI (Google Pay / PhonePe)',
+      status: (paymentMethod === 'COD' || (req.body.paymentDetails && req.body.paymentDetails.method === 'COD')) ? 'Pending on Delivery' : 'Paid',
+      transactionId: (req.body.paymentDetails && req.body.paymentDetails.transactionId) || ('TXN_' + Date.now().toString(36).toUpperCase()),
+      gateway: (req.body.paymentDetails && req.body.paymentDetails.gateway) || 'Razorpay / Cashfree Luxury Sandbox',
+      rrn: (req.body.paymentDetails && req.body.paymentDetails.rrn) || ('RRN' + Math.floor(100000000000 + Math.random() * 900000000000)),
+      upiId: (req.body.paymentDetails && req.body.paymentDetails.upiId) || null,
+      cardLast4: (req.body.paymentDetails && req.body.paymentDetails.cardLast4) || null,
+      emiTenure: (req.body.paymentDetails && req.body.paymentDetails.emiTenure) || null,
+      bankName: (req.body.paymentDetails && req.body.paymentDetails.bankName) || null,
+      paidAt: new Date().toISOString()
     },
     summary: {
       subtotal,
@@ -610,16 +617,36 @@ router.post('/schemes/:id/pay', (req, res) => {
   const nextDue = new Date();
   nextDue.setMonth(nextDue.getMonth() + 1);
 
+  const paymentRecord = {
+    installmentNo: newPaidCount,
+    amount: scheme.monthlyAmount,
+    goldGramsCredited: additionalGrams,
+    goldRateLocked: rates.gold22k,
+    date: new Date().toISOString(),
+    transactionId: (req.body.paymentDetails && req.body.paymentDetails.transactionId) || req.body.transactionId || ('PAY_SCH_' + Date.now().toString(36).toUpperCase()),
+    paymentMethod: (req.body.paymentDetails && req.body.paymentDetails.method) || req.body.paymentMethod || 'UPI (Google Pay / PhonePe)',
+    gateway: (req.body.paymentDetails && req.body.paymentDetails.gateway) || 'Razorpay / Cashfree Luxury Sandbox',
+    receiptNumber: 'RCPT-KJ-SCH-' + (100000 + Math.floor(Math.random() * 900000))
+  };
+
+  const existingHistory = Array.isArray(scheme.paymentHistory) ? scheme.paymentHistory : [];
+
   const updates = {
     paidInstallments: newPaidCount,
     totalAccumulatedGoldGrams: Number((scheme.totalAccumulatedGoldGrams + additionalGrams).toFixed(3)),
     nextDueDate: nextDue.toISOString().split('T')[0],
+    paymentHistory: [...existingHistory, paymentRecord],
     status: newPaidCount >= scheme.tenureMonths ? 'Matured - Ready for Jewellery Purchase' : 'Active'
   };
 
   const updated = db.update('schemes', req.params.id, updates);
   broadcastSync('SCHEMES_UPDATED', { action: 'pay', scheme: updated });
-  res.json({ success: true, message: `Installment #${newPaidCount} paid successfully!`, scheme: updated });
+  res.json({
+    success: true,
+    message: `Installment #${newPaidCount} paid successfully! ${additionalGrams}g 22KT gold credited to passbook.`,
+    receipt: paymentRecord,
+    scheme: updated
+  });
 });
 
 // ==========================================

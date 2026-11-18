@@ -722,13 +722,43 @@ async function submitViswaOrder(e) {
   const city = document.getElementById('viswa-chk-city').value;
   const state = document.getElementById('viswa-chk-state').value;
   const pincode = document.getElementById('viswa-chk-pincode').value;
-  const paymentMethod = document.getElementById('viswa-chk-payment').value;
+  const customer = { name, phone, email, address, city, state, pincode };
 
+  // Calculate cart total
+  let totalAmount = 0;
+  viswaState.cart.forEach(item => {
+    const prod = viswaState.products.find(p => p.id === item.productId);
+    const price = prod?.pricing?.finalPrice || (item.price || 50000);
+    totalAmount += price * item.quantity;
+  });
+
+  if (window.KJPaymentGateway && typeof window.KJPaymentGateway.openCheckout === 'function') {
+    closeViswaCheckoutModal();
+    window.KJPaymentGateway.openCheckout({
+      brand: 'viswanandini',
+      amount: totalAmount,
+      customer: customer,
+      items: viswaState.cart,
+      onPaymentSuccess: async (payDetails) => {
+        await executeFinalViswaOrder(customer, payDetails);
+      },
+      onCancel: () => {
+        openViswaCheckoutModal();
+      }
+    });
+    return;
+  }
+
+  await executeFinalViswaOrder(customer, { method: 'UPI (Viswanandini Bridal House)' });
+}
+
+async function executeFinalViswaOrder(customer, payDetails) {
   const orderPayload = {
     brand: 'viswanandini',
-    customer: { name, phone, email, address, city, state, pincode },
+    customer: customer,
     items: viswaState.cart.map(i => ({ productId: i.productId, quantity: i.quantity })),
-    paymentMethod
+    paymentMethod: payDetails?.method || 'UPI',
+    paymentDetails: payDetails
   };
 
   try {
@@ -739,7 +769,7 @@ async function submitViswaOrder(e) {
       closeViswaCheckoutModal();
 
       const invoiceUrl = `/invoice?orderId=${res.order.id}&brand=viswanandini`;
-      if (confirm(`🎉 Royal Order Placed Successfully!\n\nOrder ID: ${res.order.id}\nArmoured Tracking: ${res.order.trackingNumber}\nTotal: ₹${res.order.summary.grandTotal.toLocaleString('en-IN')}\n\nClick OK to view and print your Official GST Hallmark Tax Invoice!`)) {
+      if (confirm(`👑 Royal Bridal Order Placed Successfully!\n\nOrder ID: ${res.order.id}\nArmoured Transit Waybill: ${res.order.trackingNumber}\nPayment Ref: ${payDetails?.transactionId || 'TXN_VERIFIED'}\nTotal: ₹${res.order.summary.grandTotal.toLocaleString('en-IN')}\n\nClick OK to view and print your Official GST Hallmark Tax Invoice!`)) {
         window.location.href = invoiceUrl;
       }
     } else {

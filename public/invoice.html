@@ -123,6 +123,7 @@
       <div>
         <span class="text-stone-400 uppercase text-[9px] font-bold tracking-wider block">Payment Mode</span>
         <strong id="inv-payment-mode" class="text-stone-900 text-emerald-700">UPI (Paid)</strong>
+        <span id="inv-payment-txn" class="text-[9px] text-stone-500 font-mono block truncate"></span>
       </div>
     </div>
 
@@ -303,6 +304,12 @@
         day: '2-digit', month: 'short', year: 'numeric'
       });
       document.getElementById('inv-payment-mode').innerText = `${ord.payment.method} (${ord.payment.status})`;
+      const txnEl = document.getElementById('inv-payment-txn');
+      if (txnEl && ord.payment) {
+        const txnId = ord.payment.transactionId || '';
+        const rrn = ord.payment.rrn ? ` | RRN: ${ord.payment.rrn}` : '';
+        txnEl.innerText = txnId ? `Ref: ${txnId}${rrn}` : '';
+      }
       document.getElementById('inv-tracking-no').innerText = ord.trackingNumber || 'BVC-INSURED-89210';
       document.getElementById('inv-delivery-date').innerText = ord.deliveryEstimated || '10 Nov 2026';
 
