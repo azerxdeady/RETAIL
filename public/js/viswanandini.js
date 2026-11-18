@@ -85,24 +85,36 @@ function renderViswaTicker(rates) {
   const timeStr = new Date(rates.lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   const cityName = rates.cityName || 'Coimbatore';
 
-  tickerEl.innerHTML = `
-    <div class="flex items-center gap-3 sm:gap-6 whitespace-nowrap text-xs font-medium">
+  const singleTrackHTML = `
+    <div class="ticker-content-group flex items-center gap-4 sm:gap-7 whitespace-nowrap text-xs font-medium px-4">
       <!-- 1-Click Interactive City & Location Pill -->
-      <button onclick="openCitySelectorModal()" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-[#f7e7b4] text-xs font-semibold transition cursor-pointer shadow-sm group" title="Click to view local gold rates for your city">
+      <button onclick="openCitySelectorModal()" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-[#f7e7b4] text-xs font-semibold transition cursor-pointer shadow-sm group flex-shrink-0" title="Click to view local gold rates for your city">
         <span class="text-amber-400 group-hover:scale-110 transition-transform">📍</span>
         <span class="current-city-label font-bold text-white">${cityName}</span>
         <span class="text-[10px] text-amber-300 underline font-normal">(Change)</span>
       </button>
 
-      <span class="flex items-center gap-2 text-[#f3e5ab]">
-        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+      <span class="flex items-center gap-2 text-[#f3e5ab] flex-shrink-0">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shadow-[0_0_8px_#f59e0b]"></span>
         <strong class="text-white tracking-widest font-serif">CENTRAL BULLION INDEX</strong> (${timeStr})
       </span>
-      <span>Gold 22KT (916 BIS Hallmark): <strong class="text-white font-mono">₹${rates.gold22k.toLocaleString('en-IN')}/g</strong></span>
-      <span>Gold 24KT (999 Pure): <strong class="text-white font-mono">₹${rates.gold24k.toLocaleString('en-IN')}/g</strong></span>
-      <span>Gold 18KT (Rose & Diamond): <strong class="text-white font-mono">₹${rates.gold18k.toLocaleString('en-IN')}/g</strong></span>
-      <span>Fine Silver: <strong class="text-white font-mono">₹${rates.silver.toLocaleString('en-IN')}/g</strong></span>
-      <span class="text-amber-300 font-bold">★ ${rates.association || 'Certified Under Karthik Jewellers BIS License'}</span>
+      <span class="flex-shrink-0">Gold 22KT (916 BIS Hallmark): <strong class="text-white font-mono">₹${rates.gold22k.toLocaleString('en-IN')}/g</strong></span>
+      <span class="flex-shrink-0">Gold 24KT (999 Pure): <strong class="text-white font-mono">₹${rates.gold24k.toLocaleString('en-IN')}/g</strong></span>
+      <span class="flex-shrink-0">Gold 18KT (Rose & Diamond): <strong class="text-white font-mono">₹${rates.gold18k.toLocaleString('en-IN')}/g</strong></span>
+      <span class="flex-shrink-0">Fine Silver: <strong class="text-white font-mono">₹${rates.silver.toLocaleString('en-IN')}/g</strong></span>
+      <span class="text-amber-300 font-bold flex-shrink-0">★ ${rates.association || 'Certified Under Karthik Jewellers BIS License'}</span>
+      <a href="/" class="hover:text-white font-bold flex items-center gap-1 text-amber-200 transition flex-shrink-0"><span>🏛️</span> Flagship Storefront</a>
+      <a href="#huid-section" class="hover:text-amber-200 flex items-center gap-1 text-stone-300 transition flex-shrink-0"><span>🛡️</span> BIS 916 Stamped</a>
+      <span class="text-amber-500/50 flex-shrink-0">•</span>
+    </div>
+  `;
+
+  tickerEl.innerHTML = `
+    <div class="ticker-marquee-wrapper overflow-hidden relative w-full">
+      <div class="ticker-marquee-track">
+        ${singleTrackHTML}
+        ${singleTrackHTML}
+      </div>
     </div>
   `;
 }

@@ -93,11 +93,13 @@
     </div>
   </div>
 
-  <!-- 2. LIVE BULLION TICKER SYNCED WITH KARTHIK JEWELLERS -->
-  <div class="bg-[#1f0a0e] text-[#f7e7b4] py-1.5 px-4 overflow-x-auto border-b border-[#781d2a]/40 no-scrollbar">
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-6" id="viswa-rate-ticker">
-      <span class="text-xs text-amber-200/80">Synchronizing live bullion rates with Karthik Jewellers master exchange...</span>
+  <!-- 2. LIVE BULLION TICKER SYNCED WITH KARTHIK JEWELLERS (Continuous Marquee) -->
+  <div class="bg-[#1f0a0e] text-[#f7e7b4] py-1.5 overflow-hidden border-b border-[#781d2a]/40 relative z-20" title="Live Bullion Index • Hover or hold to pause">
+    <div class="viswa-ticker-vignette-left absolute left-0 top-0 bottom-0 w-8 sm:w-16 pointer-events-none z-10"></div>
+    <div id="viswa-rate-ticker" class="w-full overflow-hidden">
+      <span class="text-xs text-amber-200/80 px-4">Synchronizing live bullion rates with Karthik Jewellers master exchange...</span>
     </div>
+    <div class="viswa-ticker-vignette-right absolute right-0 top-0 bottom-0 w-8 sm:w-16 pointer-events-none z-10"></div>
   </div>
 
   <!-- 3. ROYAL BURGUNDY & WARM GOLD NAVBAR -->
@@ -821,7 +823,7 @@
   <script defer src="/js/sync-engine.js"></script>
   <script defer src="/js/ar-tryon.js"></script>
   <script defer src="/js/payment-gateway.js"></script>
-  <script defer src="/js/viswanandini.js"></script>
+  <script defer src="/js/viswanandini.js?v=5"></script>
   <script defer src="/js/ux3d.js?v=5"></script>
 </body>
 </html>

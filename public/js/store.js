@@ -109,24 +109,39 @@ function renderRateTicker(rates) {
   const timeStr = new Date(rates.lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   const cityName = rates.cityName || 'Coimbatore';
 
-  tickerEl.innerHTML = `
-    <div class="flex items-center gap-3 sm:gap-6 whitespace-nowrap text-xs font-medium">
+  const singleTrackHTML = `
+    <div class="ticker-content-group flex items-center gap-4 sm:gap-7 whitespace-nowrap text-xs font-medium px-4">
       <!-- 1-Click Interactive City & Location Pill -->
-      <button onclick="openCitySelectorModal()" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-amber-300/40 text-amber-200 text-xs font-semibold transition cursor-pointer shadow-sm group" title="Click to view local gold rates for your city">
+      <button onclick="openCitySelectorModal()" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-amber-300/40 text-amber-200 text-xs font-semibold transition cursor-pointer shadow-sm group flex-shrink-0" title="Click to view local gold rates for your city">
         <span class="text-amber-400 group-hover:scale-110 transition-transform">📍</span>
         <span class="current-city-label font-bold text-white">${cityName}</span>
         <span class="text-[10px] text-amber-300 underline font-normal">(Change)</span>
       </button>
 
-      <span class="flex items-center gap-2 text-[#f3e5ab]">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-rate"></span>
-        <strong class="text-white tracking-wide">LIVE BULLION INDEX</strong> (${timeStr})
+      <span class="flex items-center gap-2 text-[#f3e5ab] flex-shrink-0">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-rate shadow-[0_0_8px_#4ade80]"></span>
+        <strong class="text-white tracking-wider font-semibold">LIVE BULLION INDEX</strong> (${timeStr})
       </span>
-      <span class="text-amber-100">Gold 24KT (999): <strong class="text-white font-mono">₹${rates.gold24k.toLocaleString('en-IN')}/g</strong></span>
-      <span class="text-amber-200">Gold 22KT (916 Hallmark): <strong class="text-white font-mono">₹${rates.gold22k.toLocaleString('en-IN')}/g</strong></span>
-      <span class="text-amber-100">Gold 18KT: <strong class="text-white font-mono">₹${rates.gold18k.toLocaleString('en-IN')}/g</strong></span>
-      <span class="text-slate-200">Silver 999: <strong class="text-white font-mono">₹${rates.silver.toLocaleString('en-IN')}/g</strong></span>
-      <span class="text-emerald-300 font-semibold">★ ${rates.association || '0% Making Charges on 24KT Gold Coins'}</span>
+      <span class="text-amber-100 flex-shrink-0">Gold 24KT (999 Pure): <strong class="text-white font-mono">₹${rates.gold24k.toLocaleString('en-IN')}/g</strong></span>
+      <span class="text-amber-200 flex-shrink-0">Gold 22KT (916 Hallmark): <strong class="text-white font-mono">₹${rates.gold22k.toLocaleString('en-IN')}/g</strong></span>
+      <span class="text-amber-100 flex-shrink-0">Gold 18KT: <strong class="text-white font-mono">₹${rates.gold18k.toLocaleString('en-IN')}/g</strong></span>
+      <span class="text-slate-200 flex-shrink-0">Silver 999: <strong class="text-white font-mono">₹${rates.silver.toLocaleString('en-IN')}/g</strong></span>
+      <span class="text-emerald-300 font-semibold flex-shrink-0">★ ${rates.association || '0% Making Charges on 24KT Gold Coins'}</span>
+      <a href="/viswanandini" class="hover:text-white font-bold flex items-center gap-1 bg-[#460c14] hover:bg-[#5e101b] px-3 py-0.5 rounded-full border border-amber-400/40 text-amber-200 transition flex-shrink-0 shadow-sm">
+        <span>👑</span> Viswanandini Bridal
+      </a>
+      <a href="#huid-section" class="hover:text-amber-200 flex items-center gap-1 text-stone-300 transition flex-shrink-0"><span>🛡️</span> BIS 916 &amp; HUID Verified</a>
+      <a href="#track-section" class="hover:text-amber-200 flex items-center gap-1 text-stone-300 transition flex-shrink-0"><span>📦</span> Armoured Insured Transit</a>
+      <span class="text-amber-500/50 flex-shrink-0">•</span>
+    </div>
+  `;
+
+  tickerEl.innerHTML = `
+    <div class="ticker-marquee-wrapper overflow-hidden relative w-full">
+      <div class="ticker-marquee-track">
+        ${singleTrackHTML}
+        ${singleTrackHTML}
+      </div>
     </div>
   `;
 }

@@ -2399,3 +2399,72 @@ html.dark #category-navbar a.active-category {
     padding-right: 0.4rem !important;
   }
 }
+
+
+/* ==========================================================================
+   LIVE BULLION INDEX CONTINUOUS MARQUEE TICKER (All Devices)
+   Smooth infinite CSS translate3d loop with pause on hover/touch
+   ========================================================================== */
+
+.gold-ticker-wrapper {
+  background: linear-gradient(90deg, #090703 0%, #171106 50%, #090703 100%) !important;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.45) !important;
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.45) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.ticker-marquee-wrapper {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ticker-marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  width: max-content;
+  will-change: transform;
+  animation: bullionMarqueeScroll 36s linear infinite;
+}
+
+/* Pause smoothly when user hovers or touches */
+.gold-ticker-wrapper:hover .ticker-marquee-track,
+.gold-ticker-wrapper:active .ticker-marquee-track,
+.ticker-marquee-wrapper:hover .ticker-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes bullionMarqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Soft Edge Gradient Vignettes */
+.ticker-vignette-left {
+  background: linear-gradient(90deg, #090703 0%, rgba(9, 7, 3, 0.85) 45%, transparent 100%);
+}
+
+.ticker-vignette-right {
+  background: linear-gradient(90deg, transparent 0%, rgba(9, 7, 3, 0.85) 55%, #090703 100%);
+}
+
+.viswa-ticker-vignette-left {
+  background: linear-gradient(90deg, #1f0a0e 0%, rgba(31, 10, 14, 0.85) 45%, transparent 100%);
+}
+
+.viswa-ticker-vignette-right {
+  background: linear-gradient(90deg, transparent 0%, rgba(31, 10, 14, 0.85) 55%, #1f0a0e 100%);
+}
+
+.ticker-content-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}

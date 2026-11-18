@@ -171,24 +171,18 @@
     </div>
   </div>
 
-  <!-- 1. LIVE GOLD & SILVER RATE TICKER HEADER (Touch-Smooth Horizontal Flow) -->
-  <div class="gold-ticker-wrapper py-1.5 sm:py-2 px-3 sm:px-4 text-white relative z-20">
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-6">
-      <div id="live-rate-ticker" class="flex-1 overflow-x-auto no-scrollbar scroll-smooth">
-        <!-- Injected via store.js -->
-        <span class="text-xs text-amber-200">Connecting to Bullion Assaying Index...</span>
-      </div>
-      <div class="hidden lg:flex items-center gap-3.5 text-xs text-amber-200/80 flex-shrink-0">
-        <a href="/viswanandini"
-          class="hover:text-white font-bold flex items-center gap-1.5 bg-[#460c14] hover:bg-[#5e101b] px-3 py-1 rounded-full border border-amber-400/40 text-amber-200 transition shadow-sm">
-          <span>👑</span> Viswanandini Bridal
-        </a>
-        <span class="text-amber-500/50">•</span>
-        <a href="#huid-section" class="hover:text-amber-200 flex items-center gap-1 transition"><span>🛡️</span> Verify HUID</a>
-        <span class="text-amber-500/50">•</span>
-        <a href="#track-section" class="hover:text-amber-200 flex items-center gap-1 transition"><span>📦</span> Track Consignment</a>
-      </div>
+  <!-- 1. LIVE GOLD & SILVER RATE TICKER HEADER (Continuous Scrolling Marquee on All Devices) -->
+  <div class="gold-ticker-wrapper py-1.5 sm:py-2 text-white relative z-20 overflow-hidden" title="Live Bullion Index • Hover or hold to pause">
+    <!-- Left soft gradient vignette -->
+    <div class="ticker-vignette-left absolute left-0 top-0 bottom-0 w-8 sm:w-16 pointer-events-none z-10"></div>
+
+    <div id="live-rate-ticker" class="w-full overflow-hidden">
+      <!-- Injected via store.js -->
+      <span class="text-xs text-amber-200 px-4">Connecting to Bullion Assaying Index...</span>
     </div>
+
+    <!-- Right soft gradient vignette -->
+    <div class="ticker-vignette-right absolute right-0 top-0 bottom-0 w-8 sm:w-16 pointer-events-none z-10"></div>
   </div>
 
   <!-- 2. MODERN LUXURY GLASS NAVBAR (Fluid Multi-Device Layout) -->
@@ -1647,7 +1641,7 @@
   <script defer src="/js/sync-engine.js"></script>
   <script defer src="/js/ar-tryon.js"></script>
   <script defer src="/js/payment-gateway.js"></script>
-  <script defer src="/js/store.js"></script>
+  <script defer src="/js/store.js?v=5"></script>
   <script src="/js/splash-screen.js?v=5"></script>
   <script defer src="/js/ux3d.js?v=5"></script>
 </body>
