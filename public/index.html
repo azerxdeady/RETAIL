@@ -8,6 +8,21 @@
   <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- High-Speed Resource Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://images.unsplash.com">
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Optimized Google Web Fonts Direct Preload -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
   <script>
     // Immediate Theme Initialization (Prevents FOUC)
     (function() {
@@ -203,7 +218,7 @@
       <div class="w-full max-w-md hero-floating-product">
         <div class="bg-white p-4 rounded-3xl border border-[#d4af37]/40 shadow-[0_25px_60px_-12px_rgba(212,175,55,0.22)] relative group hover:border-[#d4af37] transition duration-500">
           <div class="relative h-88 sm:h-96 rounded-2xl overflow-hidden mb-4 bg-stone-100">
-            <img id="hero-showcase-img" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80" alt="Mayuri Heritage Peacock Antique Gold Haram" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80';" />
+            <img id="hero-showcase-img" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80" alt="Mayuri Heritage Peacock Antique Gold Haram" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" fetchpriority="high" loading="eager" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80';" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"></div>
             <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
               <div>
@@ -252,7 +267,7 @@
       <!-- Collection 1: Muhurat Bridal -->
       <div onclick="filterByCategory('necklaces')" class="group cursor-pointer bg-white rounded-2xl p-4 border border-[#d4af37]/30 hover:border-[#d4af37] shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center">
         <div class="kalyan-story-ring kj-reveal w-20 h-20 mb-3 overflow-hidden bg-amber-50">
-          <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80" alt="Muhurat Bridal Collection" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
+          <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80" alt="Muhurat Bridal Collection" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
         </div>
         <span class="text-[9px] font-bold text-[#b4860b] uppercase tracking-wider">Bridal Suite</span>
         <h4 class="font-serif font-bold text-sm text-stone-900 mt-0.5 group-hover:text-[#b4860b] transition">Muhurat</h4>
@@ -262,7 +277,7 @@
       <!-- Collection 2: Mudhra Temple -->
       <div onclick="filterByCategory('necklaces')" class="group cursor-pointer bg-white rounded-2xl p-4 border border-[#d4af37]/30 hover:border-[#d4af37] shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center">
         <div class="kalyan-story-ring kj-reveal w-20 h-20 mb-3 overflow-hidden bg-amber-50">
-          <img src="https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?auto=format&fit=crop&w=400&q=80" alt="Mudhra Antique Temple Jewellery" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
+          <img src="https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?auto=format&fit=crop&w=400&q=80" alt="Mudhra Antique Temple Jewellery" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
         </div>
         <span class="text-[9px] font-bold text-[#b4860b] uppercase tracking-wider">Heritage</span>
         <h4 class="font-serif font-bold text-sm text-stone-900 mt-0.5 group-hover:text-[#b4860b] transition">Mudhra</h4>
@@ -272,7 +287,7 @@
       <!-- Collection 3: Ziah Solitaires -->
       <div onclick="filterByCategory('rings')" class="group cursor-pointer bg-white rounded-2xl p-4 border border-[#d4af37]/30 hover:border-[#d4af37] shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center">
         <div class="kalyan-story-ring kj-reveal w-20 h-20 mb-3 overflow-hidden bg-amber-50">
-          <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=400&q=80" alt="Ziah Certified Diamonds" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
+          <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=400&q=80" alt="Ziah Certified Diamonds" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
         </div>
         <span class="text-[9px] font-bold text-[#b4860b] uppercase tracking-wider">Diamonds</span>
         <h4 class="font-serif font-bold text-sm text-stone-900 mt-0.5 group-hover:text-[#b4860b] transition">Ziah</h4>
@@ -282,7 +297,7 @@
       <!-- Collection 4: Nimah Polki -->
       <div onclick="filterByCategory('earrings')" class="group cursor-pointer bg-white rounded-2xl p-4 border border-[#d4af37]/30 hover:border-[#d4af37] shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center">
         <div class="kalyan-story-ring kj-reveal w-20 h-20 mb-3 overflow-hidden bg-amber-50">
-          <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=400&q=80" alt="Nimah Royal Polki & Kundan" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
+          <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=400&q=80" alt="Nimah Royal Polki & Kundan" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
         </div>
         <span class="text-[9px] font-bold text-[#b4860b] uppercase tracking-wider">Royal Kundan</span>
         <h4 class="font-serif font-bold text-sm text-stone-900 mt-0.5 group-hover:text-[#b4860b] transition">Nimah</h4>
@@ -292,7 +307,7 @@
       <!-- Collection 5: Sankalp Pure Gold -->
       <div onclick="filterByCategory('bangles')" class="group cursor-pointer bg-white rounded-2xl p-4 border border-[#d4af37]/30 hover:border-[#d4af37] shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center">
         <div class="kalyan-story-ring kj-reveal w-20 h-20 mb-3 overflow-hidden bg-amber-50">
-          <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=400&q=80" alt="Sankalp Daily Gold Bangles" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
+          <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=400&q=80" alt="Sankalp Daily Gold Bangles" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
         </div>
         <span class="text-[9px] font-bold text-[#b4860b] uppercase tracking-wider">Daily Elegance</span>
         <h4 class="font-serif font-bold text-sm text-stone-900 mt-0.5 group-hover:text-[#b4860b] transition">Sankalp</h4>
@@ -302,7 +317,7 @@
       <!-- Collection 6: Akshaya Bullion -->
       <div onclick="filterByCategory('coins')" class="group cursor-pointer bg-white rounded-2xl p-4 border border-[#d4af37]/30 hover:border-[#d4af37] shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center">
         <div class="kalyan-story-ring kj-reveal w-20 h-20 mb-3 overflow-hidden bg-amber-50">
-          <img src="https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&w=400&q=80" alt="Akshaya 24KT Gold Minted Coins" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
+          <img src="https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&w=400&q=80" alt="Akshaya 24KT Gold Minted Coins" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';" />
         </div>
         <span class="text-[9px] font-bold text-[#b4860b] uppercase tracking-wider">Investment</span>
         <h4 class="font-serif font-bold text-sm text-stone-900 mt-0.5 group-hover:text-[#b4860b] transition">Akshaya</h4>
@@ -561,7 +576,7 @@
         </div>
         <div class="flex items-center gap-3.5 mt-6 pt-4 border-t border-stone-100">
           <div class="w-11 h-11 rounded-full overflow-hidden bg-amber-100 border border-[#d4af37]/40 flex-shrink-0">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Dr. Pooja Ramachandran" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80';" />
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Dr. Pooja Ramachandran" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80';" />
           </div>
           <div>
             <h5 class="font-serif font-bold text-sm text-stone-900">Dr. Pooja Ramachandran</h5>
@@ -585,7 +600,7 @@
         </div>
         <div class="flex items-center gap-3.5 mt-6 pt-4 border-t border-stone-100">
           <div class="w-11 h-11 rounded-full overflow-hidden bg-amber-100 border border-[#d4af37]/40 flex-shrink-0">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Siddharth & Ananya Menon" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80';" />
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Siddharth & Ananya Menon" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80';" />
           </div>
           <div>
             <h5 class="font-serif font-bold text-sm text-stone-900">Siddharth & Ananya Menon</h5>
@@ -609,7 +624,7 @@
         </div>
         <div class="flex items-center gap-3.5 mt-6 pt-4 border-t border-stone-100">
           <div class="w-11 h-11 rounded-full overflow-hidden bg-amber-100 border border-[#d4af37]/40 flex-shrink-0">
-            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" alt="Lavanya Reddy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80';" />
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" alt="Lavanya Reddy" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80';" />
           </div>
           <div>
             <h5 class="font-serif font-bold text-sm text-stone-900">Lavanya Reddy</h5>
@@ -1072,14 +1087,13 @@
     </button>
   </nav>
 
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
-  <script src="/js/api.js"></script>
-  <script src="/js/location-rates.js"></script>
-  <script src="/js/sync-engine.js"></script>
-  <script src="/js/ar-tryon.js"></script>
-  <script src="/js/payment-gateway.js"></script>
-  <script src="/js/store.js"></script>
-  <script src="/js/ux3d.js"></script>
+  <!-- Critical Application Scripts (Optimized Parallel Loading with defer) -->
+  <script defer src="/js/api.js"></script>
+  <script defer src="/js/location-rates.js"></script>
+  <script defer src="/js/sync-engine.js"></script>
+  <script defer src="/js/ar-tryon.js"></script>
+  <script defer src="/js/payment-gateway.js"></script>
+  <script defer src="/js/store.js"></script>
+  <script defer src="/js/ux3d.js"></script>
 </body>
 </html>

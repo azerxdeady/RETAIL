@@ -3,7 +3,7 @@
    Contemporary High-End Fine Jewellery Aesthetic (Opulent Gold • Imperial Luxury)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+/* Google Fonts loaded via HTML <head> preconnect for zero render-blocking */
 
 :root {
   --surface-cream: #faf7f2;
@@ -1570,6 +1570,38 @@ html.dark #mobile-bottom-nav {
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
   }
+}
+
+/* ==========================================================================
+   HIGH-SPEED PERFORMANCE & LAZY-LOADING SHIMMER SYSTEM
+   ========================================================================== */
+
+/* Skeleton shimmer placeholder for image containers */
+.img-loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(240, 237, 230, 0.8) 0%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(240, 237, 230, 0.8) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerPulse 1.8s infinite;
+}
+
+@keyframes shimmerPulse {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Image containment for offscreen rendering acceleration */
+.product-image-container {
+  contain: layout paint;
+  content-visibility: auto;
+}
+
+/* Async image decode smooth transition */
+img[loading="lazy"] {
+  transition: opacity 0.25s ease-in-out;
 }
 
 /* ==========================================================================

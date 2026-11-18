@@ -284,7 +284,41 @@
       this.resetFit();
     }
 
-    initMediaPipeTracker() {
+    async loadMediaPipe() {
+      if (window.FaceMesh && window.Camera) return true;
+      if (this._loadingMediaPipe) return this._loadingMediaPipe;
+
+      this._loadingMediaPipe = new Promise((resolve) => {
+        let loaded = 0;
+        const check = () => {
+          loaded++;
+          if (loaded >= 2) resolve(true);
+        };
+        const s1 = document.createElement('script');
+        s1.src = 'https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js';
+        s1.async = true;
+        s1.onload = check;
+        s1.onerror = () => resolve(false);
+
+        const s2 = document.createElement('script');
+        s2.src = 'https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js';
+        s2.async = true;
+        s2.onload = check;
+        s2.onerror = () => resolve(false);
+
+        document.head.appendChild(s1);
+        document.head.appendChild(s2);
+      });
+
+      return this._loadingMediaPipe;
+    }
+
+    async initMediaPipeTracker() {
+      if (typeof window.FaceMesh === 'undefined' || typeof window.Camera === 'undefined') {
+        this.updateAiBadge('Loading AI Face Engine...');
+        await this.loadMediaPipe();
+      }
+
       if (typeof window.FaceMesh === 'undefined') {
         console.log('MediaPipe FaceMesh not loaded from CDN; using real-time canvas anchor');
         this.updateAiBadge('Ready • Manual Anchor & Drag');

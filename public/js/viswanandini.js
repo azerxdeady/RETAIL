@@ -228,8 +228,8 @@ function renderViswaProductsGrid(products) {
         
         <!-- Image Area with Dual-Angle Crossfade -->
         <div class="product-image-container relative overflow-hidden aspect-square bg-[#fcf9f2]">
-          <img src="${img1}" alt="${prod.name}" class="img-primary w-full h-full object-cover" loading="lazy" onerror="this.onerror=null; this.src='${fallbackImg}';">
-          <img src="${img2}" alt="${prod.name} Alternate Angle" class="img-secondary" loading="lazy" onerror="this.onerror=null; this.src='${img1}';">
+          <img src="${img1}" alt="${prod.name}" class="img-primary w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${fallbackImg}';">
+          <img src="${img2}" alt="${prod.name} Alternate Angle" class="img-secondary" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${img1}';">
           
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
 
@@ -684,7 +684,7 @@ function openCartDrawer() {
 
       return `
         <div class="flex items-center gap-3 p-3 rounded-2xl bg-[#fcf9f2] border border-stone-200">
-          <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl border border-stone-300">
+          <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl border border-stone-300" loading="lazy" decoding="async">
           <div class="flex-1 text-xs">
             <h5 class="font-serif font-bold text-stone-900 leading-tight">${item.name}</h5>
             <p class="text-stone-500 font-mono text-[11px] mt-0.5">₹${item.price.toLocaleString('en-IN')}</p>

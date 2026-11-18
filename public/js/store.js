@@ -215,7 +215,7 @@ function renderCategories(categories) {
   container.innerHTML = categories.map(cat => `
     <div onclick="filterByCategory('${cat.id}')" class="category-card group cursor-pointer rounded-2xl p-4 flex flex-col items-center text-center">
       <div class="kalyan-story-ring w-20 h-20 sm:w-24 sm:h-24 overflow-hidden mb-3.5 p-1 bg-stone-50">
-        <img src="${cat.image}" alt="${cat.name}" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition duration-500" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80';" />
+        <img src="${cat.image}" alt="${cat.name}" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition duration-500" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80';" />
       </div>
       <h4 class="font-serif font-bold text-sm text-stone-900 group-hover:text-[#996515] transition">${cat.name}</h4>
       <p class="text-[11px] text-stone-500 mt-0.5 line-clamp-1 font-light">${cat.description}</p>
@@ -309,8 +309,8 @@ function renderProductsGrid(products) {
 
         <!-- Product Image Container with Dual-Angle Crossfade -->
         <div onclick="openProductModal('${prod.id}')" class="product-image-container h-64 sm:h-72 cursor-pointer relative overflow-hidden bg-stone-50">
-          <img src="${img1}" alt="${prod.name}" class="img-primary w-full h-full object-cover" loading="lazy" onerror="this.onerror=null; this.src='${fallbackImg}';" />
-          <img src="${img2}" alt="${prod.name} Alternate Angle" class="img-secondary" loading="lazy" onerror="this.onerror=null; this.src='${img1}';" />
+          <img src="${img1}" alt="${prod.name}" class="img-primary w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${fallbackImg}';" />
+          <img src="${img2}" alt="${prod.name} Alternate Angle" class="img-secondary" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${img1}';" />
           
           <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
 
@@ -396,7 +396,7 @@ async function openProductModal(productId) {
         <!-- Media Column -->
         <div class="flex flex-col gap-4">
           <div class="w-full h-80 sm:h-96 rounded-2xl overflow-hidden bg-stone-100 border border-stone-200 relative group">
-            <img id="main-modal-img" src="${p.images[0]}" alt="${p.name}" class="w-full h-full object-cover transition duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80';" />
+            <img id="main-modal-img" src="${p.images[0]}" alt="${p.name}" class="w-full h-full object-cover transition duration-300" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80';" />
             <div class="absolute bottom-3 left-3 bg-black/75 backdrop-blur text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-2">
               <span>HUID: <strong class="font-mono">${p.huid}</strong></span>
               <span>•</span>
@@ -407,7 +407,7 @@ async function openProductModal(productId) {
           <div class="flex gap-2 overflow-x-auto pb-1">
             ${p.images.map((img, i) => `
               <button onclick="document.getElementById('main-modal-img').src='${img}'" class="w-16 h-16 rounded-xl overflow-hidden border-2 border-stone-200 hover:border-[#c5a059] flex-shrink-0 transition">
-                <img src="${img}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80';" />
+                <img src="${img}" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80';" />
               </button>
             `).join('')}
           </div>
@@ -767,7 +767,7 @@ function renderCartDrawerItems() {
 
   container.innerHTML = cart.map(item => `
     <div class="flex gap-4 p-3.5 bg-stone-50/80 rounded-2xl border border-stone-200/80">
-      <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-xl object-cover border border-stone-200 flex-shrink-0" />
+      <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-xl object-cover border border-stone-200 flex-shrink-0" loading="lazy" decoding="async" />
       <div class="flex-1 min-w-0">
         <h4 class="font-serif font-bold text-xs text-stone-900 truncate">${item.name}</h4>
         <p class="text-[10px] text-stone-500">${item.purity} | Net: ${item.netWeight}g</p>

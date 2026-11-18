@@ -1,18 +1,41 @@
 const express = require('express');
 const cors = require('cors');
+const compression = require('compression');
 const path = require('path');
 const apiRoutes = require('./routes/api');
 
 const app = express();
+
+// High-Performance Compression (Gzip / Deflate)
+app.use(compression({
+  filter: (req, res) => {
+    // Never compress Server-Sent Events (SSE) streaming connections
+    if (req.headers.accept === 'text/event-stream' || req.url.includes('/api/sync/')) {
+      return false;
+    }
+    return compression.filter(req, res);
+  }
+}));
 
 // Middlewares
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static assets from public/
+// Serve static assets with aggressive 7-day caching for CSS/JS/images and immediate revalidation for HTML
 const publicDir = path.join(__dirname, '../public');
-app.use(express.static(publicDir));
+app.use(express.static(publicDir, {
+  maxAge: '7d',
+  etag: true,
+  lastModified: true,
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+    } else {
+      res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
+    }
+  }
+}));
 
 // API routes
 app.use('/api', apiRoutes);
