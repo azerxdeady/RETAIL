@@ -1,22 +1,45 @@
 const app = require('./server/app');
 const db = require('./server/services/db');
+const os = require('os');
 
 const PORT = process.env.PORT || 5000;
 
 // Ensure database is initialized
 db.init();
 
-app.listen(PORT, () => {
+function getLocalIpAddresses() {
+  const ifaces = os.networkInterfaces();
+  const ips = [];
+  for (const name of Object.keys(ifaces)) {
+    for (const net of ifaces[name]) {
+      if (net.family === 'IPv4' && !net.internal) {
+        ips.push(net.address);
+      }
+    }
+  }
+  return ips;
+}
+
+app.listen(PORT, '0.0.0.0', () => {
+  const localIps = getLocalIpAddresses();
+  const primaryLanIp = localIps[0] || '127.0.0.1';
+  const hostname = os.hostname();
+
   console.log('================================================================');
-  console.log(' ✨  KARTHIK JEWELLERS - FINE JEWELLERY & ADMIN ECOSYSTEM  ✨');
+  console.log(' ✨  KARTHIK JEWELLERS - LOCAL ENTERPRISE SERVER HOST  ✨');
   console.log('================================================================');
-  console.log(` 🎛️  Master Hub Dashboard: http://localhost:${PORT}/dashboard`);
-  console.log(` 🛍️  Karthik Flagship:     http://localhost:${PORT}`);
-  console.log(` 👑  Viswanandini Bridal:   http://localhost:${PORT}/viswanandini`);
-  console.log(` ⚙️  Admin Command Center:  http://localhost:${PORT}/admin`);
-  console.log(` 📄  GST Invoice System:    http://localhost:${PORT}/invoice`);
-  console.log(` 📊  API Endpoints:        http://localhost:${PORT}/api/products`);
+  console.log(` 💻  This Computer:      http://localhost:${PORT}`);
+  if (localIps.length > 0) {
+    console.log(` 📶  Wi-Fi / LAN Network: http://${primaryLanIp}:${PORT}`);
+  }
+  console.log(` 🏷️  Hostname Access:    http://${hostname}:${PORT}`);
+  console.log('----------------------------------------------------------------');
+  console.log(` 🛍️  Karthik Storefront:   http://${primaryLanIp}:${PORT}`);
+  console.log(` 👑  Viswanandini Bridal: http://${primaryLanIp}:${PORT}/viswanandini`);
+  console.log(` 🎛️  Master Hub Cockpit:  http://${primaryLanIp}:${PORT}/dashboard`);
+  console.log(` ⚙️  Admin Operations:    http://${primaryLanIp}:${PORT}/admin`);
+  console.log(` 📄  GST Tax Invoice:     http://${primaryLanIp}:${PORT}/invoice`);
   console.log('================================================================');
-  console.log(' Ready to serve customers with BIS 916 Hallmark guarantee.');
+  console.log(' Serving showroom devices, tablets & billing counters on LAN.');
 });
 
