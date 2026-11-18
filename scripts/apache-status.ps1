@@ -1,4 +1,4 @@
-﻿# Check Apache & Node.js Server Health and Display Access URLs
+# Check Apache & Node.js Server Health and Display Access URLs
 Write-Host "====================================================================" -ForegroundColor Cyan
 Write-Host "  KARTHIK JEWELLERS - APACHE & BACKEND HEALTH CHECK                 " -ForegroundColor Yellow
 Write-Host "====================================================================" -ForegroundColor Cyan

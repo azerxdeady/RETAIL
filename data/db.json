@@ -1,13 +1,13 @@
 {
   "rates": {
-    "gold24k": 11325,
-    "gold22k": 10381,
-    "gold18k": 8494,
-    "silver": 137.8,
-    "lastUpdated": "2026-11-18T07:45:02.275Z",
+    "gold24k": 11327,
+    "gold22k": 10383,
+    "gold18k": 8495,
+    "silver": 137.4,
+    "lastUpdated": "2026-11-18T10:51:36.920Z",
     "updatedBy": "GoldAPI.io Real-Time Synchronizer",
-    "change": -7552.9,
-    "changePercent": -2.1,
+    "change": -7484.5,
+    "changePercent": -2.08,
     "symbol": "FX_IDC:XAUINR",
     "exchange": "IDC",
     "source": "GoldAPI.io Live Institutional Feed"
