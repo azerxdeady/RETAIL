@@ -1601,3 +1601,299 @@ img[loading="lazy"] {
 /* ==========================================================================
    END RESPONSIVE UX SUITE
    ========================================================================== */
+
+
+/* ==========================================================================
+   INTERACTIVE 3D HERO — ENHANCED SECTION v3
+   Gold particles · Spotlight · Carousel · Hotspots · Floating badges
+   ========================================================================== */
+
+/* ── Hero 3D card wrapper ── */
+.hero-card-3d-wrap {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.hero-card-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.08s linear, box-shadow 0.08s linear;
+  will-change: transform;
+  border-radius: 1.5rem;
+  position: relative;
+}
+
+/* ── Spotlight overlay on card image ── */
+.hero-spotlight-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  pointer-events: none;
+  background: radial-gradient(circle 160px at 50% 50%, rgba(255,248,210,0.22) 0%, transparent 70%);
+  mix-blend-mode: screen;
+  z-index: 3;
+  transition: background 0.05s linear;
+  opacity: 0;
+}
+.hero-card-inner:hover .hero-spotlight-layer { opacity: 1; }
+
+/* ── Gold shimmer overlay ── */
+.hero-gold-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  pointer-events: none;
+  background: linear-gradient(135deg, transparent 0%, rgba(212,175,55,0.07) 50%, transparent 100%);
+  background-size: 300% 300%;
+  animation: heroSheenMove 6s ease-in-out infinite;
+  z-index: 2;
+}
+@keyframes heroSheenMove {
+  0%   { background-position: 0%   0%;   }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0%   0%;   }
+}
+
+/* ── Gold particle canvas behind hero ── */
+#hero-particle-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.75;
+}
+
+/* ── Floating trust badge chips ── */
+.hero-float-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212,175,55,0.45);
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #5a4210;
+  box-shadow: 0 4px 18px rgba(212,175,55,0.18), 0 2px 8px rgba(0,0,0,0.08);
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+}
+.hero-float-badge.hfb-visible {
+  animation: hfbFloat 3.6s ease-in-out infinite;
+}
+.hero-float-badge.hfb-in-left  { animation: hfbEnterLeft  0.7s cubic-bezier(0.16,1,0.3,1) forwards, hfbFloat 3.6s ease-in-out 0.7s infinite; }
+.hero-float-badge.hfb-in-right { animation: hfbEnterRight 0.7s cubic-bezier(0.16,1,0.3,1) forwards, hfbFloat 3.6s ease-in-out 0.7s infinite; }
+
+@keyframes hfbEnterLeft  { from { opacity:0; transform: translateX(-28px) scale(0.9); } to { opacity:1; transform: translateX(0) scale(1); } }
+@keyframes hfbEnterRight { from { opacity:0; transform: translateX(28px)  scale(0.9); } to { opacity:1; transform: translateX(0) scale(1); } }
+@keyframes hfbFloat      {
+  0%,100% { transform: translateY(0px);  }
+  50%     { transform: translateY(-6px); }
+}
+
+/* Badge positioning (relative to the hero card wrapper) */
+.hfb-tl { top: -16px;  left:  18px; }
+.hfb-tr { top: -16px;  right: 18px; }
+.hfb-bl { bottom: 20px; left: -20px; }
+.hfb-br { bottom: 20px; right:-20px; }
+
+/* ── Live gold rate pulse badge ── */
+.hero-gold-rate-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #1a1408 0%, #2c2010 100%);
+  border: 1px solid rgba(212,175,55,0.5);
+  border-radius: 999px;
+  color: #faecd0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 0 1px rgba(212,175,55,0.2);
+  position: relative;
+  overflow: hidden;
+}
+.hero-gold-rate-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.08), transparent);
+  background-size: 200% 100%;
+  animation: rateBadgeSweep 3s linear infinite;
+}
+@keyframes rateBadgeSweep {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.hero-gold-rate-dot {
+  width: 6px; height: 6px;
+  background: #d4af37;
+  border-radius: 50%;
+  animation: rateDotPulse 1.6s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes rateDotPulse {
+  0%,100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0.5); }
+  50%     { opacity: 0.7; transform: scale(1.3); box-shadow: 0 0 0 4px rgba(212,175,55,0); }
+}
+
+/* ── Product carousel indicator dots ── */
+.hero-carousel-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+.hero-carousel-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(212,175,55,0.3);
+  border: 1px solid rgba(212,175,55,0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.hero-carousel-dot.active {
+  width: 20px;
+  border-radius: 3px;
+  background: #d4af37;
+  border-color: #d4af37;
+}
+
+/* ── Carousel prev/next arrows ── */
+.hero-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px; height: 32px;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(212,175,55,0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #8c6a23;
+  cursor: pointer;
+  z-index: 15;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  opacity: 0;
+  pointer-events: none;
+}
+.hero-card-3d-wrap:hover .hero-carousel-arrow {
+  opacity: 1;
+  pointer-events: auto;
+}
+.hero-carousel-arrow:hover {
+  background: #d4af37;
+  color: #120e06;
+  border-color: #d4af37;
+  transform: translateY(-50%) scale(1.1);
+}
+.hero-carousel-arrow-prev { left: -14px; }
+.hero-carousel-arrow-next { right: -14px; }
+
+/* ── Hotspot dots on hero image ── */
+.hero-hotspot {
+  position: absolute;
+  width: 18px; height: 18px;
+  z-index: 8;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.hero-hotspot-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #d4af37;
+  animation: hotspotPulse 2s ease-out infinite;
+}
+.hero-hotspot-dot-core {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: #d4af37;
+  box-shadow: 0 0 8px rgba(212,175,55,0.8);
+}
+@keyframes hotspotPulse {
+  0%  { transform: scale(1);   opacity: 1; }
+  70% { transform: scale(2.2); opacity: 0; }
+  100%{ transform: scale(1);   opacity: 0; }
+}
+
+.hero-hotspot-tooltip {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(10,8,4,0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212,175,55,0.4);
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #faecd0;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+  letter-spacing: 0.04em;
+}
+.hero-hotspot:hover .hero-hotspot-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.hero-hotspot:hover .hero-hotspot-ring { animation-play-state: paused; }
+
+/* ── Image crossfade ── */
+.hero-showcase-crossfade {
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.hero-showcase-crossfade.fading { opacity: 0; }
+
+/* ── Hero section depth shadow accent ── */
+#hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.3) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ── Ambient gold orb extras for hero ── */
+.hero-ambient-orb-2 {
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%);
+  pointer-events: none;
+  animation: heroOrb2 10s ease-in-out infinite;
+  top: 20%; right: -150px;
+  z-index: 0;
+}
+@keyframes heroOrb2 {
+  0%,100% { transform: scale(1) translateY(0);    opacity: 0.5; }
+  50%     { transform: scale(1.2) translateY(20px); opacity: 0.9; }
+}
+
+/* ── Gold rate section in hero CTA ── */
+#hero-live-rate-wrap {
+  margin-top: 16px;
+}
+
+/* ── Responsive: hide floating badges on small screens ── */
+@media (max-width: 768px) {
+  .hero-float-badge { display: none; }
+  .hero-carousel-arrow { display: none; }
+  .hfb-bl, .hfb-br { display: none; }
+}

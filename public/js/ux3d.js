@@ -1,4 +1,4 @@
-/**
+﻿/**
  * KJ3D — Karthik Jewellers 3D Luxury UX Engine
  * =================================================
  * Provides: Card Tilt · Hero Parallax · Magnetic Buttons ·
@@ -263,43 +263,295 @@
     });
   }
 
-  /* ─── HERO CARD 3D FLOAT ─────────────────────────────────── */
+  /* ─── HERO CARD 3D FLOAT + MOUSE TILT + SPOTLIGHT ─────── */
   function initHeroCardFloat() {
-    const heroCard = document.querySelector('#hero-section .w-full.max-w-md > div');
-    if (!heroCard) return;
-
-    heroCard.style.transformStyle = 'preserve-3d';
-    heroCard.style.transform = 'perspective(1000px) rotateY(-6deg) rotateX(2deg) translateZ(0px)';
-    heroCard.style.transition = 'transform 0.7s cubic-bezier(0.16,1,0.3,1), box-shadow 0.7s ease';
-    heroCard.style.boxShadow  = '-20px 30px 60px -8px rgba(212,175,55,0.22), 0 15px 35px rgba(0,0,0,0.12)';
-
-    heroCard.addEventListener('mouseenter', () => {
-      heroCard.style.transform = 'perspective(1000px) rotateY(-2deg) rotateX(1deg) translateZ(20px)';
-      heroCard.style.boxShadow = '-10px 40px 80px -8px rgba(212,175,55,0.35), 0 20px 50px rgba(0,0,0,0.18)';
-    });
-    heroCard.addEventListener('mouseleave', () => {
+    const wrap    = document.getElementById('hero-card-3d-wrap');
+    const inner   = document.getElementById('hero-card-inner');
+    const spot    = document.getElementById('hero-spotlight-layer');
+    if (!inner) {
+      // Legacy fallback
+      const heroCard = document.querySelector('#hero-section .w-full.max-w-md > div');
+      if (!heroCard) return;
+      heroCard.style.transformStyle = 'preserve-3d';
       heroCard.style.transform = 'perspective(1000px) rotateY(-6deg) rotateX(2deg) translateZ(0px)';
-      heroCard.style.boxShadow = '-20px 30px 60px -8px rgba(212,175,55,0.22), 0 15px 35px rgba(0,0,0,0.12)';
-    });
+      heroCard.style.transition = 'transform 0.7s cubic-bezier(0.16,1,0.3,1), box-shadow 0.7s ease';
+      heroCard.style.boxShadow  = '-20px 30px 60px -8px rgba(212,175,55,0.22), 0 15px 35px rgba(0,0,0,0.12)';
+      return;
+    }
 
-    // Subtle ambient rocking animation
-    let frame = 0;
+    const MAX_TILT  = 14;
+    const PERSP     = 1400;
+    let   isHovered = false;
+    let   frame     = 0;
+
     function ambientRock() {
       frame++;
-      const t  = frame * 0.012;
-      const rx = Math.sin(t * 0.7) * 1.5;
-      const ry = -6 + Math.sin(t * 0.4) * 2.5;
-      const tz = Math.sin(t * 0.9) * 4;
-
-      if (!heroCard.matches(':hover')) {
-        heroCard.style.transition = 'none';
-        heroCard.style.transform  = `perspective(1000px) rotateY(${ry}deg) rotateX(${rx}deg) translateZ(${tz}px)`;
+      const t = frame * 0.010;
+      if (!isHovered) {
+        const rx = Math.sin(t * 0.55) * 1.8;
+        const ry = -5 + Math.sin(t * 0.38) * 3;
+        const tz = Math.sin(t * 0.72) * 6;
+        inner.style.transition = 'none';
+        inner.style.transform  = `perspective(${PERSP}px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(${tz}px)`;
+        inner.style.boxShadow  = `-22px 32px 70px -6px rgba(212,175,55,0.22), 0 18px 40px rgba(0,0,0,0.13)`;
       }
       requestAnimationFrame(ambientRock);
     }
     requestAnimationFrame(ambientRock);
+
+    wrap.addEventListener('mousemove', (e) => {
+      isHovered = true;
+      const rect = wrap.getBoundingClientRect();
+      const cx   = rect.left + rect.width  / 2;
+      const cy   = rect.top  + rect.height / 2;
+      const dx   = (e.clientX - cx) / (rect.width  / 2);
+      const dy   = (e.clientY - cy) / (rect.height / 2);
+      const tiltX = -(dy * MAX_TILT).toFixed(2);
+      const tiltY =  (dx * MAX_TILT).toFixed(2);
+
+      inner.style.transition = 'transform 0.07s linear, box-shadow 0.07s linear';
+      inner.style.transform  = `perspective(${PERSP}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(28px) scale(1.025)`;
+      inner.style.boxShadow  = `${-dx*18}px ${dy*18+28}px 80px -6px rgba(212,175,55,0.38), 0 20px 55px rgba(0,0,0,0.18)`;
+
+      if (spot) {
+        const imgEl = wrap.querySelector('.hero-img-wrap');
+        if (imgEl) {
+          const ir  = imgEl.getBoundingClientRect();
+          const ix  = ((e.clientX - ir.left) / ir.width  * 100).toFixed(1);
+          const iy  = ((e.clientY - ir.top)  / ir.height * 100).toFixed(1);
+          spot.style.background = `radial-gradient(circle 160px at ${ix}% ${iy}%, rgba(255,248,210,0.25) 0%, transparent 70%)`;
+        }
+      }
+      if (Math.random() < 0.08) emitSparkle(e.clientX, e.clientY);
+    });
+
+    wrap.addEventListener('mouseleave', () => {
+      isHovered = false;
+      inner.style.transition = 'transform 0.55s cubic-bezier(0.16,1,0.3,1), box-shadow 0.55s ease';
+    });
   }
 
+  /* ─── HERO GOLD PARTICLES ─────────────────────────────────── */
+  function initHeroParticles() {
+    const hero = document.getElementById('hero-section');
+    if (!hero || isTouchDevice) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.id = 'hero-particle-canvas';
+    canvas.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:0;opacity:0.65;';
+    hero.insertBefore(canvas, hero.firstChild);
+
+    const ctx = canvas.getContext('2d');
+    const GOLD_COLORS = ['rgba(212,175,55,', 'rgba(255,235,160,', 'rgba(197,160,89,', 'rgba(255,248,200,'];
+    let W, H, particles = [];
+
+    function resize() {
+      W = canvas.width  = hero.offsetWidth;
+      H = canvas.height = hero.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    function drawStar(ctx, x, y, r1, r2, pts) {
+      ctx.beginPath();
+      for (let i = 0; i < pts * 2; i++) {
+        const ang = (i * Math.PI) / pts - Math.PI / 2;
+        const r   = i % 2 === 0 ? r2 : r1;
+        i === 0 ? ctx.moveTo(x + r * Math.cos(ang), y + r * Math.sin(ang))
+                : ctx.lineTo(x + r * Math.cos(ang), y + r * Math.sin(ang));
+      }
+      ctx.closePath();
+    }
+
+    class Particle {
+      constructor() { this.reset(true); }
+      reset(init) {
+        this.x  = Math.random() * W;
+        this.y  = init ? Math.random() * H : H + 10;
+        this.vy = -(0.3 + Math.random() * 0.7);
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.r  = 1 + Math.random() * 2.5;
+        this.a  = 0;
+        this.maxA = 0.3 + Math.random() * 0.5;
+        this.life = 0;
+        this.maxLife = 180 + Math.random() * 240;
+        this.color = GOLD_COLORS[Math.floor(Math.random() * GOLD_COLORS.length)];
+        this.isStar = Math.random() > 0.65;
+        this.rot = Math.random() * Math.PI * 2;
+        this.rotV = (Math.random() - 0.5) * 0.03;
+      }
+      update() {
+        this.life++;
+        this.x  += this.vx;
+        this.y  += this.vy;
+        this.rot += this.rotV;
+        const prog = this.life / this.maxLife;
+        this.a = prog < 0.2 ? (prog / 0.2) * this.maxA : prog > 0.75 ? ((1 - prog) / 0.25) * this.maxA : this.maxA;
+        if (this.life >= this.maxLife || this.y < -10) this.reset(false);
+      }
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.a;
+        ctx.translate(this.x, this.y);
+        if (this.isStar) {
+          ctx.rotate(this.rot);
+          ctx.fillStyle = this.color + '1)';
+          drawStar(ctx, 0, 0, this.r * 0.5, this.r, 4);
+          ctx.fill();
+        } else {
+          const g = ctx.createRadialGradient(0,0,0, 0,0,this.r);
+          g.addColorStop(0, this.color + '1)');
+          g.addColorStop(1, this.color + '0)');
+          ctx.fillStyle = g;
+          ctx.beginPath();
+          ctx.arc(0, 0, this.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < 55; i++) particles.push(new Particle());
+    let running = true;
+    const heroObs = new IntersectionObserver(([e]) => { running = e.isIntersecting; });
+    heroObs.observe(hero);
+
+    function loop() {
+      requestAnimationFrame(loop);
+      if (!running) return;
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => { p.update(); p.draw(); });
+    }
+    loop();
+  }
+
+  /* ─── HERO PRODUCT CAROUSEL ───────────────────────────────── */
+  function initHeroProductCarousel() {
+    const imgEl    = document.getElementById('hero-showcase-img');
+    const nameEl   = document.getElementById('hero-product-name');
+    const tagEl    = document.getElementById('hero-product-tag');
+    const weightEl = document.getElementById('hero-product-weight');
+    const dots     = document.querySelectorAll('.hero-carousel-dot');
+    if (!imgEl) return;
+
+    const PRODUCTS = [
+      {
+        src:    'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80',
+        name:   'Mayuri Heritage Antique Haram',
+        tag:    'Burmese Rubies & Emerald Cabochons',
+        weight: '45.2g',
+        cat:    'necklaces',
+      },
+      {
+        src:    'https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&w=800&q=80',
+        name:   'Lakshmi Devi Temple Necklace',
+        tag:    '22KT Antique Gold · BIS Hallmarked',
+        weight: '38.8g',
+        cat:    'necklaces',
+      },
+      {
+        src:    'https://images.unsplash.com/photo-1573408301185-9519f94816d7?auto=format&fit=crop&w=800&q=80',
+        name:   'Bridal Diamond Jhumka Set',
+        tag:    'IGI Certified Natural Diamonds',
+        weight: '12.4g',
+        cat:    'earrings',
+      },
+      {
+        src:    'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80',
+        name:   'Solitaire Eternity Bangle',
+        tag:    '18KT White Gold · VS1 Diamonds',
+        weight: '22.1g',
+        cat:    'bangles',
+      },
+    ];
+
+    let current = 0, paused = false, timer = null;
+
+    function goTo(idx) {
+      current = ((idx % PRODUCTS.length) + PRODUCTS.length) % PRODUCTS.length;
+      const p = PRODUCTS[current];
+      imgEl.classList.add('hero-showcase-crossfade', 'fading');
+      setTimeout(() => {
+        imgEl.src = p.src;
+        imgEl.alt = p.name;
+        imgEl.onload = () => imgEl.classList.remove('fading');
+        if (nameEl)   nameEl.textContent   = p.name;
+        if (tagEl)    tagEl.textContent    = p.tag;
+        if (weightEl) weightEl.textContent = p.weight + ' Net';
+        const viewBtn = document.getElementById('hero-view-btn');
+        if (viewBtn) viewBtn.onclick = () => filterByCategory(p.cat);
+      }, 320);
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => { if (!paused) next(); }, 4200);
+    }
+
+    dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); startTimer(); }));
+
+    const prevBtn = document.getElementById('hero-carousel-prev');
+    const nextBtn = document.getElementById('hero-carousel-next');
+    if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prev(); startTimer(); });
+    if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); next(); startTimer(); });
+
+    const wrap = document.getElementById('hero-card-3d-wrap');
+    if (wrap) {
+      wrap.addEventListener('mouseenter', () => { paused = true;  });
+      wrap.addEventListener('mouseleave', () => { paused = false; });
+      let touchStartX = 0;
+      wrap.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+      wrap.addEventListener('touchend',   e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); startTimer(); }
+      }, { passive: true });
+    }
+
+    if (dots.length) dots[0].classList.add('active');
+    startTimer();
+  }
+
+  /* ─── HERO LIVE GOLD RATE BADGE ──────────────────────────── */
+  function initHeroGoldRateBadge() {
+    const badge  = document.getElementById('hero-gold-rate-val');
+    const change = document.getElementById('hero-gold-rate-change');
+    if (!badge) return;
+
+    async function fetchRate() {
+      try {
+        const r = await fetch('/api/rates');
+        if (!r.ok) return;
+        const d = await r.json();
+        const rates = d.rates || d;
+        const price = rates.gold22k || rates.gold_22k;
+        if (!price) return;
+        badge.textContent  = '\u20b9' + Number(price).toLocaleString('en-IN') + '/g';
+        if (change) {
+          const delta = rates.dailyTrend || (rates.changePercent != null ? (rates.changePercent >= 0 ? '+' : '') + rates.changePercent + '%' : null);
+          if (delta) {
+            change.textContent = delta;
+            change.style.color = String(delta).startsWith('-') ? '#f87171' : '#4ade80';
+          }
+        }
+      } catch (_) { /* silently ignore */ }
+    }
+    fetchRate();
+    setInterval(fetchRate, 90000);
+  }
+
+  /* ─── HERO FLOATING STAT BADGES ──────────────────────────── */
+  function initHeroFloatBadges() {
+    const badges = document.querySelectorAll('.hero-float-badge');
+    badges.forEach((b, i) => {
+      setTimeout(() => {
+        b.classList.add(i % 2 === 0 ? 'hfb-in-left' : 'hfb-in-right');
+      }, 600 + i * 180);
+    });
+  }
   /* ─── SCROLL REVEAL ──────────────────────────────────────── */
   function initScrollReveal() {
     const revealTargets = document.querySelectorAll(
@@ -468,6 +720,10 @@
     initPageLoadSweep();
     initHeroCardFloat();
     initHeroParallax();
+    initHeroParticles();
+    initHeroProductCarousel();
+    initHeroGoldRateBadge();
+    initHeroFloatBadges();
     initAmbientOrbs();
     initCardTilt();
     initMagneticButtons();
