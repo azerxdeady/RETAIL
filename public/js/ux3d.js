@@ -115,10 +115,24 @@
 
   /* ─── CARD TILT ──────────────────────────────────────────── */
   const tiltedCards = new WeakSet();
+  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
 
   function applyTilt(card) {
     if (tiltedCards.has(card)) return;
     tiltedCards.add(card);
+
+    if (isTouchDevice) {
+      // Touch-friendly tactile press on mobile/tablet without scroll interference
+      card.addEventListener('touchstart', () => {
+        card.style.transition = 'transform 0.12s ease';
+        card.style.transform = 'scale(0.985)';
+      }, { passive: true });
+      card.addEventListener('touchend', () => {
+        card.style.transition = 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1)';
+        card.style.transform = 'scale(1)';
+      }, { passive: true });
+      return;
+    }
 
     card.style.willChange = 'transform';
     card.style.transformStyle = 'preserve-3d';
@@ -225,6 +239,7 @@
 
   /* ─── MAGNETIC BUTTONS ───────────────────────────────────── */
   function initMagneticButtons() {
+    if (isTouchDevice) return;
     const btns = document.querySelectorAll('.gold-btn, .viswa-btn, .btn-gold, .kj-magnetic');
     btns.forEach(btn => {
       btn.addEventListener('mousemove', (e) => {

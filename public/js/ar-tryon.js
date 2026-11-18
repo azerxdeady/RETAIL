@@ -113,6 +113,9 @@
 
     open(product, brand = 'karthik') {
       this.init();
+      if (!product && this.catalog && this.catalog.length > 0) {
+        product = this.catalog[0];
+      }
       this.currentProduct = product;
       this.brand = brand;
       this.scale = 1.0;

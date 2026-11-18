@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="/js/theme.js"></script>
 </head>
-<body class="bg-[#faf9f6] text-stone-900 font-sans selection:bg-[#c5a059] selection:text-black">
+<body class="bg-[#faf9f6] text-stone-900 font-sans selection:bg-[#c5a059] selection:text-black pb-16 sm:pb-0">
 
   <!-- 0. REAL-TIME SYNCHRONIZED ANNOUNCEMENT BAR (Shopify 2.0 Theme Customizer) -->
   <div id="announcement-bar" class="py-2 px-4 text-center text-xs font-semibold tracking-wider transition-all duration-300 bg-[#141007] text-[#faecd0] border-b border-amber-900/40">
@@ -367,8 +367,8 @@
       </div>
     </div>
 
-    <!-- Product Grid -->
-    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <!-- Product Grid: 2-column on mobile, 3-column on tablet, 4-column on desktop -->
+    <div id="products-grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
       <!-- Injected via store.js -->
     </div>
   </section>
@@ -1045,6 +1045,33 @@
       }
     }
   </script>
+
+  <!-- 7. LUXURY MOBILE STICKY BOTTOM ACTION BAR (iPhone & Android Native App Feel) -->
+  <nav id="mobile-bottom-nav" class="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#120e09]/95 backdrop-blur-xl border-t border-[#d4af37]/30 shadow-[0_-4px_25px_rgba(0,0,0,0.15)] px-2 py-2 flex items-center justify-around text-center safe-area-bottom">
+    <a href="#" class="flex flex-col items-center justify-center text-stone-800 dark:text-amber-200 hover:text-[#b4860b] transition p-1 w-14">
+      <span class="text-base leading-none mb-1">🏠</span>
+      <span class="text-[9px] font-semibold tracking-tight uppercase">Home</span>
+    </a>
+    <a href="#products-section" class="flex flex-col items-center justify-center text-stone-600 dark:text-stone-400 hover:text-[#b4860b] transition p-1 w-14">
+      <span class="text-base leading-none mb-1">👑</span>
+      <span class="text-[9px] font-semibold tracking-tight uppercase">Designs</span>
+    </a>
+    <button onclick="if(window.ARTryOn){window.ARTryOn.open();}else{alert('AR Try-On is initializing...');}" class="flex flex-col items-center justify-center text-[#d4af37] transition p-1 w-14 relative group">
+      <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-[#d4af37] via-[#f7e7b4] to-[#ecc874] text-stone-950 flex items-center justify-center shadow-lg -mt-5 border-2 border-white dark:border-[#120e09] text-base animate-pulse">
+        ✨
+      </div>
+      <span class="text-[9px] font-bold tracking-tight uppercase text-[#b4860b] dark:text-amber-300 mt-0.5">Try-On</span>
+    </button>
+    <a href="#scheme-section" class="flex flex-col items-center justify-center text-stone-600 dark:text-stone-400 hover:text-[#b4860b] transition p-1 w-14">
+      <span class="text-base leading-none mb-1">🪙</span>
+      <span class="text-[9px] font-semibold tracking-tight uppercase">Chit 11+1</span>
+    </a>
+    <button onclick="openCartDrawer()" class="flex flex-col items-center justify-center text-stone-800 dark:text-amber-200 hover:text-[#b4860b] transition p-1 w-14 relative">
+      <span class="text-base leading-none mb-1">🛍️</span>
+      <span id="mobile-cart-badge" class="cart-badge absolute top-0 right-2 bg-[#d4af37] text-stone-950 text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow hidden">0</span>
+      <span class="text-[9px] font-semibold tracking-tight uppercase">Bag</span>
+    </button>
+  </nav>
 
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>

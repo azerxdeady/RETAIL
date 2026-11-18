@@ -289,48 +289,48 @@ function renderProductsGrid(products) {
         </div>
 
         <!-- Product Details -->
-        <div class="p-5 flex-1 flex flex-col justify-between">
+        <div class="p-3 sm:p-5 flex-1 flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between text-xs text-stone-500 mb-1">
-              <span class="uppercase font-semibold tracking-wider text-[#b4860b] text-[10px]">${prod.category}</span>
-              <span class="text-stone-400 text-[10px] font-mono">HUID: ${prod.huid}</span>
+            <div class="flex items-center justify-between text-[10px] sm:text-xs text-stone-500 mb-0.5 sm:mb-1">
+              <span class="uppercase font-semibold tracking-wider text-[#b4860b] text-[9px] sm:text-[10px]">${prod.category}</span>
+              <span class="text-stone-400 text-[9px] sm:text-[10px] font-mono hidden sm:inline">HUID: ${prod.huid}</span>
             </div>
             
-            <h3 onclick="openProductModal('${prod.id}')" class="font-serif font-bold text-base text-stone-900 group-hover:text-[#b4860b] transition cursor-pointer line-clamp-1">
+            <h3 onclick="openProductModal('${prod.id}')" class="font-serif font-bold text-xs sm:text-base text-stone-900 group-hover:text-[#b4860b] transition cursor-pointer line-clamp-1 leading-snug">
               ${prod.name}
             </h3>
 
             <!-- Kalyan Style Ratings -->
-            <div class="flex items-center gap-1.5 mt-1 text-[11px] text-stone-500">
+            <div class="flex items-center gap-1 mt-0.5 sm:mt-1 text-[10px] sm:text-[11px] text-stone-500">
               <span class="text-amber-500 font-bold">★ 4.9</span>
-              <span class="text-stone-300">•</span>
-              <span class="text-stone-500 font-medium">100% Certified Natural</span>
+              <span class="text-stone-300 hidden sm:inline">•</span>
+              <span class="text-stone-500 font-medium hidden sm:inline">100% Certified</span>
             </div>
 
-            <p class="text-xs text-stone-500 mt-1.5 line-clamp-2 font-light">${prod.description}</p>
+            <p class="hidden sm:block text-xs text-stone-500 mt-1.5 line-clamp-2 font-light">${prod.description}</p>
           </div>
 
-          <div class="mt-4 pt-3.5 border-t border-stone-100">
+          <div class="mt-2.5 sm:mt-4 pt-2 sm:pt-3.5 border-t border-stone-100">
             <div class="flex items-baseline justify-between">
               <div>
-                <span class="text-[10px] text-stone-400 uppercase font-semibold">Price (Incl. 3% GST)</span>
-                <p class="text-xl font-bold text-[#b4860b] font-mono tracking-tight">
+                <span class="text-[8px] sm:text-[10px] text-stone-400 uppercase font-semibold">Incl. 3% GST</span>
+                <p class="text-sm sm:text-xl font-bold text-[#b4860b] font-mono tracking-tight">
                   ${formatINR(prod.currentPrice)}
                 </p>
               </div>
-              <button onclick="openPriceBreakupModal('${prod.id}', event)" class="text-[11px] text-[#b4860b] hover:text-amber-800 font-semibold underline flex items-center gap-1">
+              <button onclick="openPriceBreakupModal('${prod.id}', event)" class="text-[9px] sm:text-[11px] text-[#b4860b] hover:text-amber-800 font-semibold underline flex items-center gap-0.5">
                 <span>Breakup</span>
                 <span>ⓘ</span>
               </button>
             </div>
 
             <!-- Action buttons -->
-            <div class="grid grid-cols-2 gap-2 mt-3.5">
-              <button onclick="openProductModal('${prod.id}')" class="py-2.5 px-3 rounded-full text-xs font-semibold text-stone-800 bg-amber-50/70 hover:bg-amber-100/90 border border-[#d4af37]/40 transition text-center shadow-sm">
-                Try-On & Details
+            <div class="grid grid-cols-2 gap-1.5 sm:gap-2 mt-2 sm:mt-3.5">
+              <button onclick="openProductModal('${prod.id}')" class="py-2 sm:py-2.5 px-1.5 sm:px-3 rounded-full text-[10px] sm:text-xs font-semibold text-stone-800 bg-amber-50/70 hover:bg-amber-100/90 border border-[#d4af37]/40 transition text-center shadow-sm truncate">
+                Details
               </button>
-              <button onclick="addToCart('${prod.id}', event)" class="py-2.5 px-3 rounded-full text-xs font-bold gold-btn text-center flex items-center justify-center gap-1.5 shadow">
-                <span>Add to Bag</span>
+              <button onclick="addToCart('${prod.id}', event)" class="py-2 sm:py-2.5 px-1.5 sm:px-3 rounded-full text-[10px] sm:text-xs font-bold gold-btn text-center flex items-center justify-center gap-1 shadow truncate">
+                <span>+ Bag</span>
               </button>
             </div>
           </div>
@@ -670,6 +670,11 @@ function updateCartBadge() {
     b.innerText = count;
     b.classList.toggle('hidden', count === 0);
   });
+  const mobileBadge = document.getElementById('mobile-cart-badge');
+  if (mobileBadge) {
+    mobileBadge.innerText = count;
+    mobileBadge.classList.toggle('hidden', count === 0);
+  }
 }
 
 function updateWishlistBadge() {

@@ -214,54 +214,54 @@ function renderViswaProductsGrid(products) {
         </div>
 
         <!-- Content Area -->
-        <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+        <div class="p-3 sm:p-5 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
           <div>
-            <div class="flex items-center justify-between text-[10px] text-stone-400 font-medium">
+            <div class="flex items-center justify-between text-[9px] sm:text-[10px] text-stone-400 font-medium">
               <span class="uppercase tracking-widest text-[#781d2a] font-bold">${prod.category}</span>
-              <span class="font-mono text-stone-500">HUID: ${prod.huid}</span>
+              <span class="font-mono text-stone-500 hidden sm:inline">HUID: ${prod.huid}</span>
             </div>
             
-            <h4 class="font-serif font-bold text-base text-stone-900 mt-1 line-clamp-2 group-hover:text-[#781d2a] transition leading-snug">
+            <h4 class="font-serif font-bold text-xs sm:text-base text-stone-900 mt-1 line-clamp-1 sm:line-clamp-2 group-hover:text-[#781d2a] transition leading-snug">
               ${prod.name}
             </h4>
 
-            <p class="text-[11px] text-stone-500 mt-1 font-light line-clamp-2">
+            <p class="hidden sm:block text-[11px] text-stone-500 mt-1 font-light line-clamp-2">
               ${prod.description}
             </p>
           </div>
 
           <!-- Weight & Rate Breakdown Preview -->
-          <div class="bg-[#fcf9f2] p-2.5 rounded-2xl border border-[#d4af37]/25 text-[11px] space-y-1">
+          <div class="bg-[#fcf9f2] p-1.5 sm:p-2.5 rounded-xl sm:rounded-2xl border border-[#d4af37]/25 text-[10px] sm:text-[11px] space-y-0.5 sm:space-y-1">
             <div class="flex justify-between text-stone-600">
-              <span>Gross / Net Gold:</span>
-              <strong class="text-stone-800 font-mono">${prod.grossWeight}g / ${prod.netWeight}g</strong>
+              <span>Net Gold:</span>
+              <strong class="text-stone-800 font-mono">${prod.netWeight}g</strong>
             </div>
             ${prod.stonePrice > 0 ? `
-              <div class="flex justify-between text-stone-600">
-                <span>Gems / Polki:</span>
+              <div class="hidden sm:flex justify-between text-stone-600">
+                <span>Gems:</span>
                 <span class="text-amber-800 font-medium">₹${prod.stonePrice.toLocaleString('en-IN')}</span>
               </div>
             ` : ''}
           </div>
 
           <!-- Price & Action -->
-          <div class="pt-2 border-t border-stone-100">
-            <div class="flex items-baseline justify-between mb-3">
+          <div class="pt-1.5 sm:pt-2 border-t border-stone-100">
+            <div class="flex items-baseline justify-between mb-2 sm:mb-3">
               <div>
-                <span class="text-[9px] uppercase tracking-wider text-stone-400 block font-semibold">All-Inclusive Price</span>
-                <strong class="font-mono text-xl font-bold text-[#b4860b]">
+                <span class="text-[8px] sm:text-[9px] uppercase tracking-wider text-stone-400 block font-semibold">Incl. 3% GST</span>
+                <strong class="font-mono text-sm sm:text-xl font-bold text-[#b4860b]">
                   ₹${prod.currentPrice.toLocaleString('en-IN')}
                 </strong>
               </div>
-              <button onclick="openViswaPriceModal('${prod.id}')" class="text-[11px] text-[#781d2a] hover:underline font-semibold flex items-center gap-1" title="View transparent mathematical price breakdown">
+              <button onclick="openViswaPriceModal('${prod.id}')" class="text-[9px] sm:text-[11px] text-[#781d2a] hover:underline font-semibold flex items-center gap-0.5" title="View transparent mathematical price breakdown">
                 <span>Formula</span>
                 <span>ⓘ</span>
               </button>
             </div>
 
-            <button onclick="addViswaToCart('${prod.id}')" class="w-full py-2.5 rounded-full viswa-gold-btn text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow">
+            <button onclick="addViswaToCart('${prod.id}')" class="w-full py-2 sm:py-2.5 rounded-full viswa-gold-btn text-[10px] sm:text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow truncate">
               <i class="fa-solid fa-bag-shopping"></i>
-              <span>Add to Royal Bag</span>
+              <span>Add to Bag</span>
             </button>
           </div>
 
@@ -582,10 +582,15 @@ async function verifyViswaHuid() {
 // 8. ROYAL BAG (CART) & CHECKOUT
 // ==========================================
 function updateViswaCartBadge() {
+  const count = viswaState.cart.reduce((sum, item) => sum + item.quantity, 0);
   const badge = document.getElementById('viswa-cart-count');
   if (badge) {
-    const count = viswaState.cart.reduce((sum, item) => sum + item.quantity, 0);
     badge.innerText = count;
+  }
+  const mobileBadge = document.getElementById('viswa-mobile-cart-badge');
+  if (mobileBadge) {
+    mobileBadge.innerText = count;
+    mobileBadge.classList.toggle('hidden', count === 0);
   }
   localStorage.setItem('viswa_cart', JSON.stringify(viswaState.cart));
 }
