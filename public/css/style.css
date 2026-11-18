@@ -1133,3 +1133,264 @@ html:not(.dark) body.admin-theme-adaptive textarea {
 }
 
 
+
+
+/* ==========================================================================
+   KJ3D LUXURY UX SYSTEM — 3D Transforms · Parallax · Micro-Interactions
+   ========================================================================== */
+
+/* ── 1. BASE 3D LAYER SETUP ── */
+.jewellery-card,
+.viswa-card,
+.kj-collection-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  /* ux3d.js injects per-frame transition; CSS base is for resets */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.category-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.38s ease;
+}
+.category-card:hover {
+  transform: perspective(800px) rotateX(-3deg) translateY(-5px) translateZ(6px) scale(1.025);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18),
+              0 0 0 1px rgba(212, 175, 55, 0.35);
+}
+
+/* ── 2. HERO SHOWCASE CARD 3D FLOAT ── */
+#hero-section .w-full.max-w-md > div {
+  transform-style: preserve-3d;
+}
+
+.hero-floating-product {
+  transform: perspective(900px) rotateY(-7deg) rotateX(2.5deg) translateZ(0px);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.65s ease;
+  filter: drop-shadow(-18px 24px 48px rgba(0, 0, 0, 0.28));
+  will-change: transform;
+}
+.hero-floating-product:hover {
+  transform: perspective(900px) rotateY(-2deg) rotateX(1deg) translateZ(22px);
+  filter: drop-shadow(-8px 32px 60px rgba(0, 0, 0, 0.32));
+}
+
+/* ── 3. TRUST PILLAR CARDS 3D ── */
+.trust-pillar-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s ease;
+}
+
+/* ── 4. GOLD BUTTON 3D PRESS ── */
+.gold-btn {
+  transform-origin: center bottom;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.18s ease !important;
+}
+.gold-btn:hover:not(:active) {
+  transform: translateY(-2px) scale(1.03) !important;
+  box-shadow: 0 10px 32px rgba(212, 175, 55, 0.42), 0 4px 10px rgba(0,0,0,0.12) !important;
+}
+.gold-btn:active {
+  transform: translateY(1px) scale(0.975) !important;
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.25) !important;
+}
+
+.viswa-btn {
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.18s ease !important;
+}
+.viswa-btn:hover:not(:active) {
+  transform: translateY(-2px) scale(1.03) !important;
+  box-shadow: 0 10px 32px rgba(120, 29, 42, 0.38), 0 4px 10px rgba(0,0,0,0.12) !important;
+}
+.viswa-btn:active {
+  transform: translateY(1px) scale(0.975) !important;
+}
+
+/* ── 5. SCROLL REVEAL BASE STATE ── */
+.kj-reveal {
+  transition: opacity 0.65s ease,
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.kj-reveal.kj-reveal-hidden {
+  opacity: 0;
+  transform: translateY(18px) perspective(600px) rotateX(6deg);
+}
+.kj-reveal.kj-revealed {
+  opacity: 1 !important;
+  transform: translateY(0px) perspective(600px) rotateX(0deg) !important;
+}
+
+/* ── 6. SPARKLE PARTICLES (defined in ux3d.js, mirrored here) ── */
+@keyframes kjSparkleRise {
+  0%   { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+  60%  { opacity: 0.8; }
+  100% { transform: translateY(-38px) scale(0) rotate(45deg); opacity: 0; }
+}
+.kj-sparkle {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 99999;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+
+/* ── 7. AMBIENT GOLD SWEEP RING ── */
+@keyframes kjOrbPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);   opacity: 0.5; }
+  50%       { transform: translate(-50%, -50%) scale(1.3); opacity: 1;   }
+}
+
+/* ── 8. GOLD CURSOR RING ── */
+#kj-cursor-ring {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99998;
+  border: 1.5px solid rgba(212, 175, 55, 0.5);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  transition: width 0.22s ease, height 0.22s ease,
+              border-color 0.22s ease, box-shadow 0.22s ease;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: normal;
+}
+
+/* ── 9. PAGE-LOAD GOLD SHIMMER HEADING ── */
+@keyframes kjGoldShimmerX {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+#hero-heading-shimmer::after {
+  content: '';
+  display: block;
+  height: 2px;
+  margin-top: 4px;
+  background: linear-gradient(90deg, transparent, #d4af37, #fef3c7, #d4af37, transparent);
+  background-size: 200% 100%;
+  animation: kjGoldShimmerX 2.4s linear infinite;
+  border-radius: 2px;
+}
+
+/* ── 10. SECTION HEADING 3D LIFT ── */
+h2.section-heading,
+.kj-section-title {
+  transition: transform 0.4s ease;
+}
+h2.section-heading:hover,
+.kj-section-title:hover {
+  transform: perspective(600px) translateZ(4px);
+}
+
+/* ── 11. JEWELLERY CARD INNER CHILD LIFT (image, badge) ── */
+.jewellery-card .card-img-wrap,
+.jewellery-card img {
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.jewellery-card:hover .card-img-wrap,
+.jewellery-card:hover > div:first-child img {
+  transform: translateZ(12px);
+}
+
+/* ── 12. COLLECTION / STORY RING 3D HOVER ── */
+.kalyan-story-ring,
+.kalyan-story-card {
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.38s ease;
+  will-change: transform;
+}
+.kalyan-story-ring:hover,
+.kalyan-story-card:hover {
+  transform: perspective(700px) rotateX(-4deg) translateY(-6px) scale(1.03);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.2),
+              0 0 0 1px rgba(212, 175, 55, 0.3);
+}
+
+/* ── 13. GLASS NAV DEPTH (depth shimmer on scroll) ── */
+.glass-nav.scrolled,
+header.scrolled {
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12),
+              0 1px 0 rgba(212, 175, 55, 0.25) inset;
+}
+
+/* ==========================================================================
+   KJ3D — DARK MODE OVERRIDES
+   ========================================================================== */
+
+html.dark .jewellery-card:hover,
+html.dark .viswa-card:hover {
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(212, 175, 55, 0.5),
+              0 0 28px rgba(212, 175, 55, 0.12) !important;
+}
+
+html.dark .category-card:hover {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45),
+              0 0 0 1px rgba(212, 175, 55, 0.4) !important;
+}
+
+html.dark .trust-pillar-card:hover {
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(212, 175, 55, 0.45),
+              0 0 24px rgba(212, 175, 55, 0.1) !important;
+}
+
+html.dark .gold-btn:hover:not(:active) {
+  box-shadow: 0 10px 32px rgba(212, 175, 55, 0.5),
+              0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+html.dark #hero-section {
+  background: linear-gradient(135deg, #0b0906 0%, #120d05 60%, #1a1409 100%) !important;
+}
+
+html.dark #kj-cursor-ring {
+  border-color: rgba(212, 175, 55, 0.6);
+}
+
+html.dark .kalyan-story-ring:hover,
+html.dark .kalyan-story-card:hover {
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(212, 175, 55, 0.4) !important;
+}
+
+/* ── Viswanandini Brand 3D Dark Mode ── */
+html.dark .viswa-card:hover {
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(120, 29, 42, 0.6),
+              0 0 24px rgba(212, 175, 55, 0.12) !important;
+}
+
+/* ==========================================================================
+   KJ3D — LIGHT MODE STOREFRONT REFINEMENTS
+   ========================================================================== */
+
+html:not(.dark) .jewellery-card:hover {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1),
+              0 0 0 1px rgba(212, 175, 55, 0.4),
+              0 0 20px rgba(212, 175, 55, 0.08) !important;
+}
+
+html:not(.dark) .trust-pillar-card {
+  background: linear-gradient(135deg, #1a1409, #221a0a) !important;
+}
+
+html:not(.dark) .category-card:hover {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12),
+              0 0 0 1px rgba(212, 175, 55, 0.35) !important;
+}
+
+/* ==========================================================================
+   END KJ3D SYSTEM
+   ========================================================================== */
