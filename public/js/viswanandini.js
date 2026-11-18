@@ -23,6 +23,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   updateViswaWishlistBadge();
   updateViswaSchemeCalc(15000);
 
+  // Real-time location-based gold rate switch listener
+  window.addEventListener('kj_city_changed', async (e) => {
+    const { rates } = e.detail;
+    if (rates) {
+      viswaState.rates = rates;
+      renderViswaTicker(rates);
+      renderViswaRatesCard(rates);
+    }
+    await loadViswaProducts();
+  });
+
   // Close modals on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
@@ -31,6 +42,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       closeNandiniEnrollModal();
       closeCartDrawer();
       closeViswaCheckoutModal();
+      if (window.closeCitySelectorModal) window.closeCitySelectorModal();
     }
   });
 });
@@ -50,12 +62,13 @@ async function loadViswaTheme() {
 }
 
 // ==========================================
-// 1. LIVE BULLION RATES ENGINE
+// 1. LIVE BULLION RATES ENGINE (LOCATION-AWARE)
 // ==========================================
-async function loadViswaRates() {
+async function loadViswaRates(cityId = null) {
   try {
-    const res = await StoreAPI.getRates();
-    if (res.success) {
+    const selectedCity = cityId || (window.LocationRates ? window.LocationRates.getCurrentCity() : 'coimbatore');
+    const res = await StoreAPI.getRates(selectedCity);
+    if (res.success && res.rates) {
       viswaState.rates = res.rates;
       renderViswaTicker(res.rates);
       renderViswaRatesCard(res.rates);
@@ -70,8 +83,17 @@ function renderViswaTicker(rates) {
   if (!tickerEl) return;
 
   const timeStr = new Date(rates.lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const cityName = rates.cityName || 'Coimbatore';
+
   tickerEl.innerHTML = `
-    <div class="flex items-center gap-6 whitespace-nowrap text-xs font-medium">
+    <div class="flex items-center gap-3 sm:gap-6 whitespace-nowrap text-xs font-medium">
+      <!-- 1-Click Interactive City & Location Pill -->
+      <button onclick="openCitySelectorModal()" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-[#f7e7b4] text-xs font-semibold transition cursor-pointer shadow-sm group" title="Click to view local gold rates for your city">
+        <span class="text-amber-400 group-hover:scale-110 transition-transform">📍</span>
+        <span class="current-city-label font-bold text-white">${cityName}</span>
+        <span class="text-[10px] text-amber-300 underline font-normal">(Change)</span>
+      </button>
+
       <span class="flex items-center gap-2 text-[#f3e5ab]">
         <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
         <strong class="text-white tracking-widest font-serif">CENTRAL BULLION INDEX</strong> (${timeStr})
@@ -80,7 +102,7 @@ function renderViswaTicker(rates) {
       <span>Gold 24KT (999 Pure): <strong class="text-white font-mono">₹${rates.gold24k.toLocaleString('en-IN')}/g</strong></span>
       <span>Gold 18KT (Rose & Diamond): <strong class="text-white font-mono">₹${rates.gold18k.toLocaleString('en-IN')}/g</strong></span>
       <span>Fine Silver: <strong class="text-white font-mono">₹${rates.silver.toLocaleString('en-IN')}/g</strong></span>
-      <span class="text-amber-300 font-bold">★ Certified Under Karthik Jewellers BIS License HM/L-600017-0982</span>
+      <span class="text-amber-300 font-bold">★ ${rates.association || 'Certified Under Karthik Jewellers BIS License'}</span>
     </div>
   `;
 }
@@ -89,18 +111,32 @@ function renderViswaRatesCard(rates) {
   const cardEl = document.getElementById('viswa-rates-overview-card');
   if (!cardEl) return;
 
+  const cityName = rates.cityName || 'Coimbatore';
+  const state = rates.state || 'Tamil Nadu';
+  const association = rates.association || 'The Coimbatore Jewellers Association (CJA Flagship Benchmark)';
+
   cardEl.innerHTML = `
     <div class="bg-gradient-to-br from-[#2a0810] via-[#1c050a] to-[#0e0205] border border-[#d4af37]/50 rounded-3xl p-6 sm:p-7 text-white shadow-[0_20px_50px_rgba(212,175,55,0.18)] relative overflow-hidden">
       <div class="absolute -right-16 -top-16 w-56 h-56 bg-[#d4af37]/15 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div class="flex flex-col md:flex-row md:items-center justify-between pb-5 border-b border-[#d4af37]/30 gap-3">
+      <div class="flex flex-col md:flex-row md:items-center justify-between pb-5 border-b border-[#d4af37]/30 gap-4">
         <div>
-          <span class="text-[10px] uppercase tracking-[0.28em] text-[#ecc874] font-bold">Precious Metals Live Index</span>
-          <h3 class="text-xl sm:text-2xl font-serif font-bold text-white mt-0.5">Today's Royal Bullion Pricing</h3>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] uppercase tracking-[0.28em] text-[#ecc874] font-bold">Precious Metals Live Index</span>
+            <span class="bg-amber-500/20 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-500/30">📍 ${cityName} (${state})</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-serif font-bold text-white mt-1">Today's Royal Bullion Pricing</h3>
+          <p class="text-xs text-stone-400 mt-0.5 font-light">${association}</p>
         </div>
-        <div class="flex items-center gap-2 text-xs bg-[#3d0f19] text-amber-200 border border-[#d4af37]/40 px-3.5 py-1.5 rounded-full w-fit shadow-sm">
-          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-          <span>BIS Assayed Live Synchronizer</span>
+        <div class="flex items-center gap-2.5">
+          <button onclick="openCitySelectorModal()" class="px-4 py-2 rounded-full bg-gradient-to-r from-amber-500/20 to-amber-600/30 hover:from-amber-500/30 hover:to-amber-600/40 border border-[#d4af37]/60 text-amber-200 text-xs font-bold transition flex items-center gap-2 shadow-sm">
+            <span>📍 Change City</span>
+            <span class="text-[10px] opacity-75 font-normal">(Auto-Detect)</span>
+          </button>
+          <div class="hidden sm:flex items-center gap-2 text-xs bg-[#3d0f19] text-amber-200 border border-[#d4af37]/40 px-3.5 py-2 rounded-full w-fit shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+            <span>BIS Assayed Live Synchronizer</span>
+          </div>
         </div>
       </div>
 
@@ -143,13 +179,14 @@ async function loadViswaProducts() {
     gridEl.innerHTML = `
       <div class="col-span-full py-16 text-center text-stone-500">
         <div class="inline-block animate-spin rounded-full h-8 w-8 border-2 border-[#781d2a] border-t-transparent mb-3"></div>
-        <p class="font-serif text-sm">Curating Viswanandini royal bridal masterpieces...</p>
+        <p class="font-serif text-sm">Curating Viswanandini royal bridal masterpieces with live bullion pricing...</p>
       </div>
     `;
   }
 
   try {
-    const res = await StoreAPI.getProducts({ brand: 'viswanandini' });
+    const currentCity = window.LocationRates ? window.LocationRates.getCurrentCity() : 'coimbatore';
+    const res = await StoreAPI.getProducts({ brand: 'viswanandini', city: currentCity });
     if (res.success) {
       viswaState.products = res.products;
       viswaState.allProducts = res.products;

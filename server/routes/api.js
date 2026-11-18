@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../services/db');
 const { calculateJewelleryPrice } = require('../services/priceCalculator');
+const locationRateService = require('../services/locationRateService');
 
 // Helper to inject calculated prices into products
 function enrichProductWithPrice(product, rates) {
@@ -132,11 +133,29 @@ router.get('/customers', (req, res) => {
 });
 
 // ==========================================
-// 1. LIVE GOLD & SILVER RATES
+// 1. LIVE GOLD & SILVER RATES (MULTI-CITY LOCATION ENGINE)
 // ==========================================
 router.get('/rates', (req, res) => {
-  const rates = db.getRates();
+  const city = req.query.city;
+  const rates = locationRateService.getRatesForCity(city);
   res.json({ success: true, rates });
+});
+
+router.get('/rates/cities', (req, res) => {
+  const cities = locationRateService.getAllCityRates();
+  res.json({ success: true, count: cities.length, cities });
+});
+
+router.get('/rates/locate', (req, res) => {
+  const { lat, lng } = req.query;
+  const nearest = locationRateService.findNearestCity(lat, lng);
+  const rates = locationRateService.getRatesForCity(nearest.id);
+  res.json({ success: true, nearest, rates });
+});
+
+router.get('/rates/detect', (req, res) => {
+  const rates = locationRateService.getRatesForCity('coimbatore');
+  res.json({ success: true, detectedCity: 'coimbatore', rates });
 });
 
 router.get('/brands', (req, res) => {
@@ -158,17 +177,21 @@ router.post('/rates', (req, res) => {
     updatedBy: 'Admin User'
   });
 
-  // Broadcast rate update to all live tabs and portals immediately!
-  broadcastSync('RATES_UPDATED', updatedRates);
+  // Broadcast rate update to all live tabs and portals immediately with multi-city indexes!
+  broadcastSync('RATES_UPDATED', {
+    ...updatedRates,
+    allCityRates: locationRateService.getAllCityRates(updatedRates)
+  });
 
-  res.json({ success: true, message: 'Rates updated successfully. Product prices dynamically re-indexed.', rates: updatedRates });
+  res.json({ success: true, message: 'Rates updated successfully. Multi-city product prices dynamically re-indexed.', rates: updatedRates });
 });
 
 // ==========================================
 // 2. PRODUCTS
 // ==========================================
 router.get('/products', (req, res) => {
-  const rates = db.getRates();
+  const city = req.query.city;
+  const rates = locationRateService.getRatesForCity(city);
   let products = db.get('products').map(p => enrichProductWithPrice(p, rates));
 
   const { brand, category, purity, minPrice, maxPrice, gender, occasion, search, sort, featured } = req.query;
@@ -232,7 +255,8 @@ router.get('/products', (req, res) => {
 });
 
 router.get('/products/:id', (req, res) => {
-  const rates = db.getRates();
+  const city = req.query.city;
+  const rates = locationRateService.getRatesForCity(city);
   const product = db.findById('products', req.params.id);
 
   if (!product) {

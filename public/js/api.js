@@ -5,9 +5,25 @@
 const API_BASE = '/api';
 
 const StoreAPI = {
-  // Rates
-  async getRates() {
-    const res = await fetch(`${API_BASE}/rates`);
+  // Rates & Multi-City Location
+  async getRates(city = null) {
+    const url = city ? `${API_BASE}/rates?city=${encodeURIComponent(city)}` : `${API_BASE}/rates`;
+    const res = await fetch(url);
+    return await res.json();
+  },
+
+  async getCityRates() {
+    const res = await fetch(`${API_BASE}/rates/cities`);
+    return await res.json();
+  },
+
+  async locateNearestCity(lat, lng) {
+    const res = await fetch(`${API_BASE}/rates/locate?lat=${lat}&lng=${lng}`);
+    return await res.json();
+  },
+
+  async detectLocation() {
+    const res = await fetch(`${API_BASE}/rates/detect`);
     return await res.json();
   },
 
@@ -27,8 +43,9 @@ const StoreAPI = {
     return await res.json();
   },
 
-  async getProductById(id) {
-    const res = await fetch(`${API_BASE}/products/${id}`);
+  async getProductById(id, city = null) {
+    const url = city ? `${API_BASE}/products/${id}?city=${encodeURIComponent(city)}` : `${API_BASE}/products/${id}`;
+    const res = await fetch(url);
     return await res.json();
   },
 

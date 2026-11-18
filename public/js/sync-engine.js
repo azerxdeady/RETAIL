@@ -174,6 +174,9 @@
       switch (type) {
         case 'RATES_UPDATED':
           this.showSyncToast('✨ Live Bullion Index Synchronized with National Assaying Exchange');
+          if (payload && payload.allCityRates && window.LocationRates) {
+            window.LocationRates.cachedCities = payload.allCityRates;
+          }
           if (typeof window.loadRates === 'function') {
             window.loadRates();
           } else if (typeof window.loadViswaRates === 'function') {

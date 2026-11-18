@@ -1434,6 +1434,7 @@ html.dark #mobile-bottom-nav {
   #price-breakup-modal,
   #size-guide-modal,
   #kj-payment-gateway-modal,
+  #city-selector-modal,
   #viswa-price-modal,
   #viswa-enroll-modal,
   #viswa-checkout-modal {
@@ -1446,6 +1447,7 @@ html.dark #mobile-bottom-nav {
   #price-breakup-modal > div,
   #size-guide-modal > div,
   #kj-payment-gateway-modal > div,
+  #city-selector-modal > div,
   #viswa-price-modal > div,
   #viswa-enroll-modal > div,
   #viswa-checkout-modal > div {
@@ -1468,6 +1470,7 @@ html.dark #mobile-bottom-nav {
   #price-breakup-modal > div::before,
   #size-guide-modal > div::before,
   #kj-payment-gateway-modal > div::before,
+  #city-selector-modal > div::before,
   #viswa-price-modal > div::before,
   #viswa-enroll-modal > div::before,
   #viswa-checkout-modal > div::before {

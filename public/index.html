@@ -98,6 +98,13 @@
 
       <!-- Action Icons: Wishlist, Cart & Concierge -->
       <div class="flex items-center gap-2.5 sm:gap-3">
+        <!-- Live Location Rate Selector Pill -->
+        <button onclick="openCitySelectorModal()" class="city-display-pill flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full border border-stone-300/80 dark:border-amber-500/40 bg-stone-100/90 dark:bg-[#1a140b] hover:border-[#d4af37] text-xs font-semibold text-stone-800 dark:text-amber-200 transition shadow-sm cursor-pointer group" title="Select your city for real-time gold rates">
+          <span class="text-amber-500 group-hover:scale-110 transition-transform">📍</span>
+          <span class="current-city-label font-bold text-stone-900 dark:text-amber-100">Coimbatore</span>
+          <span class="text-[9px] text-[#b4860b] dark:text-amber-400 font-bold hidden sm:inline">▼</span>
+        </button>
+
         <!-- Luxury Dark / Light Mode Switch -->
         <button id="theme-toggle-btn" onclick="toggleThemeMode()" class="theme-mode-switch relative px-2.5 py-1.5 rounded-full border border-stone-300/80 dark:border-amber-500/40 bg-stone-100/90 dark:bg-[#1a140b] hover:border-[#d4af37] transition-all duration-300 flex items-center gap-1.5 shadow-sm cursor-pointer select-none" title="Toggle Light / Dark Mode" aria-label="Toggle Dark and Light theme">
           <span class="theme-icon-sun text-xs text-amber-500 transition-colors duration-300"><i class="fa-solid fa-sun"></i></span>
@@ -1076,6 +1083,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
   <script src="/js/api.js"></script>
+  <script src="/js/location-rates.js"></script>
   <script src="/js/sync-engine.js"></script>
   <script src="/js/ar-tryon.js"></script>
   <script src="/js/payment-gateway.js"></script>

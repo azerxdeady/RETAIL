@@ -45,6 +45,17 @@ function initUI() {
   window.addEventListener('kj_cart_updated', () => updateCartBadge());
   window.addEventListener('kj_wishlist_updated', () => updateWishlistBadge());
 
+  // Real-time location-based gold rate switch listener
+  window.addEventListener('kj_city_changed', async (e) => {
+    const { rates } = e.detail;
+    if (rates) {
+      appState.rates = rates;
+      renderRateTicker(rates);
+      renderRatesOverviewCard(rates);
+    }
+    await loadProducts();
+  });
+
   // Close modals on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
@@ -54,11 +65,12 @@ function initUI() {
       closeSizeGuideModal();
       closeCheckoutModal();
       closeCartDrawer();
+      if (window.closeCitySelectorModal) window.closeCitySelectorModal();
     }
   });
 
   // Close modals on backdrop click
-  ['product-detail-modal', 'price-breakup-modal', 'tryon-modal', 'size-guide-modal', 'checkout-modal'].forEach(id => {
+  ['product-detail-modal', 'price-breakup-modal', 'tryon-modal', 'size-guide-modal', 'checkout-modal', 'city-selector-modal'].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
       el.addEventListener('click', (e) => {
@@ -68,17 +80,19 @@ function initUI() {
           else if (id === 'tryon-modal') closeTryOnModal();
           else if (id === 'size-guide-modal') closeSizeGuideModal();
           else if (id === 'checkout-modal') closeCheckoutModal();
+          else if (id === 'city-selector-modal' && window.closeCitySelectorModal) window.closeCitySelectorModal();
         }
       });
     }
   });
 }
 
-// 1. Fetch & Render Live Metal Rates
-async function loadRates() {
+// 1. Fetch & Render Live Metal Rates (Location-Aware)
+async function loadRates(cityId = null) {
   try {
-    const res = await StoreAPI.getRates();
-    if (res.success) {
+    const selectedCity = cityId || (window.LocationRates ? window.LocationRates.getCurrentCity() : 'coimbatore');
+    const res = await StoreAPI.getRates(selectedCity);
+    if (res.success && res.rates) {
       appState.rates = res.rates;
       renderRateTicker(res.rates);
       renderRatesOverviewCard(res.rates);
@@ -93,8 +107,17 @@ function renderRateTicker(rates) {
   if (!tickerEl) return;
 
   const timeStr = new Date(rates.lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const cityName = rates.cityName || 'Coimbatore';
+
   tickerEl.innerHTML = `
-    <div class="flex items-center gap-6 whitespace-nowrap text-xs font-medium">
+    <div class="flex items-center gap-3 sm:gap-6 whitespace-nowrap text-xs font-medium">
+      <!-- 1-Click Interactive City & Location Pill -->
+      <button onclick="openCitySelectorModal()" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-amber-300/40 text-amber-200 text-xs font-semibold transition cursor-pointer shadow-sm group" title="Click to view local gold rates for your city">
+        <span class="text-amber-400 group-hover:scale-110 transition-transform">📍</span>
+        <span class="current-city-label font-bold text-white">${cityName}</span>
+        <span class="text-[10px] text-amber-300 underline font-normal">(Change)</span>
+      </button>
+
       <span class="flex items-center gap-2 text-[#f3e5ab]">
         <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-rate"></span>
         <strong class="text-white tracking-wide">LIVE BULLION INDEX</strong> (${timeStr})
@@ -103,7 +126,7 @@ function renderRateTicker(rates) {
       <span class="text-amber-200">Gold 22KT (916 Hallmark): <strong class="text-white font-mono">₹${rates.gold22k.toLocaleString('en-IN')}/g</strong></span>
       <span class="text-amber-100">Gold 18KT: <strong class="text-white font-mono">₹${rates.gold18k.toLocaleString('en-IN')}/g</strong></span>
       <span class="text-slate-200">Silver 999: <strong class="text-white font-mono">₹${rates.silver.toLocaleString('en-IN')}/g</strong></span>
-      <span class="text-emerald-300 font-semibold">★ 0% Making Charges on 24KT Gold Coins</span>
+      <span class="text-emerald-300 font-semibold">★ ${rates.association || '0% Making Charges on 24KT Gold Coins'}</span>
     </div>
   `;
 }
@@ -112,18 +135,32 @@ function renderRatesOverviewCard(rates) {
   const cardEl = document.getElementById('rates-overview-card');
   if (!cardEl) return;
 
+  const cityName = rates.cityName || 'Coimbatore';
+  const state = rates.state || 'Tamil Nadu';
+  const association = rates.association || 'The Coimbatore Jewellers Association (CJA Flagship Benchmark)';
+
   cardEl.innerHTML = `
     <div class="bg-gradient-to-br from-[#120e06] via-[#1a1409] to-[#0a0703] border border-[#d4af37]/50 rounded-3xl p-6 sm:p-8 text-white shadow-[0_20px_50px_rgba(212,175,55,0.16)] relative overflow-hidden">
       <div class="absolute -right-16 -top-16 w-56 h-56 bg-[#d4af37]/15 rounded-full blur-3xl pointer-events-none"></div>
       
-      <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-[#d4af37]/30 gap-3">
+      <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-[#d4af37]/30 gap-4">
         <div>
-          <span class="text-[10px] uppercase tracking-[0.28em] text-[#ecc874] font-bold">Real-time Bullion Exchange</span>
-          <h3 class="text-xl sm:text-2xl font-serif font-bold text-white mt-0.5">Today's Official Bullion Benchmark</h3>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] uppercase tracking-[0.28em] text-[#ecc874] font-bold">Real-time Bullion Exchange</span>
+            <span class="bg-amber-500/20 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-500/30">📍 ${cityName} (${state})</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-serif font-bold text-white mt-1">Today's Official Bullion Benchmark</h3>
+          <p class="text-xs text-stone-400 mt-0.5 font-light">${association}</p>
         </div>
-        <div class="flex items-center gap-2 text-xs bg-[#1f190d] text-emerald-300 border border-emerald-500/30 px-3.5 py-1.5 rounded-full w-fit shadow-sm">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>BIS Assayed Live Ticker</span>
+        <div class="flex items-center gap-2.5">
+          <button onclick="openCitySelectorModal()" class="px-4 py-2 rounded-full bg-gradient-to-r from-amber-500/20 to-amber-600/30 hover:from-amber-500/30 hover:to-amber-600/40 border border-[#d4af37]/60 text-amber-200 text-xs font-bold transition flex items-center gap-2 shadow-sm">
+            <span>📍 Change City</span>
+            <span class="text-[10px] opacity-75 font-normal">(Auto-Detect)</span>
+          </button>
+          <div class="hidden sm:flex items-center gap-2 text-xs bg-[#1f190d] text-emerald-300 border border-emerald-500/30 px-3.5 py-2 rounded-full w-fit shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>BIS Assayed Live Ticker</span>
+          </div>
         </div>
       </div>
 
@@ -214,6 +251,7 @@ async function loadProducts() {
     if (appState.currentPurity !== 'all') params.purity = appState.currentPurity;
     if (appState.currentSort !== 'default') params.sort = appState.currentSort;
     if (appState.currentSearch) params.search = appState.currentSearch;
+    params.city = window.LocationRates ? window.LocationRates.getCurrentCity() : 'coimbatore';
 
     const res = await StoreAPI.getProducts(params);
     if (res.success) {
@@ -343,7 +381,8 @@ function renderProductsGrid(products) {
 // 4. Product Details Modal
 async function openProductModal(productId) {
   try {
-    const res = await StoreAPI.getProductById(productId);
+    const currentCity = window.LocationRates ? window.LocationRates.getCurrentCity() : 'coimbatore';
+    const res = await StoreAPI.getProductById(productId, currentCity);
     if (!res.success) return;
     const p = res.product;
     appState.selectedProduct = p;
@@ -485,7 +524,8 @@ function closeProductModal() {
 async function openPriceBreakupModal(productId, event) {
   if (event) event.stopPropagation();
   try {
-    const res = await StoreAPI.getProductById(productId);
+    const currentCity = window.LocationRates ? window.LocationRates.getCurrentCity() : 'coimbatore';
+    const res = await StoreAPI.getProductById(productId, currentCity);
     if (!res.success) return;
     const p = res.product;
     const c = p.pricing;
