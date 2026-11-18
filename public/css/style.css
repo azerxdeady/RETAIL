@@ -1897,3 +1897,403 @@ img[loading="lazy"] {
   .hero-carousel-arrow { display: none; }
   .hfb-bl, .hfb-br { display: none; }
 }
+
+
+/* ==========================================================================
+   IMPERIAL LUXURY SPLASH SCREEN & GLOBAL LOADING SUITE
+   Karthik Jewellers Official Golden Monogram & Hallmarked Identity
+   ========================================================================== */
+
+.kj-splash-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999999;
+  background: radial-gradient(circle at 50% 45%, #181208 0%, #0c0905 55%, #050402 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.75s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.kj-splash-dismissed {
+  opacity: 0 !important;
+  transform: scale(1.06) !important;
+  filter: blur(6px) !important;
+  pointer-events: none !important;
+}
+
+/* Ambient Canvas behind splash */
+.kj-splash-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Radial Golden Glows */
+.kj-splash-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.kj-splash-glow-primary {
+  width: 440px;
+  height: 440px;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, rgba(212, 175, 55, 0.05) 50%, transparent 70%);
+  animation: kjSplashGlowPulse 4s ease-in-out infinite;
+}
+
+.kj-splash-glow-secondary {
+  width: 680px;
+  height: 680px;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 235, 160, 0.08) 0%, transparent 65%);
+  animation: kjSplashGlowPulse 6s ease-in-out infinite reverse;
+}
+
+@keyframes kjSplashGlowPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);   opacity: 0.7; }
+  50%       { transform: translate(-50%, -50%) scale(1.15); opacity: 1;   }
+}
+
+/* Central Content Container */
+.kj-splash-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  max-width: 580px;
+  width: 92%;
+}
+
+/* Rotating Celestial Halo Ring */
+.kj-splash-halo {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  margin-top: -140px;
+  margin-left: -140px;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.85;
+  animation: kjHaloSpin 32s linear infinite;
+}
+
+.kj-halo-svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes kjHaloSpin {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+/* 3D Interactive Emblem Frame */
+.kj-splash-logo-card {
+  position: relative;
+  z-index: 12;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.12s linear;
+  will-change: transform;
+  margin-bottom: 1.5rem;
+}
+
+.kj-splash-logo-wrap {
+  position: relative;
+  display: inline-block;
+  border-radius: 1.5rem;
+  padding: 0.5rem;
+}
+
+.kj-splash-logo {
+  width: 155px;
+  max-width: 42vw;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 12px 30px rgba(212, 175, 55, 0.45))
+          drop-shadow(0 0 20px rgba(255, 235, 160, 0.3));
+  animation: kjLogoBreathe 4.5s ease-in-out infinite;
+  transition: filter 0.3s ease;
+}
+
+.kj-splash-logo-card:hover .kj-splash-logo {
+  filter: drop-shadow(0 18px 40px rgba(212, 175, 55, 0.65))
+          drop-shadow(0 0 28px rgba(255, 248, 220, 0.5));
+}
+
+@keyframes kjLogoBreathe {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50%       { transform: scale(1.03) translateY(-4px); }
+}
+
+/* Diagonal Sheen on Logo */
+.kj-splash-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 1.5rem;
+  background: radial-gradient(circle 120px at 50% 50%, rgba(255, 248, 220, 0.3) 0%, transparent 70%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.kj-splash-logo-card:hover .kj-splash-sheen {
+  opacity: 1;
+}
+
+/* Majestic Typography */
+.kj-splash-brand-block {
+  margin-bottom: 1.75rem;
+}
+
+.kj-splash-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+
+.kj-eyebrow-line {
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6));
+}
+.kj-eyebrow-line:last-child {
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.6), transparent);
+}
+
+.kj-eyebrow-text {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  color: #c5a059;
+  text-transform: uppercase;
+}
+
+.kj-splash-title {
+  font-family: var(--font-serif, 'Cinzel', serif);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  margin: 0.2rem 0;
+  line-height: 1.15;
+}
+
+@media (min-width: 640px) {
+  .kj-splash-title {
+    font-size: 2.25rem;
+  }
+}
+
+.kj-title-gold {
+  background: linear-gradient(135deg, #fef3c7 0%, #d4af37 50%, #996515 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  margin-right: 0.3em;
+}
+
+.kj-title-light {
+  color: #f7f1e6;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+}
+
+.kj-splash-tagline {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: rgba(250, 236, 208, 0.75);
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.kj-splash-seals {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #b4860b;
+}
+
+.kj-splash-seal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(212, 175, 55, 0.08);
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: #faecd0;
+}
+
+.kj-splash-seal i {
+  color: #d4af37;
+  font-size: 8px;
+}
+
+.kj-splash-seal-divider {
+  color: rgba(212, 175, 55, 0.4);
+}
+
+/* Gold Liquid Progress System */
+.kj-splash-progress-wrapper {
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 1.5rem;
+}
+
+.kj-splash-progress-bar-bg {
+  width: 100%;
+  height: 2.5px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: visible;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.kj-splash-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #b4860b 0%, #d4af37 60%, #fff6d1 100%);
+  border-radius: 999px;
+  position: relative;
+  transition: width 0.06s linear;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+}
+
+.kj-progress-head-sparkle {
+  position: absolute;
+  right: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #fff, 0 0 16px #d4af37;
+  animation: kjSparkleBlink 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes kjSparkleBlink {
+  from { transform: translateY(-50%) scale(0.8); opacity: 0.7; }
+  to   { transform: translateY(-50%) scale(1.3); opacity: 1; }
+}
+
+.kj-splash-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.6rem;
+  font-size: 9.5px;
+  color: rgba(250, 236, 208, 0.8);
+}
+
+.kj-splash-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-align: left;
+  max-width: 82%;
+}
+
+.kj-status-pulse-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 6px #4ade80;
+  flex-shrink: 0;
+  animation: kjStatusDotPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes kjStatusDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.85); }
+}
+
+.kj-splash-status-text {
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.02em;
+}
+
+.kj-splash-percent {
+  font-family: monospace;
+  font-weight: 700;
+  color: #d4af37;
+  font-size: 10px;
+}
+
+/* Enter Boutique / Skip Intro CTA */
+.kj-splash-enter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.15rem;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: #faecd0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.kj-splash-enter-btn:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: #d4af37;
+  color: #ffffff;
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.28);
+}
+
+.kj-enter-arrow {
+  transition: transform 0.2s ease;
+  color: #d4af37;
+}
+
+.kj-splash-enter-btn:hover .kj-enter-arrow {
+  transform: translateX(3px);
+}

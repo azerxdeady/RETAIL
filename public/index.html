@@ -46,7 +46,8 @@
       darkMode: 'class'
     }
   </script>
-  <link rel="stylesheet" href="/css/style.css?v=3">
+  <link rel="preload" as="image" href="/images/karthik-emblem-gold.png" fetchpriority="high">
+  <link rel="stylesheet" href="/css/style.css?v=4">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="/js/theme.js"></script>
   <script>
@@ -69,6 +70,97 @@
 </head>
 
 <body class="bg-[#faf9f6] text-stone-900 font-sans selection:bg-[#c5a059] selection:text-black pb-16 sm:pb-0">
+
+  <!-- ========================================================
+       IMPERIAL LUXURY SPLASH SCREEN & GLOBAL LOADING SCREEN
+       Karthik Jewellers Official Golden Monogram & Hallmarked Identity
+       ======================================================== -->
+  <div id="kj-splash-screen" class="kj-splash-overlay" aria-label="Karthik Jewellers Loading Screen">
+    <!-- Dynamic ambient canvas for gold particles & star sparkles -->
+    <canvas id="kj-splash-canvas" class="kj-splash-canvas"></canvas>
+
+    <!-- Ambient celestial radial backglows -->
+    <div class="kj-splash-glow kj-splash-glow-primary"></div>
+    <div class="kj-splash-glow kj-splash-glow-secondary"></div>
+
+    <!-- Central Brand Presentation Container with 3D Tilt -->
+    <div id="kj-splash-content" class="kj-splash-content">
+
+      <!-- Rotating Celestial Sacred Geometry Halo Ring behind the logo -->
+      <div class="kj-splash-halo">
+        <svg class="kj-halo-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="92" stroke="rgba(212,175,55,0.22)" stroke-width="1" stroke-dasharray="4 6" />
+          <circle cx="100" cy="100" r="82" stroke="rgba(212,175,55,0.35)" stroke-width="1.5" />
+          <circle cx="100" cy="100" r="72" stroke="rgba(212,175,55,0.18)" stroke-dasharray="2 8" />
+          <polygon points="100,10 112,88 190,100 112,112 100,190 88,112 10,100 88,88" stroke="rgba(212,175,55,0.18)" stroke-width="0.8" />
+          <polygon points="100,25 110,90 175,100 110,110 100,175 90,110 25,100 90,90" stroke="rgba(255,235,160,0.12)" stroke-width="0.6" />
+        </svg>
+      </div>
+
+      <!-- 3D Interactive Emblem Frame with Light Sweep -->
+      <div id="kj-splash-logo-card" class="kj-splash-logo-card" title="Click to interact with emblem">
+        <div class="kj-splash-logo-wrap">
+          <img id="kj-splash-logo-img"
+               src="/images/karthik-emblem-gold.png"
+               alt="Karthik Jewellers Official Gold Monogram"
+               class="kj-splash-logo"
+               draggable="false" />
+          <!-- Diagonal metallic light sheen sweep -->
+          <div class="kj-splash-sheen"></div>
+        </div>
+      </div>
+
+      <!-- Majestic Typography -->
+      <div class="kj-splash-brand-block">
+        <div class="kj-splash-eyebrow">
+          <span class="kj-eyebrow-line"></span>
+          <span class="kj-eyebrow-text">ROYAL FINE JEWELLERY</span>
+          <span class="kj-eyebrow-line"></span>
+        </div>
+
+        <h1 class="kj-splash-title">
+          <span class="kj-title-gold">KARTHIK</span>
+          <span class="kj-title-light">JEWELLERS</span>
+        </h1>
+
+        <p class="kj-splash-tagline">
+          EST. 1974 &bull; COIMBATORE &bull; HERITAGE &bull; PASSION &bull; PURITY
+        </p>
+
+        <!-- Trust Hallmark Seals -->
+        <div class="kj-splash-seals">
+          <span class="kj-splash-seal"><i class="fa-solid fa-certificate"></i> BIS 916 HALLMARKED</span>
+          <span class="kj-splash-seal-divider">&bull;</span>
+          <span class="kj-splash-seal"><i class="fa-solid fa-gem"></i> IGI CERTIFIED DIAMONDS</span>
+          <span class="kj-splash-seal-divider">&bull;</span>
+          <span class="kj-splash-seal"><i class="fa-solid fa-shield-halved"></i> 100% HUID TRACEABLE</span>
+        </div>
+      </div>
+
+      <!-- Sleek Gold Liquid Progress System -->
+      <div class="kj-splash-progress-wrapper">
+        <div class="kj-splash-progress-bar-bg">
+          <div id="kj-splash-progress-fill" class="kj-splash-progress-fill">
+            <span class="kj-progress-head-sparkle"></span>
+          </div>
+        </div>
+
+        <div class="kj-splash-status-row">
+          <div class="kj-splash-status-indicator">
+            <span class="kj-status-pulse-dot"></span>
+            <span id="kj-splash-status-text" class="kj-splash-status-text">Connecting to Live Bullion Index...</span>
+          </div>
+          <span id="kj-splash-percent" class="kj-splash-percent">0%</span>
+        </div>
+      </div>
+
+      <!-- Elegant Enter Boutique / Skip Intro CTA -->
+      <button id="kj-splash-enter-btn" class="kj-splash-enter-btn" onclick="if(window.KJLoader)window.KJLoader.dismiss()">
+        <span>Enter Boutique</span>
+        <span class="kj-enter-arrow">&rarr;</span>
+      </button>
+    </div>
+  </div>
 
   <!-- 0. REAL-TIME SYNCHRONIZED ANNOUNCEMENT BAR (Shopify 2.0 Theme Customizer) -->
   <div id="announcement-bar"
@@ -1123,6 +1215,7 @@
     <div
       class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-stone-500 gap-4">
       <p id="footer-copyright">© 2026 Karthik Jewellers Private Limited. All Rights Reserved.</p>
+      <button onclick="if(window.KJLoader)window.KJLoader.replay()" class="text-amber-400 hover:text-amber-300 transition text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer"><span>✨ Replay Brand Intro</span></button>
       <div class="flex items-center gap-4 text-stone-400">
         <span>100% Transit Insured</span>
         <span>•</span>
@@ -1413,7 +1506,8 @@
   <script defer src="/js/ar-tryon.js"></script>
   <script defer src="/js/payment-gateway.js"></script>
   <script defer src="/js/store.js"></script>
-  <script defer src="/js/ux3d.js?v=3"></script>
+  <script src="/js/splash-screen.js?v=4"></script>
+  <script defer src="/js/ux3d.js?v=4"></script>
 </body>
 
 </html>

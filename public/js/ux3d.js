@@ -1,4 +1,4 @@
-﻿/**
+/**
  * KJ3D — Karthik Jewellers 3D Luxury UX Engine
  * =================================================
  * Provides: Card Tilt · Hero Parallax · Magnetic Buttons ·
