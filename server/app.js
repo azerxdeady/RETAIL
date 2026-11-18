@@ -22,15 +22,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static assets with aggressive 7-day caching for CSS/JS/images and immediate revalidation for HTML
+// Serve static assets: aggressive caching for images, immediate ETag revalidation for HTML/CSS/JS
 const publicDir = path.join(__dirname, '../public');
 app.use(express.static(publicDir, {
-  maxAge: '7d',
   etag: true,
   lastModified: true,
   setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.html')) {
-      res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+    if (filePath.endsWith('.html') || filePath.endsWith('.js') || filePath.endsWith('.css')) {
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
     } else {
       res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
     }

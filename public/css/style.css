@@ -1249,9 +1249,17 @@ html:not(.dark) body.admin-theme-adaptive textarea {
   50%       { transform: translate(-50%, -50%) scale(1.3); opacity: 1;   }
 }
 
-/* ── 8. CUSTOM CURSOR RING (disabled) ── */
-#kj-cursor-ring {
+/* ── 8. CUSTOM CURSOR RING (permanently removed) ── */
+#kj-cursor-ring,
+.custom-cursor-ring,
+[id*="cursor-ring"] {
   display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  transform: scale(0) !important;
 }
 
 /* ── 9. PAGE-LOAD GOLD SHIMMER HEADING ── */
