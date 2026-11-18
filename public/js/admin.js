@@ -1716,6 +1716,8 @@ function populateStoreSettingsForm(settings) {
 
   if (setStore) setStore.value = settings.storeName || '';
   if (setLegal) setLegal.value = settings.legalEntity || '';
+  const setMD = document.getElementById('set-managing-director');
+  if (setMD) setMD.value = settings.managingDirector || 'Mr. Viswadeep';
   if (setGstin) setGstin.value = settings.gstin || '';
   if (setBis) setBis.value = settings.bisLicense || '';
   if (setGstPct) setGstPct.value = settings.gstPercentage || 3.0;
@@ -1731,6 +1733,7 @@ async function handleStoreSettingsSubmit(e) {
   const payload = {
     storeName: document.getElementById('set-store-name').value,
     legalEntity: document.getElementById('set-legal-entity').value,
+    managingDirector: (document.getElementById('set-managing-director') ? document.getElementById('set-managing-director').value : 'Mr. Viswadeep'),
     gstin: document.getElementById('set-gstin').value,
     bisLicense: document.getElementById('set-bis-license').value,
     gstPercentage: Number(document.getElementById('set-gst-pct').value),

@@ -1,13 +1,13 @@
 {
   "rates": {
-    "gold24k": 11327,
-    "gold22k": 10383,
-    "gold18k": 8495,
-    "silver": 137.4,
-    "lastUpdated": "2026-11-18T12:12:59.178Z",
+    "gold24k": 11274,
+    "gold22k": 10335,
+    "gold18k": 8456,
+    "silver": 136.2,
+    "lastUpdated": "2026-11-18T12:42:55.861Z",
     "updatedBy": "GoldAPI.io Real-Time Synchronizer",
-    "change": -7484.5,
-    "changePercent": -2.08,
+    "change": -9137,
+    "changePercent": -2.54,
     "symbol": "FX_IDC:XAUINR",
     "exchange": "IDC",
     "source": "GoldAPI.io Live Institutional Feed"
@@ -661,7 +661,7 @@
       "huid": "KJ916N3011F",
       "certification": "BIS 916 Hallmarked & Gem Lab Certified",
       "inStock": true,
-      "stockCount": 11,
+      "stockCount": 10,
       "rating": 4.9,
       "reviewsCount": 38,
       "gender": "Women",
@@ -678,7 +678,8 @@
       "featured": false,
       "isFeatured": false,
       "isBestseller": true,
-      "isNew": false
+      "isNew": false,
+      "updatedAt": "2026-11-18T12:41:50.595Z"
     },
     {
       "id": "VJ-POLKI-NK-101",
@@ -1595,6 +1596,62 @@
   ],
   "orders": [
     {
+      "id": "ORD-KJ-2026-16675",
+      "brand": "karthik",
+      "customer": {
+        "name": "S. Karthikeyan",
+        "phone": "+91 98401 55678",
+        "email": "karthik.customer@example.com",
+        "address": "Villa 42, Palm Meadows, Whitefield",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "pincode": "560066"
+      },
+      "items": [
+        {
+          "productId": "KJ-GLD-RG-016",
+          "name": "Ananya Navratna Royal Fortune Ring",
+          "purity": "22KT",
+          "grossWeight": 7.8,
+          "netWeight": 6.9,
+          "metalPricePerGram": 10383,
+          "metalValue": 71643,
+          "makingCharges": 8597,
+          "stonePrice": 12500,
+          "gstAmount": 2782,
+          "totalPrice": 95522,
+          "quantity": 1,
+          "huid": "KJ916N3011F",
+          "image": "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80"
+        }
+      ],
+      "payment": {
+        "method": "Cash on Delivery (Armoured Transit)",
+        "status": "Paid",
+        "transactionId": "COD_BVC_1795005694171",
+        "gateway": "Razorpay / Cashfree Luxury Sandbox",
+        "rrn": "RRN697671602142",
+        "upiId": null,
+        "cardLast4": null,
+        "emiTenure": null,
+        "bankName": null,
+        "paidAt": "2026-11-18T12:41:50.550Z"
+      },
+      "summary": {
+        "subtotal": 92740,
+        "discount": 0,
+        "gst": 2782,
+        "insuredShipping": 0,
+        "grandTotal": 95522
+      },
+      "status": "Hallmarking Verified",
+      "trackingNumber": "BVC-KJ-691241",
+      "courier": "BVC Logistics Armoured Vault Transit",
+      "createdAt": "2026-11-18T12:41:50.550Z",
+      "deliveryEstimated": "2026-11-21",
+      "updatedAt": "2026-11-18T12:41:50.553Z"
+    },
+    {
       "id": "ORD-KJ-2026-35739",
       "brand": "karthik",
       "customer": {
@@ -2260,6 +2317,7 @@
     "courierPartner": "BVC Logistics Secured Armoured Vault Transit",
     "autoRefreshRatesSeconds": 30,
     "viswanandiniAddress": "98, West Lokamaya Street, R.S. Puram, Coimbatore - 641002, Tamil Nadu, India",
-    "gdl": "GDL 44/86"
+    "gdl": "GDL 44/86",
+    "managingDirector": "Mr. Viswadeep"
   }
 }
