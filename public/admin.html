@@ -948,7 +948,50 @@
         <div class="pb-4 border-b border-stone-800">
           <span class="text-[10px] font-bold text-[#c5a059] uppercase tracking-[0.2em]">Live Pricing Engine</span>
           <h2 class="text-2xl font-serif font-bold text-white mt-0.5">Dynamic Bullion Rate Controller</h2>
-          <p class="text-xs text-stone-400 mt-1 font-light">Updating these values automatically recalculates the retail pricing for every gold and silver piece across the entire store.</p>
+          <p class="text-xs text-stone-400 mt-1 font-light">Powered by GoldAPI.io real-time institutional bullion feed with multi-city location benchmarks. Updating these values recalculates retail pricing for all 36 heirloom pieces across both storefronts.</p>
+        </div>
+
+        <!-- GoldAPI.io Institutional Feed Live Sync Card -->
+        <div class="max-w-2xl bg-gradient-to-br from-[#121b16] via-[#0d1611] to-[#080d0a] border border-emerald-500/40 rounded-3xl p-6 shadow-xl relative overflow-hidden">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-emerald-500/20">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400 text-lg">
+                ⚡
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-base font-bold text-white">GoldAPI.io Live Exchange Feed</h3>
+                  <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    API Connected
+                  </span>
+                </div>
+                <p class="text-[11px] text-stone-400 mt-0.5">Real-time spot price converter (XAU/INR & XAG/INR) with multi-purity melt rates.</p>
+              </div>
+            </div>
+            <button type="button" id="goldapi-sync-btn" onclick="syncLiveGoldApiRates()" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-stone-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition">
+              <span>⚡ Sync Live Rates Now</span>
+            </button>
+          </div>
+
+          <div id="goldapi-live-meta" class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+            <div class="bg-black/40 p-2.5 rounded-xl border border-emerald-500/20">
+              <span class="text-[10px] text-stone-400 uppercase font-semibold">Feed Source</span>
+              <strong class="block text-emerald-300 font-mono text-xs mt-0.5">IDC Spot / GoldAPI</strong>
+            </div>
+            <div class="bg-black/40 p-2.5 rounded-xl border border-emerald-500/20">
+              <span class="text-[10px] text-stone-400 uppercase font-semibold">24h Market Change</span>
+              <strong id="goldapi-change-text" class="block text-amber-300 font-mono text-xs mt-0.5">-2.12% Today</strong>
+            </div>
+            <div class="bg-black/40 p-2.5 rounded-xl border border-emerald-500/20">
+              <span class="text-[10px] text-stone-400 uppercase font-semibold">Auto-Sync</span>
+              <strong class="block text-emerald-400 font-mono text-xs mt-0.5">Every 30 Mins Active</strong>
+            </div>
+            <div class="bg-black/40 p-2.5 rounded-xl border border-emerald-500/20">
+              <span class="text-[10px] text-stone-400 uppercase font-semibold">Status</span>
+              <strong id="goldapi-last-synced" class="block text-stone-300 font-mono text-xs mt-0.5">Live Synchronized</strong>
+            </div>
+          </div>
         </div>
 
         <div class="max-w-2xl bg-[#11151e] border border-[#c5a059]/40 rounded-3xl p-6 sm:p-8 shadow-xl">

@@ -1,11 +1,15 @@
 const app = require('./server/app');
 const db = require('./server/services/db');
+const goldApiService = require('./server/services/goldApiService');
 const os = require('os');
 
 const PORT = process.env.PORT || 5000;
 
 // Ensure database is initialized
 db.init();
+
+// Initialize GoldAPI.io real-time bullion sync (30 min background polling)
+goldApiService.startAutoSync(30);
 
 function getLocalIpAddresses() {
   const ifaces = os.networkInterfaces();

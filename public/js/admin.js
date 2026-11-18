@@ -1611,14 +1611,58 @@ function populateRatesForm(rates) {
   const input18k = document.getElementById('rate-18k');
   const inputSilver = document.getElementById('rate-silver');
   const updatedByEl = document.getElementById('rate-updated-time');
+  const changeEl = document.getElementById('goldapi-change-text');
+  const lastSyncedEl = document.getElementById('goldapi-last-synced');
 
   if (input24k) input24k.value = rates.gold24k;
   if (input22k) input22k.value = rates.gold22k;
   if (input18k) input18k.value = rates.gold18k;
   if (inputSilver) inputSilver.value = rates.silver;
 
+  if (changeEl && rates.changePercent !== undefined) {
+    const sign = rates.changePercent > 0 ? '+' : '';
+    changeEl.innerText = `${sign}${rates.changePercent}% Today`;
+    changeEl.className = rates.changePercent >= 0 ? 'block text-emerald-400 font-mono text-xs mt-0.5' : 'block text-rose-400 font-mono text-xs mt-0.5';
+  }
+
+  if (lastSyncedEl && rates.lastUpdated) {
+    lastSyncedEl.innerText = new Date(rates.lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+
   if (updatedByEl && rates.lastUpdated) {
-    updatedByEl.innerText = `Last Updated: ${new Date(rates.lastUpdated).toLocaleString('en-IN')}`;
+    const src = rates.source || 'Admin';
+    updatedByEl.innerText = `Source: ${src} • Last Updated: ${new Date(rates.lastUpdated).toLocaleString('en-IN')}`;
+  }
+}
+
+async function syncLiveGoldApiRates() {
+  const btn = document.getElementById('goldapi-sync-btn');
+  const original = btn ? btn.innerHTML : '';
+  if (btn) {
+    btn.innerHTML = '<span class="inline-block animate-spin mr-1">⌛</span><span>Syncing with GoldAPI.io...</span>';
+    btn.disabled = true;
+  }
+  try {
+    const res = await StoreAPI.syncGoldApiRates();
+    if (res.success && res.rates) {
+      adminState.rates = res.rates;
+      populateRatesForm(res.rates);
+      showToast(`⚡ Live Bullion Rates Synced: 22KT: ₹${res.rates.gold22k.toLocaleString('en-IN')}/g • 24KT: ₹${res.rates.gold24k.toLocaleString('en-IN')}/g (GoldAPI.io)`, 'success');
+      const prodRes = await StoreAPI.getProducts();
+      if (prodRes.success) {
+        adminState.products = prodRes.products;
+        renderProductsTab(prodRes.products);
+      }
+    } else {
+      showToast(res.message || 'Failed to sync with GoldAPI.io', 'error');
+    }
+  } catch (err) {
+    showToast('Failed to contact GoldAPI: ' + err.message, 'error');
+  } finally {
+    if (btn) {
+      btn.innerHTML = original;
+      btn.disabled = false;
+    }
   }
 }
 

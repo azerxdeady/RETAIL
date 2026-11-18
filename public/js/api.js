@@ -27,6 +27,16 @@ const StoreAPI = {
     return await res.json();
   },
 
+  async syncGoldApiRates() {
+    const res = await fetch(`${API_BASE}/rates/fetch-live`, { method: 'POST' });
+    return await res.json();
+  },
+
+  async getGoldApiStatus() {
+    const res = await fetch(`${API_BASE}/rates/provider-status`);
+    return await res.json();
+  },
+
   async updateRates(ratesData) {
     const res = await fetch(`${API_BASE}/rates`, {
       method: 'POST',

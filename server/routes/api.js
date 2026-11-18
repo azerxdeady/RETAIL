@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require('../services/db');
 const { calculateJewelleryPrice } = require('../services/priceCalculator');
 const locationRateService = require('../services/locationRateService');
+const goldApiService = require('../services/goldApiService');
 
 // Helper to inject calculated prices into products
 function enrichProductWithPrice(product, rates) {
@@ -156,6 +157,34 @@ router.get('/rates/locate', (req, res) => {
 router.get('/rates/detect', (req, res) => {
   const rates = locationRateService.getRatesForCity('coimbatore');
   res.json({ success: true, detectedCity: 'coimbatore', rates });
+});
+
+router.post('/rates/fetch-live', async (req, res) => {
+  try {
+    const liveRes = await goldApiService.fetchLiveRates(true);
+    if (liveRes.success) {
+      // Broadcast rate update to all live tabs and portals immediately!
+      broadcastSync('RATES_UPDATED', {
+        ...liveRes.rates,
+        allCityRates: locationRateService.getAllCityRates(liveRes.rates)
+      });
+      res.json({
+        success: true,
+        message: 'Successfully synchronized live market rates from GoldAPI.io',
+        rates: liveRes.rates,
+        liveMeta: liveRes.liveMeta
+      });
+    } else {
+      res.status(500).json({ success: false, message: liveRes.error || 'Failed to fetch rates from GoldAPI.io', rates: liveRes.rates });
+    }
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+router.get('/rates/provider-status', (req, res) => {
+  const status = goldApiService.getStatus();
+  res.json({ success: true, status });
 });
 
 router.get('/brands', (req, res) => {
