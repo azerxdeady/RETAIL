@@ -850,3 +850,27 @@ function toggleWishlistDrawer() {
   alert(`Royal Wishlist holds ${viswaState.wishlist.length} selected pieces.`);
 }
 
+
+// Mobile Navigation Drawer Toggle
+window.toggleViswaNavDrawer = function(force) {
+  const drawer = document.getElementById('viswa-mobile-nav-drawer');
+  const backdrop = document.getElementById('viswa-mobile-nav-backdrop');
+  if (!drawer) return;
+  const isCurrentlyOpen = !drawer.classList.contains('-translate-x-full');
+  const shouldOpen = force !== undefined ? force : !isCurrentlyOpen;
+  if (shouldOpen) {
+    drawer.classList.remove('-translate-x-full', 'pointer-events-none');
+    if (backdrop) backdrop.classList.remove('opacity-0');
+    document.body.style.overflow = 'hidden';
+  } else {
+    drawer.classList.add('-translate-x-full', 'pointer-events-none');
+    if (backdrop) backdrop.classList.add('opacity-0');
+    document.body.style.overflow = '';
+  }
+};
+
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && window.toggleViswaNavDrawer) {
+    window.toggleViswaNavDrawer(false);
+  }
+});
