@@ -382,86 +382,10 @@
     document.head.appendChild(orbStyle);
   }
 
-  /* ─── GOLD CURSOR RING (subtle luxury cursor follow) ─────── */
-  function initCursorRing() {
-    // Only on desktop
-    if (window.matchMedia('(pointer: coarse)').matches) return;
-
-    const ring = document.createElement('div');
-    ring.id = 'kj-cursor-ring';
-    ring.style.cssText = `
-      position: fixed;
-      width: 36px; height: 36px;
-      border: 1.5px solid rgba(212,175,55,0.5);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99998;
-      transition: transform 0.12s ease, width 0.25s ease, height 0.25s ease, opacity 0.2s ease, border-color 0.2s ease;
-      transform: translate(-50%,-50%) scale(1);
-      opacity: 0;
-      mix-blend-mode: normal;
-      backdrop-filter: none;
-    `;
-    document.body.appendChild(ring);
-
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
-    let visible = false;
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      if (!visible) {
-        ring.style.opacity = '1';
-        visible = true;
-      }
-    });
-    document.addEventListener('mouseleave', () => {
-      ring.style.opacity = '0';
-      visible = false;
-    });
-
-    // Smooth follow with lerp
-    function followCursor() {
-      ringX += (mouseX - ringX) * 0.14;
-      ringY += (mouseY - ringY) * 0.14;
-      ring.style.left = ringX + 'px';
-      ring.style.top  = ringY + 'px';
-      requestAnimationFrame(followCursor);
-    }
-    requestAnimationFrame(followCursor);
-
-    // Expand on interactive elements
-    const interactSel = 'a, button, .jewellery-card, .viswa-card, .category-card, .gold-btn, .trust-pillar-card';
-    document.querySelectorAll(interactSel).forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        ring.style.width  = '54px';
-        ring.style.height = '54px';
-        ring.style.borderColor = 'rgba(212,175,55,0.9)';
-        ring.style.boxShadow = '0 0 12px rgba(212,175,55,0.3)';
-      });
-      el.addEventListener('mouseleave', () => {
-        ring.style.width  = '36px';
-        ring.style.height = '36px';
-        ring.style.borderColor = 'rgba(212,175,55,0.5)';
-        ring.style.boxShadow = 'none';
-      });
-    });
-
-    // Also update ring for dynamically added cards via delegation
-    document.addEventListener('mouseover', (e) => {
-      if (e.target.closest('.jewellery-card, .viswa-card, .gold-btn, .category-card, button, a')) {
-        ring.style.width  = '54px';
-        ring.style.height = '54px';
-        ring.style.borderColor = 'rgba(212,175,55,0.9)';
-        ring.style.boxShadow = '0 0 12px rgba(212,175,55,0.3)';
-      } else {
-        ring.style.width  = '36px';
-        ring.style.height = '36px';
-        ring.style.borderColor = 'rgba(212,175,55,0.5)';
-        ring.style.boxShadow = 'none';
-      }
-    });
+  /* ─── CUSTOM CURSOR RING REMOVED (standard browser cursor preserved) ─────── */
+  function removeCursorRing() {
+    const existing = document.getElementById('kj-cursor-ring');
+    if (existing) existing.remove();
   }
 
   /* ─── SECTION DEPTH SHADOW ───────────────────────────────── */
@@ -550,7 +474,7 @@
     initScrollReveal();
     initSectionDepth();
     initButtonPress();
-    initCursorRing();
+    removeCursorRing();
     watchForNewCards();
   }
 
