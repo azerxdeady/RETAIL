@@ -2468,3 +2468,74 @@ html.dark #category-navbar a.active-category {
   align-items: center;
   flex-shrink: 0;
 }
+
+/* Responsive Luxury Brand Header & Fluid Typography */
+.brand-title-fluid {
+  font-size: clamp(0.78rem, 2.5vw + 0.25rem, 1.05rem);
+  line-height: 1.15;
+}
+
+@media (min-width: 640px) {
+  .brand-title-fluid {
+    font-size: clamp(1.1rem, 0.85rem + 1vw, 1.55rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .brand-title-fluid {
+    font-size: 1.55rem;
+  }
+}
+
+/* Compact theme toggle on tiny screens (< 420px) */
+@media (max-width: 420px) {
+  .theme-mode-switch .theme-toggle-track {
+    display: none !important;
+  }
+  .theme-mode-switch {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    gap: 0.25rem !important;
+  }
+}
+
+/* Category subnav horizontal scrollbar hiding with smooth scroll */
+.category-scroll-container {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.category-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Core Responsive Utility Fallbacks (Zero-FOUC & Offline Resilience) */
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  #viswa-category-navbar,
+  #search-container {
+    display: none !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:flex { display: flex !important; }
+  .sm\:hidden { display: none !important; }
+  .sm\:block { display: block !important; }
+  .sm\:inline { display: inline !important; }
+}
+
+@media (min-width: 768px) {
+  .md\:flex { display: flex !important; }
+  .md\:hidden { display: none !important; }
+  .md\:block { display: block !important; }
+  .md\:inline { display: inline !important; }
+}
+
+@media (min-width: 1024px) {
+  .lg\:flex { display: flex !important; }
+  .lg\:hidden { display: none !important; }
+  .lg\:block { display: block !important; }
+}

@@ -187,13 +187,14 @@
 
   <!-- 2. MODERN LUXURY GLASS NAVBAR (Fluid Multi-Device Layout) -->
   <header id="main-navbar" class="glass-nav sticky top-0 z-40 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-4 md:gap-6">
+    <div
+      class="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 py-2 sm:py-3.5 flex items-center justify-between gap-1.5 sm:gap-4 md:gap-6">
 
       <!-- Left Group: Hamburger + Brand Monogram & Name -->
-      <div class="flex items-center gap-2 sm:gap-3 min-w-0 flex-shrink-0">
+      <div class="flex items-center gap-1.5 sm:gap-3 min-w-0 flex-shrink-0">
         <!-- Mobile Drawer Hamburger Toggle (< lg) -->
         <button id="mobile-menu-toggle-btn" onclick="toggleMobileNavDrawer(true)"
-          class="lg:hidden p-2 rounded-xl text-stone-700 dark:text-amber-200 hover:bg-stone-100 dark:hover:bg-stone-800/60 transition border border-stone-200/80 dark:border-amber-500/20 flex-shrink-0 cursor-pointer active:scale-95"
+          class="lg:hidden p-1.5 sm:p-2 rounded-xl text-stone-700 dark:text-amber-200 hover:bg-stone-100 dark:hover:bg-stone-800/60 transition border border-stone-200/80 dark:border-amber-500/20 flex-shrink-0 cursor-pointer active:scale-95"
           aria-label="Open Navigation Menu" title="Menu">
           <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -201,19 +202,19 @@
         </button>
 
         <!-- Brand Link -->
-        <a href="/" class="flex items-center gap-2 sm:gap-3 group min-w-0" title="Karthik Jewellers Flagship">
+        <a href="/" class="flex items-center gap-1.5 sm:gap-2.5 group min-w-0" title="Karthik Jewellers Flagship">
           <div id="navbar-brand-monogram"
-            class="relative w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 flex-shrink-0 group-hover:scale-105 transition duration-300">
+            class="relative w-6 h-6 sm:w-10 sm:h-10 md:w-11 md:h-11 flex-shrink-0 group-hover:scale-105 transition duration-300">
             <img src="/images/karthik-emblem-gold.png" alt="Karthik Jewellers Official Logo"
               class="w-full h-full object-contain filter drop-shadow-[0_2px_8px_rgba(212,175,55,0.45)]" />
           </div>
-          <div class="min-w-0">
+          <div class="min-w-0 max-w-[170px] xs:max-w-[210px] sm:max-w-none">
             <span id="navbar-brand-name"
-              class="font-serif text-base sm:text-xl md:text-2xl font-bold tracking-tight text-stone-900 dark:text-white uppercase block truncate group-hover:text-[#b4860b] dark:group-hover:text-amber-300 transition duration-300 leading-tight">
+              class="font-serif text-xs xs:text-sm sm:text-xl md:text-2xl font-bold tracking-tight text-stone-900 dark:text-white uppercase block truncate group-hover:text-[#b4860b] dark:group-hover:text-amber-300 transition duration-300 leading-tight">
               Karthik Jewellers
             </span>
             <span id="navbar-brand-tagline"
-              class="text-[7.5px] sm:text-[9px] uppercase tracking-[0.18em] sm:tracking-[0.28em] text-[#b4860b] dark:text-amber-400 font-bold block -mt-0.5 truncate">
+              class="hidden sm:block text-[8px] md:text-[9.5px] uppercase tracking-[0.2em] text-[#b4860b] dark:text-amber-400 font-bold -mt-0.5 truncate">
               Fine Jewellers • Est. 1982
             </span>
           </div>
@@ -230,11 +231,11 @@
       </div>
 
       <!-- Right: Action Utilities -->
-      <div class="flex items-center gap-1.5 sm:gap-2.5 md:gap-3 flex-shrink-0">
+      <div class="flex items-center gap-1 sm:gap-2.5 md:gap-3 flex-shrink-0">
         
         <!-- Mobile Search Toggle Button (< md) -->
         <button id="mobile-search-toggle" onclick="toggleMobileSearchDropdown()"
-          class="md:hidden p-2 rounded-full text-stone-700 dark:text-amber-200 hover:bg-stone-100 dark:hover:bg-stone-800/60 transition active:scale-95"
+          class="md:hidden p-1.5 rounded-full text-stone-700 dark:text-amber-200 hover:bg-stone-100 dark:hover:bg-stone-800/60 transition active:scale-95"
           aria-label="Search Catalog" title="Search">
           <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -250,9 +251,9 @@
           <span class="text-[8px] text-[#b4860b] dark:text-amber-400 font-bold hidden md:inline">▼</span>
         </button>
 
-        <!-- Luxury Dark / Light Mode Switch -->
+        <!-- Luxury Dark / Light Mode Switch (>= sm) -->
         <button id="theme-toggle-btn" onclick="toggleThemeMode()"
-          class="theme-mode-switch relative px-2 sm:px-2.5 py-1.5 rounded-full border border-stone-300/80 dark:border-amber-500/40 bg-stone-100/90 dark:bg-[#1a140b] hover:border-[#d4af37] transition-all duration-300 flex items-center gap-1 sm:gap-1.5 shadow-sm cursor-pointer select-none flex-shrink-0"
+          class="theme-mode-switch hidden sm:flex relative px-2 sm:px-2.5 py-1.5 rounded-full border border-stone-300/80 dark:border-amber-500/40 bg-stone-100/90 dark:bg-[#1a140b] hover:border-[#d4af37] transition-all duration-300 flex items-center gap-1 sm:gap-1.5 shadow-sm cursor-pointer select-none flex-shrink-0"
           title="Toggle Light / Dark Mode" aria-label="Toggle Dark and Light theme">
           <span class="theme-icon-sun text-[11px] sm:text-xs text-amber-500 transition-colors duration-300"><i class="fa-solid fa-sun"></i></span>
           <div
@@ -279,24 +280,24 @@
               d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
           </svg>
           <span
-            class="wishlist-badge hidden absolute -top-0.5 -right-0.5 bg-rose-600 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+            class="wishlist-badge hidden absolute -top-0.5 -right-0.5 bg-rose-600 text-white text-[9px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center">0</span>
         </button>
 
-        <!-- Cart Bag -->
+        <!-- Cart Bag with Absolute Floating Badge on Mobile -->
         <button onclick="openCartDrawer()"
-          class="relative px-2.5 sm:px-3.5 py-1.5 rounded-full dark-pill-btn shadow-md flex items-center gap-1.5 border border-[#d4af37]/30 hover:border-[#d4af37] flex-shrink-0 active:scale-95"
+          class="relative p-1.5 sm:px-3 sm:py-1.5 rounded-full dark-pill-btn shadow-md flex items-center gap-1 sm:gap-1.5 border border-[#d4af37]/30 hover:border-[#d4af37] flex-shrink-0 active:scale-95"
           title="Shopping Bag">
-          <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-none stroke-current stroke-2 text-amber-300" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 fill-none stroke-current stroke-2 text-amber-300" viewBox="0 0 24 24">
             <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
           <span class="text-xs font-bold tracking-wide hidden sm:inline">Bag</span>
           <span
-            class="cart-badge bg-gradient-to-r from-[#d4af37] to-[#ecc874] text-stone-950 text-[10px] font-black px-1.5 py-0.5 rounded-full shadow-sm">0</span>
+            class="cart-badge absolute -top-0.5 -right-0.5 sm:static bg-gradient-to-r from-[#d4af37] to-[#ecc874] text-stone-950 text-[9px] font-black w-3.5 h-3.5 sm:w-auto sm:h-auto sm:px-1.5 sm:py-0.2 rounded-full flex items-center justify-center shadow-sm">0</span>
         </button>
       </div>
 
     </div>
-
+  
     <!-- Mobile Expandable Search Bar Dropdown (< md) -->
     <div id="mobile-search-dropdown" class="md:hidden hidden px-3.5 pb-2.5 pt-1 border-t border-stone-200/60 dark:border-stone-800 bg-white/95 dark:bg-[#120e09]/95 backdrop-blur-md transition-all duration-300">
       <div class="relative w-full">
