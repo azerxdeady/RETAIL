@@ -107,33 +107,33 @@
     <div class="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 py-2 sm:py-3.5 flex items-center justify-between gap-1.5 sm:gap-4 md:gap-6">
       
       <!-- Left: Mobile Menu Toggle + Brand Crest & Monogram -->
-      <div class="flex items-center gap-1.5 sm:gap-3 min-w-0 flex-shrink-0">
-        <!-- Mobile Drawer Hamburger Toggle (< md) -->
+      <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+        <!-- Mobile & Tablet Drawer Hamburger Toggle (< lg) -->
         <button id="viswa-menu-toggle-btn" onclick="toggleViswaNavDrawer(true)"
-          class="md:hidden p-1.5 sm:p-2 rounded-xl text-stone-700 dark:text-amber-200 hover:bg-stone-200/50 dark:hover:bg-stone-800/60 transition border border-[#781d2a]/30 flex-shrink-0 cursor-pointer active:scale-95"
+          class="lg:hidden p-1.5 sm:p-2 rounded-xl text-stone-700 dark:text-amber-200 hover:bg-stone-200/50 dark:hover:bg-stone-800/60 transition border border-[#781d2a]/30 flex-shrink-0 cursor-pointer active:scale-95"
           aria-label="Open Navigation Menu" title="Menu">
           <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
 
-        <a href="/viswanandini" class="flex items-center gap-1.5 sm:gap-2.5 group min-w-0" title="Viswanandini Jewellers">
-          <div id="viswa-brand-monogram" class="w-6 h-6 sm:w-10 sm:h-9 md:w-12 md:h-10 flex-shrink-0 flex items-center justify-center group-hover:scale-105 transition duration-300">
+        <a href="/viswanandini" class="flex items-center gap-1.5 sm:gap-2.5 group flex-shrink-0" title="Viswanandini Jewellers">
+          <div id="viswa-brand-monogram" class="w-7 h-7 sm:w-10 sm:h-9 md:w-11 md:h-10 flex-shrink-0 flex items-center justify-center group-hover:scale-105 transition duration-300">
             <img src="/images/viswanandini-emblem.png" alt="Viswanandini Jewellers Official Logo" class="w-full h-full object-contain filter drop-shadow-[0_2px_8px_rgba(212,175,55,0.4)]" />
           </div>
-          <div class="min-w-0 max-w-[170px] xs:max-w-[210px] sm:max-w-none">
-            <span id="viswa-brand-name" class="font-serif text-xs xs:text-sm sm:text-xl md:text-2xl font-bold tracking-tight text-[#460c14] dark:text-amber-100 uppercase block truncate group-hover:text-[#781d2a] dark:group-hover:text-amber-300 transition leading-tight">
+          <div class="flex-shrink-0">
+            <span id="viswa-brand-name" class="font-serif text-sm sm:text-lg md:text-xl lg:text-2xl font-bold tracking-tight text-[#460c14] dark:text-amber-100 uppercase block whitespace-nowrap group-hover:text-[#781d2a] dark:group-hover:text-amber-300 transition leading-tight">
               Viswanandini Jewellers
             </span>
-            <span id="viswa-brand-tagline" class="hidden sm:block text-[8px] md:text-[9.5px] uppercase tracking-[0.18em] sm:tracking-[0.25em] text-[#a8273a] dark:text-amber-400 font-bold -mt-0.5 truncate">
+            <span id="viswa-brand-tagline" class="hidden sm:block text-[8px] md:text-[9.5px] uppercase tracking-[0.16em] sm:tracking-[0.24em] text-[#a8273a] dark:text-amber-400 font-bold -mt-0.5 whitespace-nowrap">
               Manufacturing Jewellers • Coimbatore
             </span>
           </div>
         </a>
       </div>
 
-      <!-- Center: Navigation Links (Desktop & Tablet >= md) -->
-      <nav id="viswa-category-navbar" class="hidden md:flex items-center gap-4 lg:gap-7 text-xs font-semibold tracking-wide text-stone-700 dark:text-stone-300 whitespace-nowrap">
+      <!-- Center: Navigation Links (Desktop >= lg) -->
+      <nav id="viswa-category-navbar" class="hidden lg:flex items-center gap-3.5 xl:gap-6 text-xs font-semibold tracking-wide text-stone-700 dark:text-stone-300 whitespace-nowrap">
         <a href="#catalog-section" class="hover:text-[#781d2a] dark:hover:text-amber-300 transition">Polki Jadau</a>
         <a href="#catalog-section" class="hover:text-[#781d2a] dark:hover:text-amber-300 transition">Temple Treasures</a>
         <a href="#nandini-scheme-section" class="hover:text-[#781d2a] dark:hover:text-amber-300 text-[#781d2a] dark:text-amber-300 font-bold transition flex items-center gap-1 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-400/30">

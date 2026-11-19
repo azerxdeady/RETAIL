@@ -2513,7 +2513,7 @@ html.dark #category-navbar a.active-category {
   display: none !important;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   #viswa-category-navbar,
   #search-container {
     display: none !important;
