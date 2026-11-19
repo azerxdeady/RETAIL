@@ -23,6 +23,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   updateViswaWishlistBadge();
   updateViswaSchemeCalc(15000);
 
+  // Apple Dynamic Floating Island Navbar Scroll Listener
+  const nav = document.getElementById('viswa-navbar');
+  if (nav) {
+    const handleScroll = () => {
+      if (window.scrollY > 25) {
+        nav.classList.add('is-scrolled');
+      } else {
+        nav.classList.remove('is-scrolled');
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+  }
+
   // Real-time location-based gold rate switch listener
   window.addEventListener('kj_city_changed', async (e) => {
     const { rates } = e.detail;
@@ -86,16 +100,16 @@ function renderViswaTicker(rates) {
   const cityName = rates.cityName || 'Coimbatore';
 
   const singleTrackHTML = `
-    <div class="ticker-content-group flex items-center gap-4 sm:gap-7 whitespace-nowrap text-xs font-medium px-4">
+    <div class="ticker-content-group flex items-center gap-3 sm:gap-6 whitespace-nowrap text-[11px] font-medium px-3">
       <!-- 1-Click Interactive City & Location Pill -->
-      <button onclick="openCitySelectorModal()" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-[#f7e7b4] text-xs font-semibold transition cursor-pointer shadow-sm group flex-shrink-0" title="Click to view local gold rates for your city">
-        <span class="text-amber-400 group-hover:scale-110 transition-transform">📍</span>
+      <button onclick="openCitySelectorModal()" class="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-[#f7e7b4] text-[10.5px] font-semibold transition cursor-pointer shadow-sm group flex-shrink-0" title="Click to view local gold rates for your city">
+        <span class="text-amber-400 group-hover:scale-110 transition-transform text-xs">📍</span>
         <span class="current-city-label font-bold text-white">${cityName}</span>
-        <span class="text-[10px] text-amber-300 underline font-normal">(Change)</span>
+        <span class="text-[9.5px] text-amber-300 underline font-normal">(Change)</span>
       </button>
 
-      <span class="flex items-center gap-2 text-[#f3e5ab] flex-shrink-0">
-        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shadow-[0_0_8px_#f59e0b]"></span>
+      <span class="flex items-center gap-1.5 text-[#f3e5ab] flex-shrink-0">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse shadow-[0_0_8px_#f59e0b]"></span>
         <strong class="text-white tracking-widest font-serif">CENTRAL BULLION INDEX</strong> (${timeStr})
       </span>
       <span class="flex-shrink-0">Gold 22KT (916 BIS Hallmark): <strong class="text-white font-mono">₹${rates.gold22k.toLocaleString('en-IN')}/g</strong></span>
@@ -103,6 +117,7 @@ function renderViswaTicker(rates) {
       <span class="flex-shrink-0">Gold 18KT (Rose & Diamond): <strong class="text-white font-mono">₹${rates.gold18k.toLocaleString('en-IN')}/g</strong></span>
       <span class="flex-shrink-0">Fine Silver: <strong class="text-white font-mono">₹${rates.silver.toLocaleString('en-IN')}/g</strong></span>
       <span class="text-amber-300 font-bold flex-shrink-0">★ ${rates.association || 'Certified Under Karthik Jewellers BIS License'}</span>
+      <span class="text-amber-200 font-semibold flex-shrink-0">👑 Royal Bridal Trousseau • Uncut Polki & Kundan Jadau</span>
       <a href="/" class="hover:text-white font-bold flex items-center gap-1 text-amber-200 transition flex-shrink-0"><span>🏛️</span> Flagship Storefront</a>
       <a href="#huid-section" class="hover:text-amber-200 flex items-center gap-1 text-stone-300 transition flex-shrink-0"><span>🛡️</span> BIS 916 Stamped</a>
       <span class="text-amber-500/50 flex-shrink-0">•</span>
